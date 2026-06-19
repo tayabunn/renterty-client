@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Renterty: Property Rental & Booking Platform
+
+Renterty is a transparent, secure, and modern full-stack rental marketplace connecting tenants and property owners. The system features role-based access control, comprehensive property listing flows, Stripe reservation fee checkouts, interactive tenant ratings and reviews, and owner analytics.
+
+## Purpose
+The platform allows tenants to discover, filter, and instantly book listed apartments, villas, and cabins. Owners can list their rentals, track their monthly earnings and bookings through data visualizations, and manage booking requests. Admins moderate listing requests, manage system roles, and audit transactions.
+
+## Key Features
+- **Role-Based Access Control (RBAC)**: Distinct layouts, views, and dashboards for `Tenant`, `Owner`, and `Admin` users.
+- **Advanced Filtering and Search**: Search properties by location (city/state), filter by property type, and sort by rent price (Low to High, High to Low) dynamically with backend pagination.
+- **Secure Reservation Checkout**: Stripe payment gateway integration charging reservation fees in cents and producing receipts.
+- **Tenant Reviews and Ratings**: Vetted rating systems for tenants to write comments and stars on verified listings.
+- **Analytics Visualization**: Interactive Recharts line charts representing monthly earnings for owners over the last 12 months.
+- **PDF Reports Download**: Automated server-side PDFKit report generator compiling owner transactions and booking tables.
+- **Google Social Sign-In**: Seamless authentication setting social accounts as Tenants by default.
+- **Responsive Layout**: Designed for mobile, tablet, and desktop views using Tailwind CSS.
+- **Dark/Light Mode Switcher**: Eye-pleasing theme toggle with local storage persistence.
+
+## Technologies and Packages Used
+
+### Client Side (Next.js App Router)
+- **Framework**: `Next.js 16 (Turbopack)`
+- **Styling**: `Tailwind CSS v4`
+- **Animations**: `Framer Motion`
+- **Charts**: `Recharts`
+- **Stripe**: `@stripe/stripe-js` & `@stripe/react-stripe-js`
+- **Authentication**: `Firebase Client SDK` (Google Auth Provider)
+- **Notifications**: `React Hot Toast`
+- **Icons**: `Lucide React`
+
+### Server Side (Node.js & Express)
+- **Framework**: `Express.js`
+- **Database Connection**: `Mongoose` & `MongoDB Atlas`
+- **Authentication**: `jsonwebtoken` (JWT) & `bcryptjs`
+- **Stripe SDK**: `stripe`
+- **PDF Generation**: `pdfkit`
+- **CORS**: `cors`
+- **Environment config**: `dotenv`
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Prerequisites
+- **Node.js**: `v18+`
+- **MongoDB**: Access to a MongoDB Atlas cluster or local database instance.
 
+### 2. Setting Up the Server
+Navigate to the `renterty-server` directory:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd renterty-server
+npm install
+```
+Create a `.env` file in the `renterty-server` root directory:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_uri
+JWT_SECRET=your_jwt_secret_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the database seed script to populate default users (Admin, Owner, Tenant) and sample listings:
+```bash
+node seed.js
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Start the API server in development mode:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Setting Up the Client
+Navigate to the `renterty-client` directory:
+```bash
+cd renterty-client
+npm install
+```
+Create a `.env.local` file in the `renterty-client` root directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_STRIPE_PUBLIC_KEY=your_stripe_public_key
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Start the Next.js development server:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to explore the Renterty rental application.
