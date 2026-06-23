@@ -59,7 +59,7 @@ function DashboardContent() {
     router.replace(`/dashboard?tab=${tabName}`, { scroll: false });
   };
 
-  if (loading || !activeTab) {
+  if (loading || !user || !activeTab) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] bg-slate-50 dark:bg-zinc-950">
         <Loader2 className="animate-spin h-10 w-10 text-teal-500 mb-4" />

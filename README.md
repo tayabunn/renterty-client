@@ -1,5 +1,18 @@
 # Renterty: Property Rental & Booking Platform
 
+> [!IMPORTANT]
+> **Deployment & Submission Information**
+> - **Front-End Live Link**: [Renterty Live Website](https://renterty-client.vercel.app)
+> - **Client Repository Link**: [Client GitHub Repository](https://github.com/tayabunn/renterty-client)
+
+
+### Default Test Credentials
+| Role | Email | Password |
+|---|---|---|
+| **Admin** | `admin@renterty.com` | `adminpassword123` |
+| **Owner (Landlord)** | `owner@renterty.com` | `ownerpassword123` |
+| **Tenant (Renter)** | `tenant@renterty.com` | `tenantpassword123` |
+
 Renterty is a transparent, secure, and modern full-stack rental marketplace connecting tenants and property owners. The system features role-based access control, comprehensive property listing flows, Stripe reservation fee checkouts, interactive tenant ratings and reviews, and owner analytics.
 
 ## Purpose

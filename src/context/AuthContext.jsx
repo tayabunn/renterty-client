@@ -1,64 +1,59 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { auth, googleProvider, signInWithPopup } from "../lib/firebase";
+import { authClient } from "../lib/auth-client";
 import toast from "react-hot-toast";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const { data: sessionData, isPending } = authClient.useSession();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Load user on mount
+  // Sync user state from Better Auth session
   useEffect(() => {
-    const loadUser = async () => {
-      const token = localStorage.getItem("renterty_token");
-      if (token) {
-        try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (res.ok) {
-            const data = await res.json();
-            setUser(data);
-          } else {
-            // Token expired or invalid
-            localStorage.removeItem("renterty_token");
-            setUser(null);
-          }
-        } catch (error) {
-          console.error("Error loading user profile:", error);
-          setUser(null);
-        }
+    if (!isPending) {
+      if (sessionData && sessionData.user) {
+        setUser({
+          id: sessionData.user.id,
+          name: sessionData.user.name,
+          email: sessionData.user.email,
+          role: sessionData.user.role || "Tenant",
+          photo: sessionData.user.photo || sessionData.user.image || "",
+        });
+      } else {
+        setUser(null);
       }
       setLoading(false);
-    };
-
-    loadUser();
-  }, []);
+    }
+  }, [sessionData, isPending]);
 
   // Login handler
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const response = await authClient.signIn.email({
+        email,
+        password,
       });
-      const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || "Failed to log in");
+      if (response.error) {
+        throw new Error(response.error.message || "Failed to log in");
       }
 
-      localStorage.setItem("renterty_token", data.token);
-      setUser(data.user);
+      if (response.data && response.data.user) {
+        setUser({
+          id: response.data.user.id,
+          name: response.data.user.name,
+          email: response.data.user.email,
+          role: response.data.user.role || "Tenant",
+          photo: response.data.user.photo || response.data.user.image || "",
+        });
+      }
+
       toast.success("Welcome back!");
-      return data.user;
+      return response.data?.user;
     } catch (error) {
       toast.error(error.message);
       throw error;
@@ -68,24 +63,33 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Register handler
-  const register = async (name, email, password, photo) => {
+  const register = async (name, email, password, photo, role) => {
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, photo }),
+      const response = await authClient.signUp.email({
+        email,
+        password,
+        name,
+        image: photo, // Map photo to image field
+        role: role || "Tenant",
       });
-      const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || "Registration failed");
+      if (response.error) {
+        throw new Error(response.error.message || "Registration failed");
       }
 
-      localStorage.setItem("renterty_token", data.token);
-      setUser(data.user);
+      if (response.data && response.data.user) {
+        setUser({
+          id: response.data.user.id,
+          name: response.data.user.name,
+          email: response.data.user.email,
+          role: response.data.user.role || "Tenant",
+          photo: response.data.user.photo || response.data.user.image || "",
+        });
+      }
+
       toast.success("Account created successfully!");
-      return data.user;
+      return response.data?.user;
     } catch (error) {
       toast.error(error.message);
       throw error;
@@ -98,28 +102,17 @@ export const AuthProvider = ({ children }) => {
   const loginWithGoogle = async () => {
     setLoading(true);
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const firebaseUser = result.user;
-
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/google-login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: firebaseUser.displayName,
-          email: firebaseUser.email,
-          photo: firebaseUser.photoURL,
-        }),
+      const response = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: `${typeof window !== "undefined" ? window.location.origin : ""}/dashboard`
       });
-      const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.message || "Google sign-in failed");
+      if (response.error) {
+        throw new Error(response.error.message || "Google sign-in failed");
       }
 
-      localStorage.setItem("renterty_token", data.token);
-      setUser(data.user);
-      toast.success(`Logged in as ${data.user.name}`);
-      return data.user;
+      toast.success("Redirecting to Google...");
+      return response.data;
     } catch (error) {
       toast.error(error.message);
       throw error;
@@ -129,10 +122,18 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Logout handler
-  const logout = () => {
-    localStorage.removeItem("renterty_token");
-    setUser(null);
-    toast.success("Logged out successfully");
+  const logout = async () => {
+    setLoading(true);
+    try {
+      await authClient.signOut();
+      localStorage.removeItem("renterty_token");
+      setUser(null);
+      toast.success("Logged out successfully");
+    } catch (error) {
+      toast.error("Logout failed: " + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

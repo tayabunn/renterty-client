@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
@@ -118,12 +119,14 @@ export default function Home() {
       <div className="relative bg-slate-900 dark:bg-zinc-950 min-h-[85vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Image / Overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&auto=format&fit=crop&q=80"
             alt="Renterty Hero"
-            className="w-full h-full object-cover opacity-35 dark:opacity-20"
+            className="object-cover opacity-35 dark:opacity-20"
+            fill
+            preload
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-slate-950" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/60 to-slate-950" />
         </div>
 
         {/* Hero Content */}
@@ -140,7 +143,7 @@ export default function Home() {
             </span>
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-[1.1]">
               Find Your Next <br />
-              <span className="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
                 Dream Living Space
               </span>
             </h1>
@@ -226,7 +229,7 @@ export default function Home() {
               <div className="flex items-end">
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200"
+                  className="w-full flex items-center justify-center space-x-2 py-3 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200"
                 >
                   <Search className="h-5 w-5" />
                   <span>Search</span>
@@ -270,10 +273,12 @@ export default function Home() {
               >
                 {/* Image Wrap */}
                 <div className="relative h-56 overflow-hidden">
-                  <img
+                  <Image
                     src={property.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800"}
                     alt={property.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow">
                     {property.propertyType}
@@ -453,10 +458,12 @@ export default function Home() {
                 }}
                 className="relative rounded-2xl h-48 overflow-hidden group cursor-pointer"
               >
-                <img
+                <Image
                   src={city.img}
                   alt={city.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-left">

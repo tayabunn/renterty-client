@@ -8,8 +8,10 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { Lock, Mail, Building2, Loader2 } from "lucide-react";
+import { useForm} from "react-hook-form"
 
 export default function Login() {
+  
   const { user, login, loginWithGoogle, loading } = useAuth();
   const router = useRouter();
 
@@ -51,7 +53,7 @@ export default function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-50 to-slate-100 dark:from-zinc-950 dark:to-zinc-900 transition-all duration-300">
+      <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-linear-to-tr from-slate-50 to-slate-100 dark:from-zinc-950 dark:to-zinc-900 transition-all duration-300">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +61,7 @@ export default function Login() {
           className="sm:mx-auto sm:w-full sm:max-w-md"
         >
           <div className="flex justify-center">
-            <div className="p-3 bg-gradient-to-tr from-teal-500 to-emerald-500 rounded-2xl text-white shadow-lg">
+            <div className="p-3 bg-linear-to-tr from-teal-500 to-emerald-500 rounded-2xl text-white shadow-lg">
               <Building2 className="h-10 w-10" />
             </div>
           </div>
@@ -130,7 +132,7 @@ export default function Login() {
                 <button
                   type="submit"
                   disabled={submitting || loading}
-                  className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 transition-all duration-150"
+                  className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 transition-all duration-150"
                 >
                   {submitting ? (
                     <>

@@ -6,12 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import { Sun, Moon, Menu, X, Home, Building2, LayoutDashboard, LogOut, User } from "lucide-react";
+import { useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
+  const {data: session} = useSession()
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -19,8 +21,8 @@ const Navbar = () => {
     { name: "All Properties", href: "/properties", icon: Building2 },
   ];
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async() => {
+    await logout();
     router.push("/");
   };
 
@@ -32,10 +34,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand Name */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-to-tr from-teal-500 to-emerald-500 rounded-xl text-white transform group-hover:scale-105 transition-all duration-300 shadow-md shadow-teal-500/20">
+            <div className="p-2 bg-linear-to-tr from-teal-500 to-emerald-500 rounded-xl text-white transform group-hover:scale-105 transition-all duration-300 shadow-md shadow-teal-500/20">
               <Building2 className="h-6 w-6" />
             </div>
-            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent group-hover:opacity-90">
+            <span className="text-xl font-bold tracking-tight bg-linear-to-r from-slate-900 to-slate-700 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent group-hover:opacity-90">
               Renterty
             </span>
           </Link>
@@ -79,7 +81,7 @@ const Navbar = () => {
                   {/* Dashboard link */}
                   <Link
                     href="/dashboard"
-                    className="flex items-center space-x-1 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-lg text-sm font-semibold shadow-sm hover:from-teal-600 hover:to-emerald-600 hover:shadow-md transition-all duration-200"
+                    className="flex items-center space-x-1 px-4 py-2 bg-linear-to-r from-teal-500 to-emerald-500 text-white rounded-lg text-sm font-semibold shadow-sm hover:from-teal-600 hover:to-emerald-600 hover:shadow-md transition-all duration-200"
                   >
                     <LayoutDashboard className="h-4 w-4" />
                     <span>Dashboard</span>
@@ -89,6 +91,8 @@ const Navbar = () => {
                   <div className="flex items-center space-x-2 border-l border-slate-200 dark:border-zinc-800 pl-4">
                     {user.photo ? (
                       <img
+                        width={32}
+                        height={32}
                         src={user.photo}
                         alt={user.name}
                         className="h-8 w-8 rounded-full border border-slate-200 dark:border-zinc-700 object-cover"

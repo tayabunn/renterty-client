@@ -7,12 +7,22 @@ import toast from "react-hot-toast";
 
 export default function OwnerAnalytics() {
   const [loading, setLoading] = useState(true);
+  const [chartReady, setChartReady] = useState(false);
   const [stats, setStats] = useState({
     totalEarnings: 0,
     totalProperties: 0,
     totalBookings: 0,
     chartData: []
   });
+
+  useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+        setChartReady(true);
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   const fetchAnalytics = async () => {
     const token = localStorage.getItem("renterty_token");
@@ -172,38 +182,40 @@ export default function OwnerAnalytics() {
           <span>Monthly Earnings Trend (Last 12 Months)</span>
         </h3>
         <div className="h-72 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={stats.chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" className="dark:hidden" />
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" className="hidden dark:block" />
-              <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} fontWeight="bold" />
-              <YAxis stroke="#94a3b8" fontSize={11} fontWeight="bold" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "rgba(30, 41, 59, 0.95)",
-                  border: "none",
-                  borderRadius: "12px",
-                  color: "#fff",
-                  fontSize: "12px",
-                  fontWeight: "bold"
-                }}
-              />
-              <Line
-                type="monotone"
-                dataKey="Earnings"
-                stroke="url(#colorEarnings)"
-                strokeWidth={3}
-                dot={{ r: 4, strokeWidth: 2 }}
-                activeDot={{ r: 6 }}
-              />
-              <defs>
-                <linearGradient id="colorEarnings" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#14b8a6" />
-                  <stop offset="100%" stopColor="#10b981" />
-                </linearGradient>
-              </defs>
-            </LineChart>
-          </ResponsiveContainer>
+          {chartReady && (
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0} initialDimension={{ width: 100, height: 100 }}>
+              <LineChart data={stats.chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" className="dark:hidden" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" className="hidden dark:block" />
+                <XAxis dataKey="month" stroke="#94a3b8" fontSize={11} fontWeight="bold" />
+                <YAxis stroke="#94a3b8" fontSize={11} fontWeight="bold" />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgba(30, 41, 59, 0.95)",
+                    border: "none",
+                    borderRadius: "12px",
+                    color: "#fff",
+                    fontSize: "12px",
+                    fontWeight: "bold"
+                  }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Earnings"
+                  stroke="url(#colorEarnings)"
+                  strokeWidth={3}
+                  dot={{ r: 4, strokeWidth: 2 }}
+                  activeDot={{ r: 6 }}
+                />
+                <defs>
+                  <linearGradient id="colorEarnings" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#14b8a6" />
+                    <stop offset="100%" stopColor="#10b981" />
+                  </linearGradient>
+                </defs>
+              </LineChart>
+            </ResponsiveContainer>
+          )}
         </div>
       </div>
     </div>

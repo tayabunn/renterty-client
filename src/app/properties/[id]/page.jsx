@@ -5,15 +5,9 @@ import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "../../../context/AuthContext";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
-import StripePaymentForm from "../../../components/StripePaymentForm";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Building, BedDouble, Bath, Maximize, Heart, Share2, Calendar, Phone, FileText, User, Star, ArrowLeft, Loader2, Sparkles, Send } from "lucide-react";
+import { MapPin, Building, BedDouble, Bath, Maximize, Heart, Share2, Calendar, Phone, FileText, User, Star, ArrowLeft, Loader2, Sparkles, Send, CreditCard } from "lucide-react";
 import toast from "react-hot-toast";
-
-// Initialize Stripe Promise
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "");
 
 export default function PropertyDetails() {
   const { id } = useParams();
@@ -658,18 +652,55 @@ export default function PropertyDetails() {
                   </div>
                 </form>
               ) : (
-                <Elements stripe={stripePromise}>
-                  <StripePaymentForm
-                    amount={property.rent}
-                    propertyId={id}
-                    bookingData={{
-                      tenantName: user?.name,
-                      tenantEmail: user?.email
-                    }}
-                    onSuccess={handleBookingPaymentSuccess}
-                    onCancel={() => setBookingStep(1)}
-                  />
-                </Elements>
+                <form action="/api/checkout_sessions" method="POST" className="space-y-6">
+                  {/* Hidden inputs to pass booking data to Stripe checkout API */}
+                  <input type="hidden" name="amount" value={property.rent} />
+                  <input type="hidden" name="propertyId" value={id} />
+                  <input type="hidden" name="propertyTitle" value={property.title} />
+                  <input type="hidden" name="moveInDate" value={moveInDate} />
+                  <input type="hidden" name="contactNumber" value={contactNumber} />
+                  <input type="hidden" name="additionalNotes" value={additionalNotes} />
+                  <input type="hidden" name="tenantEmail" value={user?.email || ""} />
+
+                  <div className="bg-slate-50 dark:bg-zinc-950 p-4 rounded-xl border border-slate-200 dark:border-zinc-800">
+                    <span className="text-xs font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider block mb-2">
+                      RESERVATION FEES (Total Rent)
+                    </span>
+                    <div className="text-2xl font-black text-teal-600 dark:text-teal-400">
+                      ${property.rent.toLocaleString()} USD
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-xl border border-slate-200 dark:border-zinc-800 space-y-2 text-left">
+                    <span className="text-xs font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider block">
+                      Booking Details Summary
+                    </span>
+                    <div className="text-xs text-slate-600 dark:text-zinc-400 space-y-1">
+                      <p><strong className="text-slate-700 dark:text-zinc-300">Move-in Date:</strong> {moveInDate}</p>
+                      <p><strong className="text-slate-700 dark:text-zinc-300">Contact Number:</strong> {contactNumber}</p>
+                      {additionalNotes && (
+                        <p className="truncate"><strong className="text-slate-700 dark:text-zinc-300">Notes:</strong> {additionalNotes}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setBookingStep(1)}
+                      className="flex-1 py-2.5 border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl font-bold transition text-sm"
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-1 flex items-center justify-center space-x-2 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200 text-sm"
+                    >
+                      <CreditCard className="h-4 w-4" />
+                      <span>Pay & Book (Stripe Checkout)</span>
+                    </button>
+                  </div>
+                </form>
               )}
             </motion.div>
           </div>

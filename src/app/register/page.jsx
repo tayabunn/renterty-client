@@ -7,16 +7,27 @@ import { useAuth } from "../../context/AuthContext";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
-import { Lock, Mail, User, Image, Building2, Loader2 } from "lucide-react";
+import { Lock, Mail, User, Image as ImageIcon, Building2, Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
+import { uploadImage } from "@/utils/uploadimage";
 
 export default function Register() {
-  const { user, register, loginWithGoogle, loading } = useAuth();
+  const { user, register: authRegister, loginWithGoogle, loading } = useAuth();
   const router = useRouter();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [photo, setPhoto] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      photo: "",
+      role: "Tenant",
+      password: ""
+    }
+  });
+
+
   const [submitting, setSubmitting] = useState(false);
 
   // If user is already logged in, redirect to dashboard
@@ -26,16 +37,30 @@ export default function Register() {
     }
   }, [user, router]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name || !email || !password) return;
+    
 
+  const onSubmit = async (data) => {
     setSubmitting(true);
     try {
-      await register(name, email, password, photo);
+      let photoUrl = "";
+      if (data.photo && data.photo[0]) {
+        toast.loading("Uploading profile image...", { id: "image-upload" });
+        try {
+          photoUrl = await uploadImage(data.photo[0]);
+          toast.success("Image uploaded successfully!", { id: "image-upload" });
+        } catch (uploadErr) {
+          toast.error("Failed to upload profile image", { id: "image-upload" });
+          throw uploadErr;
+        }
+      }
+
+      const response = await authRegister(data.name, data.email, data.password, photoUrl, data.role);
+      console.log("Registration successful response user:", response);
+      const token = localStorage.getItem("renterty_token");
+      console.log("JWT Token stored in localStorage:", token);
       router.push("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error("Registration failed:", err);
     } finally {
       setSubmitting(false);
     }
@@ -53,7 +78,7 @@ export default function Register() {
   return (
     <>
       <Navbar />
-      <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-50 to-slate-100 dark:from-zinc-950 dark:to-zinc-900 transition-all duration-300">
+      <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-linear-to-tr from-slate-50 to-slate-100 dark:from-zinc-950 dark:to-zinc-900 transition-all duration-300">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,7 +86,7 @@ export default function Register() {
           className="sm:mx-auto sm:w-full sm:max-w-md"
         >
           <div className="flex justify-center">
-            <div className="p-3 bg-gradient-to-tr from-teal-500 to-emerald-500 rounded-2xl text-white shadow-lg">
+            <div className="p-3 bg-linear-to-tr from-teal-500 to-emerald-500 rounded-2xl text-white shadow-lg">
               <Building2 className="h-10 w-10" />
             </div>
           </div>
@@ -86,30 +111,37 @@ export default function Register() {
           className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
         >
           <div className="bg-white dark:bg-zinc-900 py-8 px-4 shadow-xl shadow-slate-200/50 dark:shadow-black/50 sm:rounded-2xl sm:px-10 border border-slate-200/60 dark:border-zinc-800/60">
-            <form className="space-y-5" onSubmit={handleSubmit}>
+            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
               {/* Full Name */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
                   Full Name
                 </label>
                 <div className="mt-1 relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                     <User className="h-5 w-5" />
                   </div>
+
+                  {
+                    errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+                  }
+
                   <input
                     type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    id="name"
+                    data-gramm="false"
+                    data-gramm_editor="false"
+                    data-enable-grammarly="false"
                     className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150"
                     placeholder="John Doe"
+                    {...register("name", { required: "Full name is required" })}
                   />
                 </div>
               </div>
 
               {/* Email Address */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
                   Email Address
                 </label>
                 <div className="mt-1 relative rounded-md shadow-sm">
@@ -118,37 +150,74 @@ export default function Register() {
                   </div>
                   <input
                     type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    id="email"
+                    data-gramm="false"
+                    data-gramm_editor="false"
+                    data-enable-grammarly="false"
                     className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150"
                     placeholder="you@example.com"
+                    {...register("email", {
+                      required: "Email address is required",
+                      pattern: {
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: "Please enter a valid email address",
+                      },
+                    })}
                   />
                 </div>
+                {errors.email && (
+                  <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+                )}
               </div>
 
-              {/* Photo URL */}
+              {/* Profile Image */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
-                  Photo URL (Optional)
+                <label htmlFor="image" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                  Profile Image  (Optional)
                 </label>
                 <div className="mt-1 relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                    <Image className="h-5 w-5" />
+                    <ImageIcon className="h-5 w-5" />
                   </div>
                   <input
-                    type="url"
-                    value={photo}
-                    onChange={(e) => setPhoto(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150"
-                    placeholder="https://example.com/photo.jpg"
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg"
+                    id="image"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                    {...register("photo", { required: "Profile image is required" })}
                   />
                 </div>
+                {errors.photo && (
+                  <p className="mt-1 text-xs text-red-500">{errors.photo.message}</p>
+                )}
+              </div>
+
+              {/* Select Role */}
+              <div>
+                <label htmlFor="role" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                  Select Role
+                </label>
+                <div className="mt-1 relative rounded-md shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <User className="h-5 w-5" />
+                  </div>
+                  <select
+                    id="role"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150"
+                    {...register("role", { required: "Role is required" })}
+                  >
+                    <option value="Tenant">Tenant (Renter)</option>
+                    <option value="Owner">Owner (Landlord)</option>
+                  </select>
+                </div>
+                {errors.role && (
+                  <p className="mt-1 text-xs text-red-500">{errors.role.message}</p>
+                )}
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+                <label htmlFor="password" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
                   Password
                 </label>
                 <div className="mt-1 relative rounded-md shadow-sm">
@@ -157,13 +226,21 @@ export default function Register() {
                   </div>
                   <input
                     type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    id="password"
                     className="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-zinc-800 rounded-lg bg-slate-50 dark:bg-zinc-950 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm transition-all duration-150"
                     placeholder="••••••••"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters long",
+                      },
+                    })}
                   />
                 </div>
+                {errors.password && (
+                  <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -171,7 +248,7 @@ export default function Register() {
                 <button
                   type="submit"
                   disabled={submitting || loading}
-                  className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 transition-all duration-150"
+                  className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 transition-all duration-150"
                 >
                   {submitting ? (
                     <>
