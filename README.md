@@ -102,4 +102,4 @@ Start the Next.js development server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser to explore the Renterty rental application.
+Open [https://renterty-client.vercel.app](https://renterty-client.vercel.app) with your browser to explore the Renterty rental application.
