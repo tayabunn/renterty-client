@@ -28,11 +28,18 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body
-        className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300"
+        className="min-h-full flex flex-col transition-colors duration-300"
         suppressHydrationWarning
       >
         <ThemeProvider>
           <AuthProvider>
+            {/* Global Background Glow Effects */}
+            <div className="fixed inset-0 -z-50 pointer-events-none overflow-hidden">
+              <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-[120px]" />
+              <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-[120px]" />
+              <div className="absolute top-[40%] right-[-10%] w-[40%] h-[40%] bg-cyan-500/5 dark:bg-cyan-500/2 rounded-full blur-[120px]" />
+            </div>
+
             <Toaster position="top-center" reverseOrder={false} />
             {children}
           </AuthProvider>

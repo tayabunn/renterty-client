@@ -6,6 +6,15 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/AuthContext";
 import { Search, MapPin, Building, DollarSign, BedDouble, Bath, Maximize, Loader2, ArrowUpDown } from "lucide-react";
+import { BlurInText } from "@/components/ui/blur-in-text";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 // Wrap search params logic in a separate component to comply with Next.js Suspense boundary requirements
 function PropertiesContent() {
@@ -93,21 +102,28 @@ function PropertiesContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
       {/* Header and intro */}
-      <div className="mb-10 text-left space-y-2">
-        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Explore All Rentals
+      <div className="mb-10 text-left space-y-3">
+        <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
+          <BlurInText
+            text="Explore All Rentals"
+            blurAmount={10}
+            duration={1.2}
+            stagger={0.06}
+            split="letter"
+            trigger="inView"
+          />
         </h1>
-        <p className="text-slate-500 dark:text-zinc-400 text-sm">
+        <p className="text-slate-500 dark:text-zinc-400 text-sm font-medium">
           Use the filters below to find rental houses, villas, and studios matching your budget and lifestyle.
         </p>
       </div>
 
       {/* Filters Form Card */}
-      <div className="bg-white dark:bg-zinc-900/60 p-6 rounded-2xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm mb-10">
+      <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-3xl shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-10">
         <form onSubmit={handleApplyFilters} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
           {/* Location */}
-          <div className="text-left space-y-1.5 col-span-1 md:col-span-2">
-            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+          <div className="text-left space-y-2 col-span-1 md:col-span-2">
+            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <MapPin className="h-3.5 w-3.5 text-teal-500" />
               <span>SEARCH CITY</span>
             </label>
@@ -116,20 +132,20 @@ function PropertiesContent() {
               placeholder="e.g. New York, Miami..."
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full bg-slate-100 dark:bg-zinc-950 border border-transparent focus:border-teal-500 focus:bg-white focus:outline-none px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
+              className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
             />
           </div>
 
           {/* Property Type */}
-          <div className="text-left space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+          <div className="text-left space-y-2">
+            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <Building className="h-3.5 w-3.5 text-teal-500" />
               <span>PROPERTY TYPE</span>
             </label>
             <select
               value={propertyType}
               onChange={(e) => setPropertyType(e.target.value)}
-              className="w-full bg-slate-100 dark:bg-zinc-950 border border-transparent focus:border-teal-500 focus:bg-white focus:outline-none px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
+              className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 transition-all duration-200 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M7%209l3%203%203-3%22%20stroke%3D%22%25236b7280%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-[size:1.5em_1.5em] bg-no-repeat pr-10"
             >
               <option value="All">All Types</option>
               <option value="Apartment">Apartment</option>
@@ -141,8 +157,8 @@ function PropertiesContent() {
           </div>
 
           {/* Min Price */}
-          <div className="text-left space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+          <div className="text-left space-y-2">
+            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <DollarSign className="h-3.5 w-3.5 text-teal-500" />
               <span>MIN PRICE ($)</span>
             </label>
@@ -151,13 +167,13 @@ function PropertiesContent() {
               placeholder="Min"
               value={minPrice}
               onChange={(e) => setMinPrice(e.target.value)}
-              className="w-full bg-slate-100 dark:bg-zinc-950 border border-transparent focus:border-teal-500 focus:bg-white focus:outline-none px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
+              className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
             />
           </div>
 
           {/* Max Price */}
-          <div className="text-left space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+          <div className="text-left space-y-2">
+            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <DollarSign className="h-3.5 w-3.5 text-teal-500" />
               <span>MAX PRICE ($)</span>
             </label>
@@ -166,13 +182,13 @@ function PropertiesContent() {
               placeholder="Max"
               value={maxPrice}
               onChange={(e) => setMaxPrice(e.target.value)}
-              className="w-full bg-slate-100 dark:bg-zinc-950 border border-transparent focus:border-teal-500 focus:bg-white focus:outline-none px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
+              className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
             />
           </div>
 
           {/* Sort selection */}
-          <div className="text-left space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+          <div className="text-left space-y-2">
+            <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <ArrowUpDown className="h-3.5 w-3.5 text-teal-500" />
               <span>SORT BY PRICE</span>
             </label>
@@ -182,7 +198,7 @@ function PropertiesContent() {
                 setSort(e.target.value);
                 setPage(1);
               }}
-              className="w-full bg-slate-100 dark:bg-zinc-950 border border-transparent focus:border-teal-500 focus:bg-white focus:outline-none px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
+              className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 transition-all duration-200 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M7%209l3%203%203-3%22%20stroke%3D%22%25236b7280%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:right_0.75rem_center] bg-[size:1.5em_1.5em] bg-no-repeat pr-10"
             >
               <option value="newest">Newest First</option>
               <option value="priceAsc">Price: Low to High</option>
@@ -191,17 +207,17 @@ function PropertiesContent() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex gap-2 col-span-1 md:col-span-4">
+          <div className="flex gap-3 col-span-1 md:col-span-4">
             <button
               type="submit"
-              className="flex-1 py-2.5 bg-teal-500 hover:bg-teal-600 text-white rounded-xl font-bold shadow-md transition-all duration-200 text-sm"
+              className="flex-1 flex items-center justify-center space-x-2 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg shadow-teal-500/10 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 cursor-pointer text-sm h-[46px]"
             >
-              Apply Filters
+              <span>Apply Filters</span>
             </button>
             <button
               type="button"
               onClick={handleClearFilters}
-              className="px-4 py-2.5 border border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-900 rounded-xl font-bold transition-all text-sm"
+              className="px-6 border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-750 text-slate-700 dark:text-zinc-200 rounded-xl font-bold transition-all duration-200 cursor-pointer text-sm h-[46px]"
             >
               Clear
             </button>
@@ -244,7 +260,7 @@ function PropertiesContent() {
                   <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow">
                     {property.propertyType}
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl text-lg font-black shadow-sm">
+                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl text-lg font-bold shadow-sm">
                     ${property.rent.toLocaleString()}
                     <span className="text-xs font-normal">/{property.rentType === "Monthly" ? "mo" : property.rentType === "Weekly" ? "wk" : "day"}</span>
                   </div>
@@ -297,24 +313,38 @@ function PropertiesContent() {
 
           {/* Pagination Controllers */}
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-4 pt-6 border-t border-slate-100 dark:border-zinc-800">
-              <button
-                disabled={page <= 1}
-                onClick={() => setPage(page - 1)}
-                className="px-4 py-2 border border-slate-200 dark:border-zinc-800 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-900/50 disabled:opacity-50 text-sm font-semibold transition"
-              >
-                Previous
-              </button>
-              <span className="text-sm font-semibold text-slate-700 dark:text-zinc-300">
-                Page {page} of {totalPages}
-              </span>
-              <button
-                disabled={page >= totalPages}
-                onClick={() => setPage(page + 1)}
-                className="px-4 py-2 border border-slate-200 dark:border-zinc-800 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-900/50 disabled:opacity-50 text-sm font-semibold transition"
-              >
-                Next
-              </button>
+            <div className="pt-6 border-t border-slate-100 dark:border-zinc-800">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious
+                      disabled={page <= 1}
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    />
+                  </PaginationItem>
+
+                  {Array.from({ length: totalPages }).map((_, index) => {
+                    const pageNumber = index + 1;
+                    return (
+                      <PaginationItem key={pageNumber}>
+                        <PaginationLink
+                          isActive={page === pageNumber}
+                          onClick={() => setPage(pageNumber)}
+                        >
+                          {pageNumber}
+                        </PaginationLink>
+                      </PaginationItem>
+                    );
+                  })}
+
+                  <PaginationItem>
+                    <PaginationNext
+                      disabled={page >= totalPages}
+                      onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
             </div>
           )}
         </div>

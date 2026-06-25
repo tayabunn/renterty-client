@@ -12,6 +12,7 @@ import { Search, MapPin, Building, DollarSign, BedDouble, Bath, Maximize, Star, 
 import { BlurInText } from "@/components/ui/blur-in-text";
 import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
+import { TypingAnimation } from "@/registry/magicui/typing-animation";
 
 export default function Home() {
   const { user } = useAuth();
@@ -38,9 +39,7 @@ export default function Home() {
           setFeatured(data);
         }
 
-        // Fetch reviews (we can fetch from first property reviews or write a custom endpoint. Let's fetch all reviews from backend reviews endpoint)
-        // Wait, since we don't have a direct "get all reviews" route, let's write a fetch for one of the property's reviews, or fetch from first property.
-        // Wait! We seeded reviews in MongoDB under the property IDs. We can just mock the 4 good tenant reviews on the frontend to look stunning, or fetch them if possible. Let's use the seeded values on the client to ensure it looks beautiful and fits the UI layout!
+      
       } catch (err) {
         console.error("Error fetching homepage data:", err);
       } finally {
@@ -167,9 +166,13 @@ export default function Home() {
                 <span>PREMIUM HOME RENTAL MARKETPLACE</span>
               </span>
               <h1 className="scroll-m-20 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Find Your Next <br />
-                <span className="bg-linear-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                  Dream Living Space
+                Find Your Next
+                <br />
+                <span className="text-teal-400">
+                  <TypingAnimation
+                    words={["Dream Living Space", "Perfect Rental Home", "Cozy Smart Apartment"]}
+                    loop
+                  />
                 </span>
               </h1>
               <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-200 dark:text-zinc-300 font-medium leading-relaxed">
@@ -270,10 +273,6 @@ export default function Home() {
 
       {/* Featured Properties Section */}
       <div className="relative w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10">
         <div className="text-center space-y-3 mb-16">
           <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
@@ -323,7 +322,7 @@ export default function Home() {
                   <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow">
                     {property.propertyType}
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl text-lg font-black shadow-sm">
+                  <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl text-lg font-bold shadow-sm">
                     ${property.rent.toLocaleString()}
                     <span className="text-xs font-normal">/{property.rentType === "Monthly" ? "mo" : property.rentType === "Weekly" ? "wk" : "day"}</span>
                   </div>
@@ -379,10 +378,6 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <div className="relative w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10">
           <div className="text-center space-y-3 mb-16">
             <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
@@ -436,10 +431,6 @@ export default function Home() {
 
       {/* Customer Reviews Section */}
       <div className="relative w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10">
         <div className="text-center space-y-3 mb-16">
           <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
@@ -530,10 +521,6 @@ export default function Home() {
 
       {/* Extra Section 1: Top Locations */}
       <div className="relative w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
             <div className="space-y-3">
@@ -606,10 +593,6 @@ export default function Home() {
 
       {/* Platform Statistics Section */}
       <div className="relative w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
-
         <div className="relative z-10 space-y-16">
           {/* Header */}
           <div className="text-center space-y-4">
@@ -617,10 +600,17 @@ export default function Home() {
               <Sparkles className="h-3.5 w-3.5 text-teal-500 dark:text-teal-400" />
               <span>Platform Impact</span>
             </span>
-            <h2 className="scroll-m-20 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Renterty by the Numbers
+            <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
+              <BlurInText
+                text="Renterty by the Numbers"
+                blurAmount={10}
+                duration={1.2}
+                stagger={0.06}
+                split="letter"
+                trigger="inView"
+              />
             </h2>
-            <p className="max-w-xl mx-auto text-sm sm:text-base text-slate-500 dark:text-zinc-400 font-medium">
+            <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-sm font-medium">
               We're building the future of property rental. Here's a glance at our milestones and community trust.
             </p>
           </div>
