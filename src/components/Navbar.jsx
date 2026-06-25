@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-import { useTheme } from "../context/ThemeContext";
-import { Sun, Moon, Menu, X, Home, Building2, LayoutDashboard, LogOut, User } from "lucide-react";
+import { Menu, X, Home, Building2, LayoutDashboard, LogOut, User } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
+import { AnimatedThemeToggler } from "@/registry/magicui/animated-theme-toggler";
+import { InteractiveHoverButton } from "@/registry/magicui/interactive-hover-button";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
   const {data: session} = useSession()
@@ -68,13 +68,10 @@ const Navbar = () => {
             {/* Action Buttons */}
             <div className="flex items-center space-x-4 border-l border-slate-200 dark:border-zinc-800 pl-6">
               {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
+              <AnimatedThemeToggler
                 className="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-900 transition-all duration-200"
                 aria-label="Toggle Theme"
-              >
-                {theme === "dark" ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5" />}
-              </button>
+              />
 
               {user ? (
                 <div className="flex items-center space-x-3">
@@ -119,12 +116,11 @@ const Navbar = () => {
                   >
                     Log In
                   </Link>
-                  <Link
-                    href="/register"
-                    className="px-4 py-2 text-sm font-semibold text-white bg-teal-500 hover:bg-teal-600 rounded-lg transition-all shadow-sm hover:shadow"
+                  <InteractiveHoverButton
+                    onClick={() => router.push("/register")}
                   >
                     Register
-                  </Link>
+                  </InteractiveHoverButton>
                 </div>
               )}
             </div>
@@ -132,12 +128,10 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <button
-              onClick={toggleTheme}
+            <AnimatedThemeToggler
               className="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg transition"
-            >
-              {theme === "dark" ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5" />}
-            </button>
+              aria-label="Toggle Theme"
+            />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 focus:outline-none transition-all"
@@ -215,13 +209,15 @@ const Navbar = () => {
               >
                 Log In
               </Link>
-              <Link
-                href="/register"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition shadow"
+              <InteractiveHoverButton
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push("/register");
+                }}
+                className="w-full text-center justify-center"
               >
                 Register
-              </Link>
+              </InteractiveHoverButton>
             </div>
           )}
         </div>

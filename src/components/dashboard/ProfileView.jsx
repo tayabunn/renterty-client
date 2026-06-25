@@ -5,6 +5,7 @@ import { User, Mail, Shield, Calendar, Edit2, Loader2, X, Camera } from "lucide-
 import { useAuth } from "../../context/AuthContext";
 import { uploadImage } from "../../utils/uploadimage";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function ProfileView({ user: propUser }) {
   const { user: authUser, setUser } = useAuth();
@@ -117,13 +118,16 @@ export default function ProfileView({ user: propUser }) {
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             {/* User photo */}
             {user.photo ? (
-              <img
+              <Image
                 src={user.photo}
                 alt={user.name}
                 className="h-24 w-24 rounded-full border-2 border-teal-500/20 object-cover shadow-sm"
+                width={96}
+                height={96}
+                unoptimized
               />
             ) : (
-              <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl shadow-md">
+              <div className="h-24 w-24 rounded-full linear-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl shadow-md">
                 {user.name[0].toUpperCase()}
               </div>
             )}
@@ -139,7 +143,7 @@ export default function ProfileView({ user: propUser }) {
                 </span>
               </div>
 
-              <div className="space-y-1.5 pt-2 text-sm text-slate-600 dark:text-zinc-400 font-semibold font-medium">
+              <div className="space-y-1.5 pt-2 text-sm text-slate-600 dark:text-zinc-400 .font-semibold font-medium">
                 <div className="flex items-center space-x-2 justify-center sm:justify-start">
                   <Mail className="h-4 w-4 text-slate-400" />
                   <span>{user.email}</span>
@@ -169,13 +173,16 @@ export default function ProfileView({ user: propUser }) {
             {/* Edit User photo */}
             <div className="relative group">
               {previewUrl ? (
-                <img
+                <Image
                   src={previewUrl}
                   alt="Preview"
                   className="h-24 w-24 rounded-full border-2 border-teal-500/20 object-cover shadow-sm group-hover:opacity-75 transition-opacity duration-200"
+                  width={96}
+                  height={96}
+                  unoptimized
                 />
               ) : (
-                <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl shadow-md group-hover:opacity-75 transition-opacity duration-200">
+                <div className="h-24 w-24 rounded-full linear-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl shadow-md group-hover:opacity-75 transition-opacity duration-200">
                   {name ? name[0].toUpperCase() : "U"}
                 </div>
               )}
