@@ -338,11 +338,14 @@ export default function PropertyDetails() {
             {/* Left Content Area: Images, details, reviews */}
             <div className="lg:col-span-2 space-y-8">
               {/* Media Card */}
-              <div className="rounded-3xl overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-[30rem]">
-                <img
+              <div className="rounded-3xl overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-[30rem] relative">
+                <Image
                   src={property.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200"}
                   alt={property.title}
-                  className="w-full h-full object-cover"
+                  className="object-cover"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 1200px"
                 />
               </div>
 
@@ -502,10 +505,13 @@ export default function PropertyDetails() {
                   <span className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider block">PROPERTY OWNER</span>
                   <div className="flex items-center space-x-3">
                     {property.ownerId && property.ownerId.photo ? (
-                      <img
+                      <Image
                         src={property.ownerId.photo}
                         alt={property.ownerId.name}
-                        className="h-10 w-10 rounded-full object-cover border border-slate-200 dark:border-zinc-700"
+                        className="rounded-full object-cover border border-slate-200 dark:border-zinc-700"
+                        width={40}
+                        height={40}
+                        unoptimized
                       />
                     ) : (
                       <div className="h-10 w-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-lg">

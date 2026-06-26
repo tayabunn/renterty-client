@@ -6,6 +6,7 @@ export function cn(...inputs) {
 }
 
 import { betterAuth } from "better-auth";
+// Trigger watch reload to pick up new env credentials
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { bearer } from "better-auth/plugins";

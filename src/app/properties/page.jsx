@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { useAuth } from "../../context/AuthContext";
 import { Search, MapPin, Building, DollarSign, BedDouble, Bath, Maximize, Loader2, ArrowUpDown } from "lucide-react";
 import { BlurInText } from "@/components/ui/blur-in-text";
+import Image from "next/image";
 import {
   Pagination,
   PaginationContent,
@@ -252,10 +253,12 @@ function PropertiesContent() {
               >
                 {/* Image overlay */}
                 <div className="relative h-56 overflow-hidden">
-                  <img
+                  <Image
                     src={property.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800"}
                     alt={property.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow">
                     {property.propertyType}
