@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, Heart, Trash2, MapPin, DollarSign } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 export default function TenantFavorites() {
   const [favorites, setFavorites] = useState([]);
@@ -11,7 +12,7 @@ export default function TenantFavorites() {
   const fetchFavorites = async () => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites`, {
+      const res = await fetch(`${API_URL}/favorites`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -33,7 +34,7 @@ export default function TenantFavorites() {
   const handleRemoveFavorite = async (favoriteId) => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites/${favoriteId}`, {
+      const res = await fetch(`${API_URL}/favorites/${favoriteId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });

@@ -6,6 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import { uploadImage } from "../../utils/uploadimage";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { API_URL } from "@/lib/config";
 
 export default function ProfileView({ user: propUser }) {
   const { user: authUser, setUser } = useAuth();
@@ -66,7 +67,7 @@ export default function ProfileView({ user: propUser }) {
 
       // 2. Call backend profile update endpoint
       const token = localStorage.getItem("renterty_token");
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/auth/profile`, {
+      const res = await fetch(`${API_URL}/auth/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

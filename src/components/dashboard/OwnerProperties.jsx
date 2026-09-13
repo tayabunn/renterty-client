@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, Trash2, Eye, HelpCircle, Edit3, X, MapPin } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 export default function OwnerProperties() {
   const [properties, setProperties] = useState([]);
@@ -20,7 +21,7 @@ export default function OwnerProperties() {
   const fetchProperties = async () => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/owner`, {
+      const res = await fetch(`${API_URL}/properties/owner`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -44,7 +45,7 @@ export default function OwnerProperties() {
 
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${id}`, {
+      const res = await fetch(`${API_URL}/properties/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -70,7 +71,7 @@ export default function OwnerProperties() {
     setUpdating(true);
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${editProperty._id}`, {
+      const res = await fetch(`${API_URL}/properties/${editProperty._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

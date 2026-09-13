@@ -5,9 +5,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/AuthContext";
-import { Search, MapPin, Building, DollarSign, BedDouble, Bath, Maximize, Loader2, ArrowUpDown } from "lucide-react";
+import { Search, MapPin, Building, DollarSign, BedDouble, Bath, Maximize, Loader2, ArrowUpDown, LayoutGrid, Map as MapIcon, Columns2 } from "lucide-react";
 import { BlurInText } from "@/components/ui/blur-in-text";
+import { API_URL } from "@/lib/config";
 import Image from "next/image";
+import SmartSearch from "@/components/ai/SmartSearch";
+import Recommendations from "@/components/ai/Recommendations";
+import PropertyMap from "@/components/map/PropertyMap";
 import {
   Pagination,
   PaginationContent,
@@ -22,6 +26,10 @@ function PropertiesContent() {
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // View mode state: 'grid' | 'split' | 'map'
+  const [viewMode, setViewMode] = useState("grid");
+  const [selectedMapProperty, setSelectedMapProperty] = useState(null);
 
   // Load initial states from URL query parameters
   const [location, setLocation] = useState(searchParams.get("location") || "");
@@ -49,7 +57,7 @@ function PropertiesContent() {
       query.append("page", page);
       query.append("limit", 6); // 6 items per page
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties?${query.toString()}`);
+      const res = await fetch(`${API_URL}/properties?${query.toString()}`);
       if (res.ok) {
         const data = await res.json();
         setProperties(data.properties);
@@ -83,6 +91,23 @@ function PropertiesContent() {
     fetchProperties();
   };
 
+  const handleApplyAiFilters = (criteria) => {
+    if (criteria.location !== undefined) setLocation(criteria.location || "");
+    if (criteria.propertyType) setPropertyType(criteria.propertyType);
+    if (criteria.minPrice !== undefined && criteria.minPrice !== null) setMinPrice(String(criteria.minPrice));
+    if (criteria.maxPrice !== undefined && criteria.maxPrice !== null) setMaxPrice(String(criteria.maxPrice));
+    if (criteria.sort) setSort(criteria.sort);
+    setPage(1);
+    fetchProperties();
+  };
+
+  const handleSearchResults = (aiProperties, criteria) => {
+    if (aiProperties && aiProperties.length > 0) {
+      setProperties(aiProperties);
+      setTotalPages(1);
+    }
+  };
+
   const handleClearFilters = () => {
     setLocation("");
     setPropertyType("All");
@@ -103,7 +128,7 @@ function PropertiesContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
       {/* Header and intro */}
-      <div className="mb-10 text-left space-y-3">
+      <div className="mb-8 text-left space-y-3">
         <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
           <BlurInText
             text="Explore All Rentals"
@@ -115,11 +140,20 @@ function PropertiesContent() {
           />
         </h1>
         <p className="text-slate-500 dark:text-zinc-400 text-sm font-medium">
-          Use the filters below to find rental houses, villas, and studios matching your budget and lifestyle.
+          Use natural language AI search or traditional filters below to find rental apartments, villas, and studios.
         </p>
       </div>
 
-      {/* Filters Form Card */}
+      {/* Feature 1: AI Smart Natural Language Search */}
+      <SmartSearch
+        onApplyFilters={handleApplyAiFilters}
+        onSearchResults={handleSearchResults}
+      />
+
+      {/* Feature 3: AI Personalized Recommendations */}
+      <Recommendations />
+
+      {/* Traditional Filters Form Card */}
       <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-3xl shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-10">
         <form onSubmit={handleApplyFilters} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
           {/* Location */}
@@ -226,7 +260,55 @@ function PropertiesContent() {
         </form>
       </div>
 
-      {/* Properties grid list */}
+      {/* View Mode Toolbar & Count */}
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+        <div className="text-xs font-semibold text-slate-500 dark:text-zinc-400">
+          Showing <span className="text-slate-900 dark:text-white font-bold">{properties.length}</span> rental listings
+        </div>
+
+        <div className="flex items-center bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1 rounded-2xl shadow-xs">
+          <button
+            type="button"
+            onClick={() => setViewMode("grid")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+              viewMode === "grid"
+                ? "bg-teal-500 text-white shadow-sm"
+                : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span>Grid</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setViewMode("split")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+              viewMode === "split"
+                ? "bg-teal-500 text-white shadow-sm"
+                : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            <Columns2 className="w-3.5 h-3.5" />
+            <span>Split Map</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setViewMode("map")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+              viewMode === "map"
+                ? "bg-teal-500 text-white shadow-sm"
+                : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            <MapIcon className="w-3.5 h-3.5" />
+            <span>Map Only</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Properties view mode rendering */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20">
           <Loader2 className="animate-spin h-10 w-10 text-teal-500 mb-4" />
@@ -241,6 +323,119 @@ function PropertiesContent() {
           <p className="text-slate-500 dark:text-zinc-400 text-sm mt-1">
             Try adjusting your search queries or filter categories.
           </p>
+        </div>
+      ) : viewMode === "map" ? (
+        <div className="h-[650px] w-full mb-10">
+          <PropertyMap
+            properties={properties}
+            selectedProperty={selectedMapProperty}
+            onSelectProperty={(p) => setSelectedMapProperty(p)}
+          />
+        </div>
+      ) : viewMode === "split" ? (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10 items-start">
+          {/* Left Column: Properties List */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {properties.map((property) => (
+                <div
+                  key={property._id}
+                  onClick={() => setSelectedMapProperty(property)}
+                  className={`group bg-white dark:bg-zinc-900/40 rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col cursor-pointer ${
+                    selectedMapProperty?._id === property._id
+                      ? "border-teal-500 ring-2 ring-teal-500/20 shadow-lg"
+                      : "border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-md hover:border-slate-300"
+                  }`}
+                >
+                  <div className="relative h-44 overflow-hidden">
+                    <Image
+                      src={property.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800"}
+                      alt={property.title}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute top-3 right-3 bg-teal-500 text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow">
+                      {property.propertyType}
+                    </div>
+                    <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-sm font-bold shadow-sm">
+                      ${property.rent.toLocaleString()}<span className="text-[10px] font-normal">/{property.rentType === "Monthly" ? "mo" : "day"}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center space-x-1 text-slate-500 dark:text-zinc-400 text-[11px] font-semibold">
+                        <MapPin className="h-3 w-3 text-teal-500 flex-shrink-0" />
+                        <span className="truncate">{property.location}</span>
+                      </div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate mt-1">
+                        {property.title}
+                      </h3>
+                    </div>
+
+                    <div className="pt-3 mt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between">
+                      <div className="flex items-center gap-3 text-[11px] font-medium text-slate-500 dark:text-zinc-400">
+                        <span>{property.bedrooms} Beds</span>
+                        <span>•</span>
+                        <span>{property.bathrooms} Baths</span>
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewDetails(property._id);
+                        }}
+                        className="px-3 py-1 bg-slate-900 hover:bg-teal-500 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer"
+                      >
+                        Details
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination Controllers */}
+            {totalPages > 1 && (
+              <div className="pt-4 border-t border-slate-100 dark:border-zinc-800">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious
+                        disabled={page <= 1}
+                        onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      />
+                    </PaginationItem>
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                      <PaginationItem key={index + 1}>
+                        <PaginationLink
+                          isActive={page === index + 1}
+                          onClick={() => setPage(index + 1)}
+                        >
+                          {index + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))}
+                    <PaginationItem>
+                      <PaginationNext
+                        disabled={page >= totalPages}
+                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column: Sticky Map */}
+          <div className="lg:col-span-5 sticky top-24 h-[650px] w-full">
+            <PropertyMap
+              properties={properties}
+              selectedProperty={selectedMapProperty}
+              onSelectProperty={(p) => setSelectedMapProperty(p)}
+            />
+          </div>
         </div>
       ) : (
         <div className="space-y-12">
@@ -304,7 +499,7 @@ function PropertiesContent() {
                     {/* View Details */}
                     <button
                       onClick={() => handleViewDetails(property._id)}
-                      className="w-full py-2.5 bg-slate-900 hover:bg-teal-500 dark:bg-zinc-800 dark:hover:bg-teal-500 text-white rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm"
+                      className="w-full py-2.5 bg-slate-900 hover:bg-teal-500 dark:bg-zinc-800 dark:hover:bg-teal-500 text-white rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm cursor-pointer"
                     >
                       View Details
                     </button>
@@ -360,14 +555,16 @@ export default function Properties() {
   return (
     <>
       <Navbar />
-      <Suspense fallback={
-        <div className="flex-1 flex flex-col items-center justify-center min-h-[50vh]">
-          <Loader2 className="animate-spin h-10 w-10 text-teal-500 mb-4" />
-          <span className="text-sm font-semibold text-slate-500">Loading Directory...</span>
-        </div>
-      }>
-        <PropertiesContent />
-      </Suspense>
+      <main id="main-content" className="flex-1 flex flex-col">
+        <Suspense fallback={
+          <div className="flex-1 flex flex-col items-center justify-center min-h-[50vh]">
+            <Loader2 className="animate-spin h-10 w-10 text-teal-500 mb-4" />
+            <span className="text-sm font-semibold text-slate-500">Loading Directory...</span>
+          </div>
+        }>
+          <PropertiesContent />
+        </Suspense>
+      </main>
       <Footer />
     </>
   );

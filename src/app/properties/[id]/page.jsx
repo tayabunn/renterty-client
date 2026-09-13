@@ -6,8 +6,15 @@ import { useAuth } from "../../../context/AuthContext";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Building, BedDouble, Bath, Maximize, Heart, Share2, Calendar, Phone, FileText, User, Star, ArrowLeft, Loader2, Sparkles, Send, CreditCard } from "lucide-react";
+import { MapPin, Building, BedDouble, Bath, Maximize, Heart, Share2, Calendar, Phone, FileText, User, Star, ArrowLeft, Loader2, Sparkles, Send, CreditCard, MessageSquare, Wrench, PenTool } from "lucide-react";
 import toast from "react-hot-toast";
+import ReviewInsights from "../../../components/ai/ReviewInsights";
+import ScheduleTourModal from "../../../components/tours/ScheduleTourModal";
+import LeaseSignatureModal from "../../../components/lease/LeaseSignatureModal";
+import MaintenanceRequestModal from "../../../components/maintenance/MaintenanceRequestModal";
+import ChatWindow from "../../../components/chat/ChatWindow";
+import NeighborhoodScore from "../../../components/map/NeighborhoodScore";
+import { API_URL } from "@/lib/config";
 
 export default function PropertyDetails() {
   const { id } = useParams();
@@ -31,6 +38,12 @@ export default function PropertyDetails() {
   const [contactNumber, setContactNumber] = useState("");
   const [additionalNotes, setAdditionalNotes] = useState("");
 
+  // Next-Level Feature Modals
+  const [showTourModal, setShowTourModal] = useState(false);
+  const [showLeaseModal, setShowLeaseModal] = useState(false);
+  const [showMaintenanceModal, setShowMaintenanceModal] = useState(false);
+  const [showChatModal, setShowChatModal] = useState(false);
+
   // Review Form States
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewComment, setReviewComment] = useState("");
@@ -39,7 +52,7 @@ export default function PropertyDetails() {
   // Fetch property details, reviews, and favorites on mount
   const fetchPropertyData = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${id}`);
+      const res = await fetch(`${API_URL}/properties/${id}`);
       if (!res.ok) {
         throw new Error("Property not found");
       }
@@ -47,7 +60,7 @@ export default function PropertyDetails() {
       setProperty(data);
 
       // Fetch Reviews
-      const reviewRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/property/${id}`);
+      const reviewRes = await fetch(`${API_URL}/reviews/property/${id}`);
       if (reviewRes.ok) {
         const reviewData = await reviewRes.json();
         setReviews(reviewData);
@@ -56,7 +69,7 @@ export default function PropertyDetails() {
       // Fetch Favorites if user is logged in
       if (user && user.role === "Tenant") {
         const token = localStorage.getItem("renterty_token");
-        const favRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites`, {
+        const favRes = await fetch(`${API_URL}/favorites`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (favRes.ok) {
@@ -99,7 +112,7 @@ export default function PropertyDetails() {
     try {
       if (isFavorited) {
         // Remove Favorite
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites/${favoriteId || id}`, {
+        const res = await fetch(`${API_URL}/favorites/${favoriteId || id}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -112,7 +125,7 @@ export default function PropertyDetails() {
         }
       } else {
         // Add Favorite
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites`, {
+        const res = await fetch(`${API_URL}/favorites`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -161,7 +174,7 @@ export default function PropertyDetails() {
     setSubmittingReview(true);
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`, {
+      const res = await fetch(`${API_URL}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -178,7 +191,7 @@ export default function PropertyDetails() {
         toast.success("Review submitted!");
         setReviewComment("");
         // Reload reviews list
-        const reviewRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/property/${id}`);
+        const reviewRes = await fetch(`${API_URL}/reviews/property/${id}`);
         if (reviewRes.ok) {
           const reviewData = await reviewRes.json();
           setReviews(reviewData);
@@ -218,7 +231,7 @@ export default function PropertyDetails() {
   const handleBookingPaymentSuccess = async (transactionId) => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings`, {
+      const res = await fetch(`${API_URL}/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -282,7 +295,7 @@ export default function PropertyDetails() {
   return (
     <>
       <Navbar />
-      <div className="bg-slate-50 dark:bg-zinc-950 min-h-screen py-10 transition-colors duration-300">
+      <main id="main-content" className="flex-1 bg-slate-50 dark:bg-zinc-950 min-h-screen py-10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back button */}
           <button
@@ -378,7 +391,7 @@ export default function PropertyDetails() {
                 </div>
               </div>
 
-              {/* Amenities Card */}
+              {/* Included Amenities Card */}
               <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-4">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">Included Amenities</h3>
                 {property.amenities.length === 0 ? (
@@ -397,6 +410,9 @@ export default function PropertyDetails() {
                 )}
               </div>
 
+              {/* Feature 1: Neighborhood & Walkability Intelligence */}
+              <NeighborhoodScore location={property.location} propertyType={property.propertyType} />
+
               {/* Extra Features Card */}
               {property.extraFeatures && (
                 <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-3">
@@ -407,8 +423,10 @@ export default function PropertyDetails() {
                 </div>
               )}
 
-              {/* Reviews Card */}
+              {/* Reviews Card & AI Sentiment Insights */}
               <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-8">
+                <ReviewInsights propertyId={id} title="AI Review & Community Sentiment" />
+
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">Tenant Reviews</h3>
 
                 {/* Add Review input form */}
@@ -529,15 +547,101 @@ export default function PropertyDetails() {
 
                 <button
                   onClick={handleOpenBookingModal}
-                  className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200 text-center"
+                  className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200 text-center cursor-pointer"
                 >
                   Book Property Now
                 </button>
+
+                {/* Additional Action Buttons for 5 Next-Level Features */}
+                <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-zinc-800">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!user) router.push('/login');
+                      else setShowTourModal(true);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <Calendar className="w-4 h-4 text-emerald-500" />
+                    <span>Schedule Property Tour</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!user) router.push('/login');
+                      else setShowChatModal(true);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-teal-500 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <MessageSquare className="w-4 h-4 text-teal-500" />
+                    <span>Direct Message Host</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!user) router.push('/login');
+                      else setShowLeaseModal(true);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <PenTool className="w-4 h-4 text-blue-500" />
+                    <span>Digital Lease & E-Sign</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!user) router.push('/login');
+                      else setShowMaintenanceModal(true);
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-amber-500 hover:bg-amber-50/50 dark:hover:bg-amber-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  >
+                    <Wrench className="w-4 h-4 text-amber-500" />
+                    <span>Report Maintenance (AI Triage)</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      {/* Feature 2: Schedule Tour Modal */}
+      <ScheduleTourModal
+        isOpen={showTourModal}
+        onClose={() => setShowTourModal(false)}
+        property={property}
+        user={user}
+      />
+
+      {/* Feature 3: In-App Chat Window */}
+      <ChatWindow
+        isOpen={showChatModal}
+        onClose={() => setShowChatModal(false)}
+        recipientId={property.ownerId?._id || property.ownerId || property.ownerEmail}
+        recipientName={property.ownerId?.name || "Property Host"}
+        propertyId={property._id}
+        propertyTitle={property.title}
+        currentUser={user}
+      />
+
+      {/* Feature 4: Digital Lease & E-Signature Modal */}
+      <LeaseSignatureModal
+        isOpen={showLeaseModal}
+        onClose={() => setShowLeaseModal(false)}
+        property={property}
+        user={user}
+      />
+
+      {/* Feature 5: Maintenance Request Modal */}
+      <MaintenanceRequestModal
+        isOpen={showMaintenanceModal}
+        onClose={() => setShowMaintenanceModal(false)}
+        property={property}
+        onSuccess={() => toast.success("Maintenance issue logged!")}
+      />
 
       {/* Book Property Modal */}
       <AnimatePresence>

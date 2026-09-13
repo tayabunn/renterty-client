@@ -29,11 +29,20 @@ const Navbar = () => {
   const isActive = (href) => pathname === href;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo and Brand Name */}
-          <Link href="/" className="flex items-center space-x-2 group">
+    <>
+      {/* Skip to Main Content Link for Screen Readers & Keyboard Users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-teal-600 focus:text-white focus:rounded-xl focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white text-xs font-bold transition-all"
+      >
+        Skip to main content
+      </a>
+
+      <nav aria-label="Main Navigation" className="sticky top-0 z-50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo and Brand Name */}
+            <Link href="/" aria-label="Renterty Homepage" className="flex items-center space-x-2 group">
             <div className="p-2 bg-linear-to-tr from-teal-500 to-emerald-500 rounded-xl text-white transform group-hover:scale-105 transition-all duration-300 shadow-md shadow-teal-500/20">
               <Building2 className="h-6 w-6" />
             </div>
@@ -134,7 +143,10 @@ const Navbar = () => {
             />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 focus:outline-none transition-all"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none transition-all cursor-pointer"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -144,7 +156,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
+        <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.href);
@@ -193,7 +205,7 @@ const Navbar = () => {
                     setIsOpen(false);
                     handleLogout();
                   }}
-                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md text-left"
+                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md text-left cursor-pointer"
                 >
                   <LogOut className="h-5 w-5" />
                   <span>Log Out</span>
@@ -223,6 +235,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
+    </>
   );
 };
 

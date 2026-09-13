@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { Loader2, CreditCard, ShieldAlert } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 const StripePaymentForm = ({ amount, propertyId, bookingData, onSuccess, onCancel }) => {
   const stripe = useStripe();
@@ -25,7 +26,7 @@ const StripePaymentForm = ({ amount, propertyId, bookingData, onSuccess, onCance
       const token = localStorage.getItem("renterty_token");
 
       // 1. Create Payment Intent on backend
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/create-payment-intent`, {
+      const res = await fetch(`${API_URL}/payments/create-payment-intent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

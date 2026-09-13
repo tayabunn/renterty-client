@@ -8,6 +8,7 @@ import Footer from "../../components/Footer";
 import { CheckCircle2, Calendar, ClipboardCheck, ArrowRight, Home, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -32,7 +33,7 @@ function SuccessContent() {
         setSaveStatus("Registering your booking record in database...");
         const token = localStorage.getItem("renterty_token");
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings`, {
+          const res = await fetch(`${API_URL}/bookings`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

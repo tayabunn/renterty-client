@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, Check, X, Trash2, ShieldAlert } from "lucide-react";
 import toast from "react-hot-toast";
+import ListingQuality from "../ai/ListingQuality";
+import { API_URL } from "@/lib/config";
 
 export default function AdminProperties() {
   const [properties, setProperties] = useState([]);
@@ -17,7 +19,7 @@ export default function AdminProperties() {
   const fetchProperties = async () => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/admin`, {
+      const res = await fetch(`${API_URL}/properties/admin`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -41,7 +43,7 @@ export default function AdminProperties() {
 
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${id}/status`, {
+      const res = await fetch(`${API_URL}/properties/${id}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,7 @@ export default function AdminProperties() {
     setSubmittingFeedback(true);
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${rejectPropId}/status`, {
+      const res = await fetch(`${API_URL}/properties/${rejectPropId}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +110,7 @@ export default function AdminProperties() {
 
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/${id}`, {
+      const res = await fetch(`${API_URL}/properties/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -185,32 +187,36 @@ export default function AdminProperties() {
                       {prop.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-right space-x-2">
-                    {prop.status !== "Approved" && (
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex items-center justify-end space-x-2">
+                      <ListingQuality property={prop} />
+
+                      {prop.status !== "Approved" && (
+                        <button
+                          onClick={() => handleApprove(prop._id)}
+                          className="p-1.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg transition cursor-pointer"
+                          title="Approve Listing"
+                        >
+                          <Check className="h-4 w-4" />
+                        </button>
+                      )}
+                      {prop.status !== "Rejected" && (
+                        <button
+                          onClick={() => handleRejectOpen(prop._id)}
+                          className="p-1.5 bg-red-50 text-red-600 dark:bg-red-950/20 dark:text-red-400 hover:bg-red-100 rounded-lg transition cursor-pointer"
+                          title="Reject Listing"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
                       <button
-                        onClick={() => handleApprove(prop._id)}
-                        className="p-1.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg transition"
-                        title="Approve Listing"
+                        onClick={() => handleDelete(prop._id)}
+                        className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                        title="Permanently Delete Listing"
                       >
-                        <Check className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4" />
                       </button>
-                    )}
-                    {prop.status !== "Rejected" && (
-                      <button
-                        onClick={() => handleRejectOpen(prop._id)}
-                        className="p-1.5 bg-red-50 text-red-600 dark:bg-red-950/20 dark:text-red-400 hover:bg-red-100 rounded-lg transition"
-                        title="Reject Listing"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    )}
-                    <button
-                      onClick={() => handleDelete(prop._id)}
-                      className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition"
-                      title="Permanently Delete Listing"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                    </div>
                   </td>
                 </tr>
               ))}

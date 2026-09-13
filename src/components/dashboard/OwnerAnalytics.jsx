@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { Loader2, DollarSign, Building, Calendar, FileText, TrendingUp } from "lucide-react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import toast from "react-hot-toast";
+import ReviewInsights from "../ai/ReviewInsights";
+import { API_URL } from "@/lib/config";
 
 export default function OwnerAnalytics() {
   const [loading, setLoading] = useState(true);
@@ -28,11 +30,11 @@ export default function OwnerAnalytics() {
     const token = localStorage.getItem("renterty_token");
     try {
       // Fetch bookings to calculate earnings & confirmed bookings
-      const bookingsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/owner`, {
+      const bookingsRes = await fetch(`${API_URL}/bookings/owner`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Fetch properties to calculate total properties
-      const propsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/owner`, {
+      const propsRes = await fetch(`${API_URL}/properties/owner`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -95,7 +97,7 @@ export default function OwnerAnalytics() {
     const token = localStorage.getItem("renterty_token");
     toast.loading("Generating PDF Report...", { id: "pdf-toast" });
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/owner/earnings-report`, {
+      const res = await fetch(`${API_URL}/reports/owner/earnings-report`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error("Report generation failed");
@@ -218,6 +220,9 @@ export default function OwnerAnalytics() {
           )}
         </div>
       </div>
+
+      {/* Feature 8: AI Tenant Review Sentiment & Topic Insights */}
+      <ReviewInsights />
     </div>
   );
 }

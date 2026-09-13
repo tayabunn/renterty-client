@@ -20,6 +20,8 @@ export const metadata = {
   description: "List properties and book rental places securely.",
 };
 
+import AIAssistant from "../components/ai/AIAssistant";
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -42,8 +44,8 @@ export default function RootLayout({ children }) {
 
             <Toaster position="top-center" reverseOrder={false} />
             {children}
+            <AIAssistant />
           </AuthProvider>
-          <Toaster/>
         </ThemeProvider>
       </body>
     </html>

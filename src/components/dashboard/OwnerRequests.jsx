@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, Calendar, User, Check, X, ShieldAlert } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 export default function OwnerRequests() {
   const [requests, setRequests] = useState([]);
@@ -11,7 +12,7 @@ export default function OwnerRequests() {
   const fetchRequests = async () => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/owner`, {
+      const res = await fetch(`${API_URL}/bookings/owner`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -35,7 +36,7 @@ export default function OwnerRequests() {
 
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/${id}/status`, {
+      const res = await fetch(`${API_URL}/bookings/${id}/status`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

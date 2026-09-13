@@ -14,6 +14,8 @@ import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import { TypingAnimation } from "@/registry/magicui/typing-animation";
 
+import { API_URL } from "@/lib/config";
+
 export default function Home() {
   const { user } = useAuth();
   const router = useRouter();
@@ -31,22 +33,28 @@ export default function Home() {
 
   // Fetch featured properties and reviews on mount
   useEffect(() => {
+    let isMounted = true;
     const fetchData = async () => {
       try {
-        const propRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/properties/featured`);
+        const propRes = await fetch(`${API_URL}/properties/featured`);
         if (propRes.ok) {
           const data = await propRes.json();
-          setFeatured(data);
+          if (isMounted) {
+            setFeatured(Array.isArray(data) ? data : (data.properties || []));
+          }
         }
-
-      
       } catch (err) {
         console.error("Error fetching homepage data:", err);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
     fetchData();
+    return () => {
+      isMounted = false;
+    };
 
     // Default reviews list
     setReviews([
@@ -137,8 +145,9 @@ export default function Home() {
     <>
       <Navbar />
 
-      {/* Hero Banner Section Wrapper */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+      <main id="main-content" className="flex-1">
+        {/* Hero Banner Section Wrapper */}
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
         {/* Rounded Hero Card (acts as background container) */}
         <div className="relative w-full min-h-[60vh] sm:min-h-[65vh] flex items-center justify-center rounded-3xl overflow-hidden shadow-2xl bg-linear-to-t from-slate-950 to-slate-800/50">
           {/* Background Image / Overlay */}
@@ -685,8 +694,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+    </main>
 
-      <Footer />
-    </>
-  );
+    <Footer />
+  </>
+);
 }

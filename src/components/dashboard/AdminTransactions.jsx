@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, DollarSign, Calendar, FileText, CheckCircle2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 export default function AdminTransactions() {
   const [transactions, setTransactions] = useState([]);
@@ -12,7 +13,7 @@ export default function AdminTransactions() {
     const fetchTransactions = async () => {
       const token = localStorage.getItem("renterty_token");
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/admin`, {
+        const res = await fetch(`${API_URL}/bookings/admin`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {

@@ -18,11 +18,14 @@ import AdminUsers from "../../components/dashboard/AdminUsers";
 import AdminProperties from "../../components/dashboard/AdminProperties";
 import AdminBookings from "../../components/dashboard/AdminBookings";
 import AdminTransactions from "../../components/dashboard/AdminTransactions";
+import ToursView from "../../components/dashboard/ToursView";
+import MaintenanceView from "../../components/dashboard/MaintenanceView";
+import ChatList from "../../components/chat/ChatList";
 
 import { motion } from "framer-motion";
 import {
   User, ClipboardCheck, Heart, LayoutDashboard, Plus, Building, Calendar,
-  Users, Landmark, BookOpen, Loader2, ArrowRight
+  Users, Landmark, BookOpen, Loader2, ArrowRight, Wrench, MessageSquare
 } from "lucide-react";
 
 function DashboardContent() {
@@ -78,6 +81,7 @@ function DashboardContent() {
         { id: "admin-properties", name: "All Properties", icon: Building },
         { id: "admin-bookings", name: "All Bookings", icon: BookOpen },
         { id: "transactions", name: "Transactions", icon: Landmark },
+        { id: "messages", name: "Messages", icon: MessageSquare },
         { id: "profile", name: "My Profile", icon: User }
       ];
     }
@@ -87,12 +91,18 @@ function DashboardContent() {
         { id: "add-property", name: "Add Property", icon: Plus },
         { id: "properties", name: "My Properties", icon: Building },
         { id: "requests", name: "Booking Requests", icon: Calendar },
+        { id: "tours", name: "Property Tours", icon: Calendar },
+        { id: "maintenance", name: "Maintenance Dispatch", icon: Wrench },
+        { id: "messages", name: "Messages", icon: MessageSquare },
         { id: "profile", name: "My Profile", icon: User }
       ];
     }
     // Tenant default
     return [
       { id: "bookings", name: "My Bookings", icon: ClipboardCheck },
+      { id: "tours", name: "Scheduled Tours", icon: Calendar },
+      { id: "maintenance", name: "Maintenance", icon: Wrench },
+      { id: "messages", name: "Messages", icon: MessageSquare },
       { id: "favorites", name: "Favorites", icon: Heart },
       { id: "profile", name: "My Profile", icon: User }
     ];
@@ -104,6 +114,12 @@ function DashboardContent() {
       // Shared
       case "profile":
         return <ProfileView user={user} />;
+      case "messages":
+        return <ChatList currentUser={user} />;
+      case "tours":
+        return <ToursView isOwner={user.role === "Owner"} />;
+      case "maintenance":
+        return <MaintenanceView isOwner={user.role === "Owner"} user={user} />;
       // Tenant
       case "bookings":
         return <TenantBookings />;

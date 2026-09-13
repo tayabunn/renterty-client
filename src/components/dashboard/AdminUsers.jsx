@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2, UserCheck, Shield } from "lucide-react";
 import toast from "react-hot-toast";
+import { API_URL } from "@/lib/config";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminUsers() {
   const fetchUsers = async () => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users`, {
+      const res = await fetch(`${API_URL}/auth/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -33,7 +34,7 @@ export default function AdminUsers() {
   const handleRoleChange = async (userId, newRole) => {
     const token = localStorage.getItem("renterty_token");
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users/${userId}/role`, {
+      const res = await fetch(`${API_URL}/auth/users/${userId}/role`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
