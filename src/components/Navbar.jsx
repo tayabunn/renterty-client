@@ -52,7 +52,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <div className="flex space-x-1">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -135,8 +135,8 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile and Tablet menu button */}
+          <div className="lg:hidden flex items-center space-x-2">
             <AnimatedThemeToggler
               className="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg transition"
               aria-label="Toggle Theme"
@@ -154,9 +154,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile and Tablet Dropdown Menu */}
       {isOpen && (
-        <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
+        <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="lg:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const active = isActive(link.href);
