@@ -116,12 +116,12 @@ export default function AddProperty() {
   };
 
   return (
-    <div className="w-full flex justify-start ml-13">
-      <div className="max-w-5xl w-full bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 p-8 sm:p-10 rounded-3xl shadow-sm text-left">
-      <div className="flex items-center space-x-3 mb-8">
-        <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-2xl">
-          <Sparkles className="h-6 w-6" />
-        </div>
+    <div className="w-full">
+      <div className="w-full bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 p-8 sm:p-10 rounded-3xl shadow-sm text-left">
+        <div className="flex items-center space-x-3 mb-8">
+          <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-2xl">
+            <Sparkles className="h-6 w-6" />
+          </div>
         <div>
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Add New Property Listing</h2>
           <p className="text-slate-500 dark:text-zinc-400 text-xs mt-0.5">Submit property details. It will go under admin verification before public viewing.</p>
@@ -301,7 +301,7 @@ export default function AddProperty() {
           <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 block mb-3">
             AMENITIES
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {availableAmenities.map((amenity) => (
               <label
                 key={amenity}
