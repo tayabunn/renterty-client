@@ -153,64 +153,66 @@ function DashboardContent() {
   return (
     <div className="flex-1 flex flex-col md:flex-row min-h-[85vh] bg-slate-50 dark:bg-zinc-950 transition-colors duration-300">
       {/* Sidebar Panel */}
-      <div className="w-full md:w-64 bg-white dark:bg-zinc-900 border-r border-b md:border-b-0 border-slate-200/80 dark:border-zinc-800/80 py-6 px-4 space-y-4">
+      <aside className="w-full md:w-64 lg:w-72 bg-white dark:bg-zinc-900 border-r border-b md:border-b-0 border-slate-200/80 dark:border-zinc-800/80 py-4 md:py-6 px-3 sm:px-4 space-y-3 md:space-y-4 md:sticky md:top-16 md:self-start shrink-0">
         {/* User Bio Header */}
-        <div className="flex items-center space-x-3 px-3 pb-4 border-b border-slate-100 dark:border-zinc-800/60">
+        <div className="flex items-center space-x-3 px-2 sm:px-3 pb-3 md:pb-4 border-b border-slate-100 dark:border-zinc-800/60">
           {user.photo ? (
             <img
               src={user.photo}
               alt={user.name}
-              className="h-10 w-10 rounded-full object-cover border border-slate-200 dark:border-zinc-700"
+              className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-cover border border-slate-200 dark:border-zinc-700 shrink-0"
             />
           ) : (
-            <div className="h-10 w-10 rounded-full bg-teal-505 text-white bg-teal-500 flex items-center justify-center font-bold">
-              {user.name[0].toUpperCase()}
+            <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold shrink-0">
+              {user.name ? user.name[0].toUpperCase() : "U"}
             </div>
           )}
-          <div className="text-left">
-            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate max-w-[120px]">{user.name}</h4>
-            <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/20 px-1.5 py-0.5 rounded-md uppercase tracking-wider block w-fit">
+          <div className="text-left min-w-0 flex-1">
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate">{user.name}</h4>
+            <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/20 px-1.5 py-0.5 rounded-md uppercase tracking-wider inline-block">
               {user.role}
             </span>
           </div>
         </div>
 
-        {/* Navigation Tabs */}
-        <ul className="space-y-1.5">
-          {sidebarLinks.map((link) => {
-            const Icon = link.icon;
-            const active = activeTab === link.id;
-            return (
-              <li key={link.id}>
-                <button
-                  onClick={() => handleTabChange(link.id)}
-                  className={`flex items-center space-x-3 w-full px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 text-left ${
-                    active
-                      ? "bg-slate-100 dark:bg-zinc-800 text-teal-600 dark:text-teal-400 shadow-sm"
-                      : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-50 dark:hover:bg-zinc-800/40"
-                  }`}
-                >
-                  <Icon className="h-4.5 w-4.5" />
-                  <span>{link.name}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+        {/* Navigation Tabs - Horizontal scrolling on mobile, vertical list on desktop */}
+        <nav className="overflow-x-auto no-scrollbar -mx-1 px-1">
+          <ul className="flex md:flex-col gap-1.5 min-w-max md:min-w-0 pb-1 md:pb-0">
+            {sidebarLinks.map((link) => {
+              const Icon = link.icon;
+              const active = activeTab === link.id;
+              return (
+                <li key={link.id} className="shrink-0 md:shrink">
+                  <button
+                    onClick={() => handleTabChange(link.id)}
+                    className={`flex items-center space-x-2.5 w-full px-3.5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 text-left whitespace-nowrap cursor-pointer ${
+                      active
+                        ? "bg-slate-100 dark:bg-zinc-800 text-teal-600 dark:text-teal-400 shadow-xs"
+                        : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-50 dark:hover:bg-zinc-800/40"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5 shrink-0" />
+                    <span>{link.name}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
 
       {/* Main Dynamic Workspace Panel */}
-      <div className="flex-1 p-6 sm:p-10">
+      <main className="flex-1 p-3.5 sm:p-6 lg:p-8 min-w-0 max-w-full overflow-x-hidden">
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.25 }}
-          className="h-full"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className="h-full w-full"
         >
           {renderActiveView()}
         </motion.div>
-      </div>
+      </main>
     </div>
   );
 }
