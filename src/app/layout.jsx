@@ -22,6 +22,13 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Renterty | Property Rental & Booking Platform",
   description: "List properties and book rental places securely with verified listings and AI concierge.",
+  icons: {
+    icon: [
+      { url: "/icon.png" },
+      { url: "/favicon.ico" }
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 import AIAssistant from "../components/ai/AIAssistant";
