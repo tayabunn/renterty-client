@@ -15,6 +15,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (!isPending) {
       if (sessionData && sessionData.user) {
+        if (sessionData.session?.token) {
+          localStorage.setItem("renterty_token", sessionData.session.token);
+        }
         setUser({
           id: sessionData.user.id,
           name: sessionData.user.name,
@@ -42,14 +45,20 @@ export const AuthProvider = ({ children }) => {
         throw new Error(response.error.message || "Failed to log in");
       }
 
-      if (response.data && response.data.user) {
-        setUser({
-          id: response.data.user.id,
-          name: response.data.user.name,
-          email: response.data.user.email,
-          role: response.data.user.role || "Tenant",
-          photo: response.data.user.photo || response.data.user.image || "",
-        });
+      if (response.data) {
+        const token = response.data.token || response.data.session?.token;
+        if (token) {
+          localStorage.setItem("renterty_token", token);
+        }
+        if (response.data.user) {
+          setUser({
+            id: response.data.user.id,
+            name: response.data.user.name,
+            email: response.data.user.email,
+            role: response.data.user.role || "Tenant",
+            photo: response.data.user.photo || response.data.user.image || "",
+          });
+        }
       }
 
       toast.success("Welcome back!");
@@ -78,14 +87,20 @@ export const AuthProvider = ({ children }) => {
         throw new Error(response.error.message || "Registration failed");
       }
 
-      if (response.data && response.data.user) {
-        setUser({
-          id: response.data.user.id,
-          name: response.data.user.name,
-          email: response.data.user.email,
-          role: response.data.user.role || "Tenant",
-          photo: response.data.user.photo || response.data.user.image || "",
-        });
+      if (response.data) {
+        const token = response.data.token || response.data.session?.token;
+        if (token) {
+          localStorage.setItem("renterty_token", token);
+        }
+        if (response.data.user) {
+          setUser({
+            id: response.data.user.id,
+            name: response.data.user.name,
+            email: response.data.user.email,
+            role: response.data.user.role || "Tenant",
+            photo: response.data.user.photo || response.data.user.image || "",
+          });
+        }
       }
 
       toast.success("Account created successfully!");

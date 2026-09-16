@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-import { Menu, X, Home, Building2, LayoutDashboard, LogOut, User } from "lucide-react";
+import { Menu, X, Building2, LayoutDashboard, LogOut, User, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSession } from "@/lib/auth-client";
 import { AnimatedThemeToggler } from "@/registry/magicui/animated-theme-toggler";
 import { InteractiveHoverButton } from "@/registry/magicui/interactive-hover-button";
@@ -13,12 +15,33 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
-  const {data: session} = useSession()
+  const {data: session} = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
+  // Desktop user menu dropdown state & click-outside
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false);
+      }
+    };
+    if (userMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [userMenuOpen]);
+
   const navLinks = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "All Properties", href: "/properties", icon: Building2 },
+    { name: "All Properties", href: "/properties" },
+    { name: "Explore Map", href: "/map" },
+    { name: "AI Estimator", href: "/estimator" },
+    { name: "For Landlords", href: "/landlords" },
+    { name: "How It Works", href: "/how-it-works" },
   ];
 
   const handleLogout = async() => {
@@ -39,101 +62,139 @@ const Navbar = () => {
       </a>
 
       <nav aria-label="Main Navigation" className="sticky top-0 z-50 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo and Brand Name */}
-            <Link href="/" aria-label="Renterty Homepage" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-linear-to-tr from-teal-500 to-emerald-500 rounded-xl text-white transform group-hover:scale-105 transition-all duration-300 shadow-md shadow-teal-500/20">
-              <Building2 className="h-6 w-6" />
-            </div>
-            <span className="text-xl font-bold tracking-tight bg-linear-to-r from-slate-900 to-slate-700 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent group-hover:opacity-90">
-              Renterty
-            </span>
-          </Link>
-
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <div className="flex space-x-1">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                const active = isActive(link.href);
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`flex items-center space-x-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      active
-                        ? "bg-slate-100 dark:bg-zinc-800 text-teal-600 dark:text-teal-400"
-                        : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-50 dark:hover:bg-zinc-900/50"
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span>{link.name}</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-4 border-l border-slate-200 dark:border-zinc-800 pl-6">
-              {/* Theme Toggle */}
-              <AnimatedThemeToggler
-                className="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-900 transition-all duration-200"
-                aria-label="Toggle Theme"
+        <div className="w-[90%] mx-auto">
+          <div className="flex items-center justify-between h-16 gap-2">
+            {/* Official Logo */}
+            <Link href="/" aria-label="Renterty Homepage" className="flex items-center group shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Renterty"
+                width={120}
+                height={32}
+                className="h-6 md:h-7 w-auto object-contain dark:brightness-0 dark:invert transition-all group-hover:opacity-90"
+                priority
               />
+            </Link>
 
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  {/* Dashboard link */}
-                  <Link
-                    href="/dashboard"
-                    className="flex items-center space-x-1 px-4 py-2 bg-linear-to-r from-teal-500 to-emerald-500 text-white rounded-lg text-sm font-semibold shadow-sm hover:from-teal-600 hover:to-emerald-600 hover:shadow-md transition-all duration-200"
-                  >
-                    <LayoutDashboard className="h-4 w-4" />
-                    <span>Dashboard</span>
-                  </Link>
-
-                  {/* Profile & Logout */}
-                  <div className="flex items-center space-x-2 border-l border-slate-200 dark:border-zinc-800 pl-4">
-                    {user.photo ? (
-                      <img
-                        width={32}
-                        height={32}
-                        src={user.photo}
-                        alt={user.name}
-                        className="h-8 w-8 rounded-full border border-slate-200 dark:border-zinc-700 object-cover"
-                      />
-                    ) : (
-                      <div className="h-8 w-8 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold">
-                        {user.name ? user.name[0].toUpperCase() : <User className="h-4 w-4" />}
-                      </div>
-                    )}
-                    <button
-                      onClick={handleLogout}
-                      className="p-2 text-slate-500 hover:text-red-500 dark:text-zinc-400 dark:hover:text-red-400 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-900 transition-all duration-200"
-                      title="Log Out"
+            {/* Desktop & Laptop Nav Links */}
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-6 min-w-0">
+              <div className="flex items-center space-x-0.5 xl:space-x-1">
+                {navLinks.map((link) => {
+                  const active = isActive(link.href);
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      className={`px-2 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                        active
+                          ? "bg-slate-100 dark:bg-zinc-800 text-teal-600 dark:text-teal-400"
+                          : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-50 dark:hover:bg-zinc-900/50"
+                      }`}
                     >
-                      <LogOut className="h-5 w-5" />
+                      <span>{link.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center space-x-2 xl:space-x-3.5 border-l border-slate-200 dark:border-zinc-800 pl-2.5 xl:pl-5 shrink-0">
+                {user ? (
+                  <div className="relative" ref={userMenuRef}>
+                    {/* User Pill Button */}
+                    <button
+                      type="button"
+                      onClick={() => setUserMenuOpen((prev) => !prev)}
+                      aria-expanded={userMenuOpen}
+                      aria-haspopup="true"
+                      aria-label="User profile menu"
+                      className="flex items-center space-x-2 pl-1.5 pr-3.5 py-1.5 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-full text-xs xl:text-sm font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
+                    >
+                      {user.photo ? (
+                        <img
+                          src={user.photo}
+                          alt={user.name}
+                          className="h-6 w-6 rounded-full object-cover ring-2 ring-white/40 shrink-0"
+                        />
+                      ) : (
+                        <div className="h-6 w-6 rounded-full bg-black/30 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                          <User className="h-3.5 w-3.5" />
+                        </div>
+                      )}
+                      <span className="truncate">
+                        {user.name ? user.name.trim().split(" ")[0] : "Account"}
+                      </span>
+                      <ChevronDown
+                        className={`h-3.5 w-3.5 text-white/80 transition-transform duration-200 ${
+                          userMenuOpen ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
+
+                    {/* Dropdown Popover Card */}
+                    <AnimatePresence>
+                      {userMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.95 }}
+                          transition={{ duration: 0.15, ease: "easeOut" }}
+                          className="absolute right-0 top-11 w-64 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-slate-200/80 dark:border-zinc-800 rounded-2xl shadow-2xl p-4 z-50 space-y-3"
+                        >
+                          {/* User Info Header */}
+                          <div className="space-y-0.5 pb-2.5 border-b border-slate-100 dark:border-zinc-800/80 text-left">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate">
+                              {user.name}
+                            </h4>
+                            <p className="text-xs text-slate-500 dark:text-zinc-400 truncate">
+                              {user.email}
+                            </p>
+                          </div>
+
+                          {/* Navigation Items */}
+                          <div className="space-y-1">
+                            <Link
+                              href="/dashboard"
+                              onClick={() => setUserMenuOpen(false)}
+                              className="flex items-center space-x-2 w-full px-2.5 py-2 rounded-xl text-xs xl:text-sm font-semibold text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-left"
+                            >
+                              <LayoutDashboard className="h-4 w-4 text-teal-500" />
+                              <span>Dashboard</span>
+                            </Link>
+                          </div>
+
+                          {/* Red Sign Out Button */}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setUserMenuOpen(false);
+                              handleLogout();
+                            }}
+                            className="w-full py-2.5 px-4 rounded-xl font-bold text-white bg-[#ff334b] hover:bg-rose-600 active:scale-[0.98] transition-all text-center text-xs xl:text-sm cursor-pointer"
+                          >
+                            Sign out
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </div>
-              ) : (
-                <div className="flex items-center space-x-2">
-                  <Link
-                    href="/login"
-                    className="px-4 py-2 text-sm font-semibold text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 rounded-lg transition-all"
-                  >
-                    Log In
-                  </Link>
-                  <InteractiveHoverButton
-                    onClick={() => router.push("/register")}
-                  >
-                    Register
-                  </InteractiveHoverButton>
-                </div>
-              )}
+                ) : (
+                  <div className="flex items-center space-x-2 shrink-0">
+                    <InteractiveHoverButton
+                      onClick={() => router.push("/login")}
+                    >
+                      Book now
+                    </InteractiveHoverButton>
+                  </div>
+                )}
+
+                {/* Theme Toggle */}
+                <AnimatedThemeToggler
+                  className="p-1.5 xl:p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-900 transition-all duration-200 shrink-0 cursor-pointer"
+                  aria-label="Toggle Theme"
+                />
+              </div>
             </div>
-          </div>
 
           {/* Mobile and Tablet menu button */}
           <div className="lg:hidden flex items-center space-x-2">
@@ -158,20 +219,18 @@ const Navbar = () => {
       {isOpen && (
         <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="lg:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
           {navLinks.map((link) => {
-            const Icon = link.icon;
             const active = isActive(link.href);
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-base font-medium transition-all ${
+                className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-all ${
                   active
                     ? "bg-slate-100 dark:bg-zinc-900 text-teal-600 dark:text-teal-400"
                     : "text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-900/50 hover:text-slate-900 dark:hover:text-zinc-100"
                 }`}
               >
-                <Icon className="h-5 w-5" />
                 <span>{link.name}</span>
               </Link>
             );
@@ -205,7 +264,8 @@ const Navbar = () => {
                     setIsOpen(false);
                     handleLogout();
                   }}
-                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md text-left cursor-pointer"
+                  aria-label="Sign Out"
+                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
                 >
                   <LogOut className="h-5 w-5" />
                   <span>Log Out</span>
@@ -214,21 +274,14 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="pt-4 border-t border-slate-200 dark:border-zinc-800 flex flex-col space-y-2 px-3 mt-4">
-              <Link
-                href="/login"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center px-4 py-2 border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-semibold rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-900 transition"
-              >
-                Log In
-              </Link>
               <InteractiveHoverButton
                 onClick={() => {
                   setIsOpen(false);
-                  router.push("/register");
+                  router.push("/login");
                 }}
                 className="w-full text-center justify-center"
               >
-                Register
+                Book now
               </InteractiveHoverButton>
             </div>
           )}

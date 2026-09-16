@@ -5,6 +5,7 @@ const nextConfig = {
   serverExternalPackages: ['@better-auth/kysely-adapter', 'kysely'],
   reactCompiler: true,
   images: {
+    formats: ['image/avif', 'image/webp'],
     qualities: [75],
     remotePatterns: [
       {
@@ -12,10 +13,14 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 };
 

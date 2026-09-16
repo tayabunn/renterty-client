@@ -114,7 +114,7 @@ export default function ScheduleTourModal({ isOpen, onClose, property, user }) {
             </div>
             <button
               onClick={resetAndClose}
-              className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all shadow-md"
+              className="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition-all"
             >
               Done
             </button>
@@ -236,7 +236,7 @@ export default function ScheduleTourModal({ isOpen, onClose, property, user }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold transition-all shadow-md hover:shadow-emerald-600/20"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold transition-all"
               >
                 {loading ? 'Confirming...' : 'Request Tour'}
               </button>

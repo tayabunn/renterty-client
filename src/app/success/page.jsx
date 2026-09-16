@@ -134,7 +134,7 @@ function SuccessContent() {
       <div className="mt-8 flex flex-col gap-3">
         <Link
           href="/dashboard"
-          className="w-full flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition duration-200 text-sm"
+          className="w-full flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold transition duration-200 text-sm"
         >
           <ClipboardCheck className="h-4 w-4" />
           <span>Go to My Bookings</span>

@@ -26,6 +26,9 @@ export function Marquee({
         .map((_, i) => (
           <div
             key={i}
+            style={{
+              animationDirection: reverse ? "reverse" : "normal",
+            }}
             className={cn(
               "flex shrink-0 justify-around [gap:var(--gap)]",
               vertical

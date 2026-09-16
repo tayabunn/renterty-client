@@ -120,55 +120,57 @@ export default function OwnerProperties() {
 
   return (
     <div className="space-y-6 text-left">
-      <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-2xl overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden relative">
+        <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
+        <div className="overflow-x-auto relative z-10">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
-            <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
+            <thead className="bg-slate-50/80 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
               <tr>
-                <th className="px-6 py-4">Property Name</th>
-                <th className="px-6 py-4">Location</th>
-                <th className="px-6 py-4">Rent Price</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Property Name</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Location</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Rent Price</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-right text-xs uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-zinc-800/50 font-medium text-slate-800 dark:text-zinc-200">
               {properties.map((prop) => (
-                <tr key={prop._id} className="hover:bg-slate-50/55 dark:hover:bg-zinc-900/30 transition">
+                <tr key={prop._id} className="hover:bg-slate-50/60 dark:hover:bg-zinc-800/40 transition-colors">
                   <td className="px-6 py-4 flex items-center space-x-3">
                     <img
                       src={prop.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=100"}
                       alt={prop.title}
-                      className="h-10 w-16 object-cover rounded-lg border"
+                      className="h-10 w-16 object-cover rounded-xl border border-slate-200/80 dark:border-zinc-700"
                     />
-                    <span className="font-bold">{prop.title}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">{prop.title}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="flex items-center space-x-1">
-                      <MapPin className="h-4 w-4 text-slate-400" />
+                    <span className="inline-flex items-center space-x-1.5 text-xs font-medium text-slate-600 dark:text-zinc-300">
+                      <MapPin className="h-3.5 w-3.5 text-teal-500" />
                       <span>{prop.location}</span>
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-teal-600 dark:text-teal-400 font-extrabold">
+                  <td className="px-6 py-4 text-teal-600 dark:text-teal-400 font-bold">
                     ${prop.rent.toLocaleString()}/{prop.rentType}
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
                       <span
-                        className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
                           prop.status === "Approved"
-                            ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:text-emerald-400"
+                            ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                             : prop.status === "Rejected"
-                            ? "bg-red-50 text-red-600 dark:bg-red-950/20 dark:text-red-400"
-                            : "bg-amber-50 text-amber-600 dark:bg-amber-950/20 dark:text-amber-400"
+                            ? "bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border-rose-200 dark:border-rose-800"
+                            : "bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800"
                         }`}
                       >
-                        {prop.status}
+                        <span className="size-1.5 rounded-full bg-current animate-pulse" />
+                        <span>{prop.status}</span>
                       </span>
                       {prop.status === "Rejected" && (
                         <button
                           onClick={() => handleShowFeedback(prop.rejectionFeedback)}
-                          className="p-1 text-slate-500 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 transition"
+                          className="p-1.5 text-slate-500 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
                           title="View Rejection Feedback"
                         >
                           <Eye className="h-4 w-4" />
@@ -179,14 +181,14 @@ export default function OwnerProperties() {
                   <td className="px-6 py-4 text-right space-x-2">
                     <button
                       onClick={() => handleEditOpen(prop)}
-                      className="p-2 text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-955/20 rounded-lg transition"
+                      className="p-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-xl transition cursor-pointer"
                       title="Edit Listing"
                     >
                       <Edit3 className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(prop._id)}
-                      className="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-955/20 rounded-lg transition"
+                      className="p-2 text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
                       title="Delete Listing"
                     >
                       <Trash2 className="h-4 w-4" />

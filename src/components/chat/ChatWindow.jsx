@@ -166,8 +166,8 @@ export default function ChatWindow({
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-xs ${
                       isMe
-                        ? 'bg-emerald-600 text-white rounded-br-none shadow-sm'
-                        : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-bl-none shadow-sm'
+                        ? 'bg-emerald-600 text-white rounded-br-none'
+                        : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-bl-none'
                     }`}
                   >
                     <p className="leading-relaxed">{msg.content}</p>

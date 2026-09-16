@@ -110,6 +110,7 @@ function getThemeTransitionClipPaths(
 
 export const AnimatedThemeToggler = ({
   className,
+  iconClassName,
   duration = 400,
   variant,
   fromCenter = false,
@@ -239,7 +240,11 @@ export const AnimatedThemeToggler = ({
       className={className}
       {...props}
     >
-      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+      {isDark ? (
+        <Sun className={cn("h-4 w-4 shrink-0", iconClassName)} />
+      ) : (
+        <Moon className={cn("h-4 w-4 shrink-0", iconClassName)} />
+      )}
       <span className="sr-only">Toggle theme</span>
     </button>
   )

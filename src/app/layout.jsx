@@ -8,16 +8,20 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata = {
   title: "Renterty | Property Rental & Booking Platform",
-  description: "List properties and book rental places securely.",
+  description: "List properties and book rental places securely with verified listings and AI concierge.",
 };
 
 import AIAssistant from "../components/ai/AIAssistant";
@@ -33,6 +37,13 @@ export default function RootLayout({ children }) {
         className="min-h-full flex flex-col transition-colors duration-300"
         suppressHydrationWarning
       >
+        {/* Accessible Skip to Content Link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-teal-600 focus:text-white focus:font-bold focus:rounded-xl focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to main content
+        </a>
         <ThemeProvider>
           <AuthProvider>
             {/* Global Background Glow Effects */}

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Loader2, Plus, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { Loader2, Plus, Sparkles, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import PropertyDescriptionGenerator from "../ai/PropertyDescriptionGenerator";
 import ImageAnalyzer from "../ai/ImageAnalyzer";
@@ -9,6 +10,7 @@ import RentEstimator from "../ai/RentEstimator";
 import { API_URL } from "@/lib/config";
 
 export default function AddProperty() {
+  const searchParams = useSearchParams();
   const [submitting, setSubmitting] = useState(false);
 
   // Form Fields State
@@ -22,6 +24,32 @@ export default function AddProperty() {
   const [bathrooms, setBathrooms] = useState(1);
   const [size, setSize] = useState("");
   const [extraFeatures, setExtraFeatures] = useState("");
+
+  // Prepopulate from URL parameters if available (e.g. from AI Estimator or Landlord landing page)
+  useEffect(() => {
+    if (!searchParams) return;
+    const pRent = searchParams.get("rent");
+    const pLoc = searchParams.get("location");
+    const pBeds = searchParams.get("bedrooms");
+    const pBaths = searchParams.get("bathrooms");
+    const pType = searchParams.get("propertyType");
+    const pSize = searchParams.get("size");
+    const pAmenities = searchParams.get("amenities");
+
+    if (pRent) setRent(pRent);
+    if (pLoc) setLocation(pLoc);
+    if (pBeds) setBedrooms(Number(pBeds) || 1);
+    if (pBaths) setBathrooms(Number(pBaths) || 1);
+    if (pType) setPropertyType(pType);
+    if (pSize) setSize(pSize);
+    if (pAmenities) {
+      const splitAmenities = pAmenities.split(",").map((a) => a.trim()).filter(Boolean);
+      if (splitAmenities.length > 0) setAmenities(splitAmenities);
+    }
+    if (pLoc && pBeds && !title) {
+      setTitle(`${pBeds} Bedroom ${pType || "Apartment"} in ${pLoc}`);
+    }
+  }, [searchParams]);
 
   // Amenities checklist
   const [amenities, setAmenities] = useState([]);
@@ -88,7 +116,7 @@ export default function AddProperty() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Listing submitted for Admin approval!");
+        toast.success(data.status === "Approved" ? "Property listing created and approved!" : "Listing submitted for Admin approval!");
         // Reset form fields
         setTitle("");
         setDescription("");
@@ -116,21 +144,60 @@ export default function AddProperty() {
   };
 
   return (
-    <div className="w-full max-w-5xl xl:max-w-6xl mx-auto">
-      <div className="w-full bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl shadow-xs text-left">
-        <div className="flex items-center space-x-3 sm:space-x-4 mb-6 sm:mb-8">
-          <div className="p-2 sm:p-2.5 bg-teal-500/10 text-teal-500 rounded-xl sm:rounded-2xl shrink-0">
-            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
+    <div className="w-full">
+      <div className="group w-full bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-6 sm:p-8 md:p-10 lg:p-12 rounded-3xl hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left">
+        {/* Corner Ambient Glow Orb */}
+        <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Card Header with Bento Styling */}
+        <div className="flex items-start sm:items-center space-x-3.5 sm:space-x-4 mb-8 sm:mb-10 relative z-10">
+          <div className="size-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 shrink-0 group-hover:scale-105 transition-transform">
+            <Sparkles className="h-7 w-7 text-white" />
           </div>
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Add New Property Listing</h2>
-            <p className="text-slate-500 dark:text-zinc-400 text-xs mt-0.5">Submit property details. It will go under admin verification before public viewing.</p>
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 text-xs font-bold">
+              <span className="size-1.5 rounded-full bg-teal-500 animate-pulse" />
+              <span>Property Management Suite</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Add New Property Listing
+            </h2>
+            <p className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm">
+              List high-end residential real estate with intelligent automated pricing & AI visual analysis.
+            </p>
+          </div>
+
+          <div className="ml-auto hidden sm:block">
+            <button
+              type="button"
+              onClick={() => {
+                setTitle("Luxury Skyline Duplex Penthouse");
+                setLocation("Tribeca, New York, NY 10013");
+                setPropertyType("Apartment");
+                setRent("4600");
+                setRentType("Monthly");
+                setBedrooms(3);
+                setBathrooms(2);
+                setSize("1750");
+                setAmenities(["Wifi", "Air Conditioning", "Pool", "Gym", "Laundry", "Fireplace", "Gated Security"]);
+                setImage1("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800");
+                setImage2("https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800");
+                setImage3("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800");
+                setExtraFeatures("Floor-to-ceiling glass windows, private elevator foyer, Gaggenau appliances, and rooftop terrace.");
+                setDescription("Stunning Tribeca skyline duplex featuring expansive living spaces, private elevator access, and panoramic city views.");
+                toast.success("Loaded demo property sample data! 🚀");
+              }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-200 text-xs font-bold hover:bg-slate-200 dark:hover:bg-zinc-700 transition cursor-pointer"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-teal-500" />
+              <span>Fill Demo Sample</span>
+            </button>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-7 relative z-10">
           {/* Title & Property Type Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
             <div className="md:col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 block mb-1">
                 PROPERTY TITLE *
@@ -148,17 +215,20 @@ export default function AddProperty() {
               <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 block mb-1">
                 PROPERTY TYPE
               </label>
-              <select
-                value={propertyType}
-                onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white focus:outline-none p-3 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
-              >
-                <option value="Apartment">Apartment</option>
-                <option value="House">House</option>
-                <option value="Villa">Villa</option>
-                <option value="Studio">Studio</option>
-                <option value="Cabin">Cabin</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={propertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white focus:outline-none p-3 pr-10 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100 appearance-none cursor-pointer"
+                >
+                  <option value="Apartment">Apartment</option>
+                  <option value="House">House</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Studio">Studio</option>
+                  <option value="Cabin">Cabin</option>
+                </select>
+                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 dark:text-zinc-400 pointer-events-none" />
+              </div>
             </div>
           </div>
 
@@ -242,15 +312,18 @@ export default function AddProperty() {
               <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 block mb-1">
                 RENT FREQUENCY
               </label>
-              <select
-                value={rentType}
-                onChange={(e) => setRentType(e.target.value)}
-                className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white focus:outline-none p-3 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100"
-              >
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Monthly">Monthly</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={rentType}
+                  onChange={(e) => setRentType(e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white focus:outline-none p-3 pr-10 rounded-xl text-sm font-medium text-slate-800 dark:text-zinc-100 appearance-none cursor-pointer"
+                >
+                  <option value="Daily">Daily</option>
+                  <option value="Weekly">Weekly</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 dark:text-zinc-400 pointer-events-none" />
+              </div>
             </div>
             <div>
               <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 block mb-1">
@@ -397,7 +470,7 @@ export default function AddProperty() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full flex items-center justify-center space-x-1.5 py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all duration-200 text-center"
+            className="w-full flex items-center justify-center space-x-2 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-2xl font-extrabold text-sm sm:text-base transition-all duration-200 text-center cursor-pointer disabled:opacity-50"
           >
             {submitting ? (
               <>

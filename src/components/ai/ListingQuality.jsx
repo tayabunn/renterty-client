@@ -17,10 +17,13 @@ export default function ListingQuality({ property, isOwnerView = false }) {
     setLoading(true);
     try {
       const response = await aiAnalyzeListing(property);
-      if (response.success && response.data) {
+      if (response && response.data) {
         setAuditResult(response.data);
+      } else {
+        throw new Error(response?.error || "Failed to audit listing");
       }
     } catch (err) {
+      console.error("[ListingQuality Error]:", err);
       toast.error(err.message || "Failed to audit listing");
     } finally {
       setLoading(false);
@@ -57,43 +60,43 @@ export default function ListingQuality({ property, isOwnerView = false }) {
           role="dialog"
           aria-modal="true"
           aria-label="AI Listing Risk & Quality Audit"
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 text-left"
         >
-          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh]">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-zinc-800">
-              <div className="flex items-center space-x-2">
-                <div className="p-2 bg-indigo-500 text-white rounded-xl">
+          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl overflow-y-auto max-h-[90vh] text-left">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-zinc-800 text-left">
+              <div className="flex items-center space-x-3 text-left">
+                <div className="p-2.5 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-2xl shrink-0">
                   <ShieldAlert className="h-5 w-5" />
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                <div className="text-left space-y-0.5">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
                     AI Listing Risk & Quality Audit
                   </h3>
-                  <p className="text-xs text-slate-500 dark:text-zinc-400">
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
                     {property?.title || "Property Moderation Review"}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 p-1.5 rounded-lg"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer shrink-0"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             {loading ? (
-              <div className="py-12 flex flex-col items-center justify-center space-y-3">
+              <div className="py-12 flex flex-col items-center justify-center space-y-3 text-center">
                 <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
                 <span className="text-xs font-semibold text-slate-500">
                   Running automated fraud & quality inspection...
                 </span>
               </div>
             ) : auditResult ? (
-              <div className="mt-4 space-y-4">
+              <div className="mt-5 space-y-4 text-left">
                 {/* Score Meters */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-slate-50 dark:bg-zinc-800/70 rounded-xl border border-slate-200 dark:border-zinc-700 text-center">
+                <div className="grid grid-cols-2 gap-3 text-left">
+                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-2xl border border-slate-200 dark:border-zinc-700 text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 block">
                       Quality Score
                     </span>
@@ -103,7 +106,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
                     </span>
                   </div>
 
-                  <div className="p-3 bg-slate-50 dark:bg-zinc-800/70 rounded-xl border border-slate-200 dark:border-zinc-700 text-center">
+                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-2xl border border-slate-200 dark:border-zinc-700 text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 block">
                       Risk Level
                     </span>
@@ -126,13 +129,14 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Issues list if any */}
                 {auditResult.issues && auditResult.issues.length > 0 && (
-                  <div className="p-3 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-xl space-y-1">
-                    <span className="text-xs font-bold text-rose-800 dark:text-rose-300 flex items-center gap-1">
-                      <AlertTriangle className="h-3.5 w-3.5" /> Flags & Discrepancies:
+                  <div className="p-4 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-2xl space-y-2 text-left">
+                    <span className="text-xs font-bold text-rose-800 dark:text-rose-300 flex items-center gap-1.5">
+                      <AlertTriangle className="h-4 w-4 shrink-0" />
+                      <span>Flags & Discrepancies:</span>
                     </span>
-                    <ul className="text-xs text-rose-700 dark:text-rose-400 space-y-1 pl-4 list-disc">
+                    <ul className="text-xs text-rose-700 dark:text-rose-400 space-y-1.5 pl-5 list-disc text-left">
                       {auditResult.issues.map((iss, i) => (
-                        <li key={i}>{iss}</li>
+                        <li key={i} className="text-left leading-relaxed">{iss}</li>
                       ))}
                     </ul>
                   </div>
@@ -140,13 +144,14 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Warnings list if any */}
                 {auditResult.warnings && auditResult.warnings.length > 0 && (
-                  <div className="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 rounded-xl space-y-1">
-                    <span className="text-xs font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1">
-                      <AlertTriangle className="h-3.5 w-3.5" /> Considerations:
+                  <div className="p-4 bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 rounded-2xl space-y-2 text-left">
+                    <span className="text-xs font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                      <AlertTriangle className="h-4 w-4 shrink-0" />
+                      <span>Considerations:</span>
                     </span>
-                    <ul className="text-xs text-amber-700 dark:text-amber-400 space-y-1 pl-4 list-disc">
+                    <ul className="text-xs text-amber-700 dark:text-amber-400 space-y-1.5 pl-5 list-disc text-left">
                       {auditResult.warnings.map((warn, i) => (
-                        <li key={i}>{warn}</li>
+                        <li key={i} className="text-left leading-relaxed">{warn}</li>
                       ))}
                     </ul>
                   </div>
@@ -154,19 +159,20 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Recommendations */}
                 {auditResult.recommendations && auditResult.recommendations.length > 0 && (
-                  <div className="p-3 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/80 dark:border-indigo-900/60 rounded-xl space-y-1">
-                    <span className="text-xs font-bold text-indigo-800 dark:text-indigo-300 flex items-center gap-1">
-                      <CheckCircle2 className="h-3.5 w-3.5" /> Recommendations:
+                  <div className="p-4 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/80 dark:border-indigo-900/60 rounded-2xl space-y-2 text-left">
+                    <span className="text-xs font-bold text-indigo-800 dark:text-indigo-300 flex items-center gap-1.5">
+                      <CheckCircle2 className="h-4 w-4 shrink-0" />
+                      <span>Recommendations:</span>
                     </span>
-                    <ul className="text-xs text-indigo-700 dark:text-indigo-400 space-y-1 pl-4 list-disc">
+                    <ul className="text-xs text-indigo-700 dark:text-indigo-400 space-y-1.5 pl-5 list-disc text-left">
                       {auditResult.recommendations.map((rec, i) => (
-                        <li key={i}>{rec}</li>
+                        <li key={i} className="text-left leading-relaxed">{rec}</li>
                       ))}
                     </ul>
                   </div>
                 )}
 
-                <div className="text-[11px] text-slate-400 dark:text-zinc-500 italic text-center">
+                <div className="text-[11px] text-slate-400 dark:text-zinc-500 italic text-center pt-1">
                   * Note: AI risk detection is advisory. Administrators retain final decision authority.
                 </div>
               </div>

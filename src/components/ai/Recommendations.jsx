@@ -42,8 +42,8 @@ export default function Recommendations() {
   }
 
   return (
-    <div className="w-full my-10">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-6">
+    <div className="w-full my-6 md:my-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4 sm:mb-6">
         <div className="flex items-center space-x-2.5">
           <div className="p-2 bg-linear-to-tr from-teal-500 to-emerald-500 text-white rounded-xl shadow-md shadow-teal-500/20">
             <Sparkles className="h-5 w-5" />
@@ -84,7 +84,7 @@ export default function Recommendations() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-xs hover:shadow-xl hover:border-teal-500/40 transition-all group flex flex-col justify-between"
+              className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-2xl overflow-hidden hover:border-teal-500/40 transition-all group flex flex-col justify-between"
             >
               <div>
                 {/* Image Banner & Match Score Badge */}

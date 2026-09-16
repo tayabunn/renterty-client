@@ -118,12 +118,12 @@ export default function AIAssistant() {
           aria-expanded={isOpen}
           aria-haspopup="dialog"
           aria-label="Toggle Renterty AI Rental Assistant Concierge"
-          className="relative flex items-center space-x-2 px-4 py-3.5 bg-linear-to-r from-teal-500 via-emerald-500 to-teal-600 text-white rounded-full shadow-2xl shadow-teal-500/40 border border-white/20 backdrop-blur-md cursor-pointer group focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+          className="relative flex items-center space-x-2 px-4 py-3.5 bg-linear-to-r from-teal-500 via-emerald-500 to-teal-600 text-white rounded-full border border-white/20 backdrop-blur-md cursor-pointer group focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
         >
           <div className="p-1 bg-white/20 rounded-full">
             <Sparkles className="h-5 w-5 animate-pulse" />
           </div>
-          <span className="text-sm font-bold tracking-tight hidden sm:inline">AI Rental Assistant</span>
+          <span className="text-sm font-bold tracking-tight hidden sm:inline">Ask AI</span>
           <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-300 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-white"></span>
@@ -198,8 +198,8 @@ export default function AIAssistant() {
                     <div
                       className={`p-3 rounded-2xl text-xs sm:text-sm leading-relaxed ${
                         msg.role === "user"
-                          ? "bg-teal-600 text-white rounded-tr-none shadow-sm"
-                          : "bg-white dark:bg-zinc-800 text-slate-800 dark:text-zinc-100 border border-slate-200/80 dark:border-zinc-700/80 rounded-tl-none shadow-xs"
+                          ? "bg-teal-600 text-white rounded-tr-none"
+                          : "bg-white dark:bg-zinc-800 text-slate-800 dark:text-zinc-100 border border-slate-200/80 dark:border-zinc-700/80 rounded-tl-none"
                       }`}
                     >
                       <p className="whitespace-pre-wrap">{msg.content}</p>
@@ -313,7 +313,7 @@ export default function AIAssistant() {
                 type="submit"
                 disabled={loading || !input.trim()}
                 aria-label="Send message"
-                className="p-2.5 bg-teal-500 hover:bg-teal-600 disabled:opacity-50 text-white rounded-xl shadow-md transition-colors cursor-pointer shrink-0 focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
+                className="p-2.5 bg-teal-500 hover:bg-teal-600 disabled:opacity-50 text-white rounded-xl transition-colors cursor-pointer shrink-0 focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
               >
                 <Send className="h-4 w-4" />
               </button>

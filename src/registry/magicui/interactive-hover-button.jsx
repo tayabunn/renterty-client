@@ -10,7 +10,7 @@ export function InteractiveHoverButton({
   return (
     <button
       className={cn(
-        "group bg-white dark:bg-zinc-900 border-slate-900/30 dark:border-white text-slate-800 dark:text-white relative w-auto cursor-pointer overflow-hidden rounded-xl border py-2 px-5 text-center text-sm font-semibold transition-all duration-300 shadow-sm hover:shadow-md",
+        "group bg-white dark:bg-zinc-900 border-slate-900/30 dark:border-white text-slate-800 dark:text-white relative w-auto cursor-pointer overflow-hidden rounded-xl border py-2 px-5 text-center text-sm font-semibold transition-all duration-300",
         className
       )}
       {...props}

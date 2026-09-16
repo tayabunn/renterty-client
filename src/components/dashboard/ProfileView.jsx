@@ -104,13 +104,16 @@ export default function ProfileView({ user: propUser }) {
   };
 
   return (
-    <div className="max-w-xl bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 p-8 rounded-3xl shadow-sm text-left relative transition-all duration-300">
+    <div className="group w-full max-w-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-8 sm:p-10 rounded-3xl hover:border-teal-500/40 dark:hover:border-teal-500/40 text-left relative overflow-hidden transition-all duration-300">
+      {/* Corner Ambient Glow Orb */}
+      <div className="absolute -right-10 -top-10 size-40 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
+
       {!isEditing ? (
         <>
           {/* Edit button in the "red mark area" */}
           <button
             onClick={() => setIsEditing(true)}
-            className="absolute top-6 right-6 p-2 bg-slate-50 hover:bg-slate-100 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-200 rounded-xl transition-all duration-200 shadow-sm border border-slate-100 dark:border-zinc-700 cursor-pointer"
+            className="absolute top-6 right-6 p-2.5 bg-slate-50 hover:bg-teal-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-500 hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-300 rounded-xl transition-all duration-200 border border-slate-200/80 dark:border-zinc-700 cursor-pointer z-10"
             title="Edit Profile"
           >
             <Edit2 className="h-4.5 w-4.5" />
@@ -122,13 +125,13 @@ export default function ProfileView({ user: propUser }) {
               <Image
                 src={user.photo}
                 alt={user.name}
-                className="h-24 w-24 rounded-full border-2 border-teal-500/20 object-cover shadow-sm"
+                className="h-24 w-24 rounded-full border-2 border-teal-500/20 object-cover"
                 width={96}
                 height={96}
                 unoptimized
               />
             ) : (
-              <div className="h-24 w-24 rounded-full linear-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl shadow-md">
+              <div className="h-24 w-24 rounded-full linear-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center font-black text-4xl">
                 {user.name[0].toUpperCase()}
               </div>
             )}

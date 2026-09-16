@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Loader2, UserCheck, Shield } from "lucide-react";
+import { Loader2, UserCheck, Shield, ChevronDown } from "lucide-react";
 import toast from "react-hot-toast";
 import { API_URL } from "@/lib/config";
 
@@ -64,7 +64,7 @@ export default function AdminUsers() {
   }
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-2xl overflow-hidden shadow-sm text-left">
+    <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-2xl overflow-hidden text-left">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
           <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
@@ -91,27 +91,31 @@ export default function AdminUsers() {
                 <td className="px-6 py-4">{usr.email}</td>
                 <td className="px-6 py-4">
                   <span
-                    className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
                       usr.role === "Admin"
-                        ? "bg-purple-50 text-purple-600 dark:bg-purple-955/20 dark:text-purple-400"
+                        ? "bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-300 border-teal-200/80 dark:border-teal-800/60"
                         : usr.role === "Owner"
-                        ? "bg-blue-50 text-blue-600 dark:bg-blue-955/20 dark:text-blue-400"
-                        : "bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300"
+                        ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/60"
+                        : "bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 border-slate-200/60 dark:border-zinc-700/60"
                     }`}
                   >
-                    {usr.role}
+                    <span className="size-1.5 rounded-full bg-current" />
+                    <span>{usr.role}</span>
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <select
-                    value={usr.role}
-                    onChange={(e) => handleRoleChange(usr._id, e.target.value)}
-                    className="bg-slate-100 dark:bg-zinc-950 border border-transparent px-3 py-1.5 rounded-lg text-xs font-bold text-slate-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-teal-500"
-                  >
-                    <option value="Tenant">Tenant</option>
-                    <option value="Owner">Owner</option>
-                    <option value="Admin">Admin</option>
-                  </select>
+                  <div className="relative inline-block">
+                    <select
+                      value={usr.role}
+                      onChange={(e) => handleRoleChange(usr._id, e.target.value)}
+                      className="appearance-none bg-slate-100 dark:bg-zinc-800 border border-slate-200/80 dark:border-zinc-700 pl-3 pr-8 py-1.5 rounded-lg text-xs font-bold text-slate-800 dark:text-zinc-200 focus:outline-none focus:ring-1 focus:ring-teal-500 cursor-pointer"
+                    >
+                      <option value="Tenant">Tenant</option>
+                      <option value="Owner">Owner</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                    <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400 pointer-events-none" />
+                  </div>
                 </td>
               </tr>
             ))}

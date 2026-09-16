@@ -12,7 +12,7 @@ export function AnimatedThemeTogglerNextThemesDemo() {
       <AnimatedThemeToggler
         theme={resolvedTheme === "dark" ? "dark" : "light"}
         onThemeChange={setTheme}
-        className="p-3 bg-slate-100 hover:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-xl transition-colors duration-200 flex items-center justify-center shadow-xs"
+        className="p-3 bg-slate-100 hover:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded-xl transition-colors duration-200 flex items-center justify-center"
       />
     </div>
   )
