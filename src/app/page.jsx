@@ -363,7 +363,7 @@ export default function Home() {
           </div>
 
           {/* Search Bar Panel - Responsive: flows naturally below card on mobile, overlaps on desktop */}
-          <div className="relative md:absolute bottom-auto md:-bottom-6 left-0 md:left-1/2 md:-translate-x-1/2 w-full max-w-5xl px-0 md:px-8 z-20 mt-6 md:mt-10">
+          <div className="relative md:absolute bottom-auto md:-bottom-3 left-0 md:left-1/2 md:-translate-x-1/2 w-full max-w-5xl px-0 md:px-8 z-20 mt-6 md:mt-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

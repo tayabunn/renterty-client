@@ -215,6 +215,17 @@ export default function Register() {
                         "Register"
                       )}
                     </button>
+                    <p className="mt-2 text-center text-[11px] text-slate-500 dark:text-zinc-500">
+                      By registering, you agree to our{" "}
+                      <Link href="/terms" className="text-teal-600 dark:text-teal-400 hover:underline">
+                        Terms &amp; Conditions
+                      </Link>{" "}
+                      and{" "}
+                      <Link href="/privacy" className="text-teal-600 dark:text-teal-400 hover:underline">
+                        Privacy Policy
+                      </Link>
+                      .
+                    </p>
                   </div>
                 </form>
 

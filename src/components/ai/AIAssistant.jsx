@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Sparkles, MessageSquare, X, Send, Bot, User, Building, ArrowRight, Loader2, StopCircle } from "lucide-react";
+import { MessageSquare, X, Send, Bot, User, Building, ArrowRight, Loader2, StopCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { aiAssistantMessage } from "../../lib/ai";
 import Link from "next/link";
@@ -118,13 +118,13 @@ export default function AIAssistant() {
           aria-expanded={isOpen}
           aria-haspopup="dialog"
           aria-label="Toggle Renterty AI Rental Assistant Concierge"
-          className="relative flex items-center space-x-2 px-4 py-3.5 bg-linear-to-r from-teal-500 via-emerald-500 to-teal-600 text-white rounded-full border border-white/20 backdrop-blur-md cursor-pointer group focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+          className="relative flex items-center justify-center w-12 h-12 sm:w-auto sm:h-auto sm:space-x-2 p-0 sm:px-4 sm:py-3.5 bg-linear-to-r from-teal-500 via-emerald-500 to-teal-600 text-white rounded-full border border-white/20 shadow-lg shadow-teal-500/25 backdrop-blur-md cursor-pointer group focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
         >
-          <div className="p-1 bg-white/20 rounded-full">
-            <Sparkles className="h-5 w-5 animate-pulse" />
+          <div className="p-0 sm:p-1 flex items-center justify-center sm:bg-white/20 rounded-full">
+            <Bot className="h-6.5 w-6.5 sm:h-5 sm:w-5 animate-pulse" />
           </div>
           <span className="text-sm font-bold tracking-tight hidden sm:inline">Ask AI</span>
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+          <span className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 flex h-3.5 w-3.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-300 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-white"></span>
           </span>
@@ -181,26 +181,23 @@ export default function AIAssistant() {
                   className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
                 >
                   <div
-                    className={`flex space-x-2 max-w-[85%] ${
-                      msg.role === "user" ? "flex-row-reverse space-x-reverse" : "flex-row"
-                    }`}
+                    className={`flex space-x-2 max-w-[85%] ${msg.role === "user" ? "flex-row-reverse space-x-reverse" : "flex-row"
+                      }`}
                   >
                     <div
-                      className={`h-7 w-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${
-                        msg.role === "user"
+                      className={`h-7 w-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${msg.role === "user"
                           ? "bg-teal-500 text-white"
                           : "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300"
-                      }`}
+                        }`}
                     >
                       {msg.role === "user" ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                     </div>
 
                     <div
-                      className={`p-3 rounded-2xl text-xs sm:text-sm leading-relaxed ${
-                        msg.role === "user"
+                      className={`p-3 rounded-2xl text-xs sm:text-sm leading-relaxed ${msg.role === "user"
                           ? "bg-teal-600 text-white rounded-tr-none"
                           : "bg-white dark:bg-zinc-800 text-slate-800 dark:text-zinc-100 border border-slate-200/80 dark:border-zinc-700/80 rounded-tl-none"
-                      }`}
+                        }`}
                     >
                       <p className="whitespace-pre-wrap">{msg.content}</p>
 
