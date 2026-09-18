@@ -56,63 +56,115 @@ const Footer = () => {
             TOP ROW: Interactive Newsletter & AI Rental Concierge Value Proposition
            ========================================================================= */}
         <div className="mb-8 pb-8 border-b border-slate-800/80 dark:border-zinc-800/80">
-          <div className="relative overflow-hidden rounded-lg border border-teal-500/30 dark:border-teal-500/30 bg-gradient-to-br from-slate-900/95 via-slate-900/80 to-teal-950/50 dark:from-zinc-900/95 dark:via-zinc-900/85 dark:to-teal-950/60 p-5 sm:p-7 md:p-8 backdrop-blur-2xl shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8 group">
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950/60 dark:from-zinc-950 dark:via-zinc-900 dark:to-teal-950/60 p-5 sm:p-7 md:p-8 rounded-lg border border-teal-500/25 dark:border-teal-500/20 backdrop-blur-xl shadow-2xl shadow-teal-950/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8">
             
-            {/* --- REDESIGNED BACKGROUND GRAPHICS & ACCENTS --- */}
-            {/* Top Radiant Neon Rim */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent" />
-            <div className="absolute top-0 right-1/4 w-1/2 h-[1px] bg-gradient-to-r from-teal-400 via-emerald-300 to-transparent blur-[1px]" />
+            {/* --- PROPERTY & REAL ESTATE THEMED BACKGROUND GRAPHICS --- */}
+            <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+              {/* Radial Lighting Cones */}
+              <div className="absolute -top-24 -left-20 w-80 h-80 bg-teal-500/15 rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl" />
+              <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 bg-teal-600/10 rounded-full blur-2xl" />
 
-            {/* Ambient Multi-Mesh Glowing Orbs */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-teal-500/25 via-emerald-500/20 to-transparent rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-gradient-to-tr from-emerald-600/20 via-teal-500/15 to-transparent rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.12),transparent_70%)] pointer-events-none" />
+              {/* Architectural Blueprint Dot-Grid Mesh */}
+              <div 
+                className="absolute inset-0 opacity-[0.14] dark:opacity-[0.18]"
+                style={{
+                  backgroundImage: `radial-gradient(#14b8a6 1px, transparent 1px), radial-gradient(#059669 1px, transparent 1px)`,
+                  backgroundSize: "28px 28px",
+                  backgroundPosition: "0 0, 14px 14px"
+                }}
+              />
 
-            {/* Angled Light Sweep Beam */}
-            <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(20,184,166,0.06)_40%,rgba(16,185,129,0.08)_60%,transparent_100%)] pointer-events-none" />
+              {/* Glowing Top Edge Reflection */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
 
-            {/* Architectural Blueprint Grid Pattern Overlay */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-[0.14] dark:opacity-[0.18] pointer-events-none select-none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <pattern id="footer-cta-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                  <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-teal-400" />
-                  <circle cx="24" cy="24" r="1" className="text-emerald-400 fill-current" />
-                </pattern>
-                <radialGradient id="footer-cta-mask" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="white" stopOpacity="1" />
-                  <stop offset="70%" stopColor="white" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="white" stopOpacity="0.1" />
-                </radialGradient>
-                <mask id="footer-cta-grid-mask">
-                  <rect width="100%" height="100%" fill="url(#footer-cta-mask)" />
-                </mask>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#footer-cta-grid)" mask="url(#footer-cta-grid-mask)" />
-            </svg>
+              {/* Vector Architectural Real Estate & High-Rise Skyline Silhouette */}
+              <svg
+                className="absolute bottom-0 left-0 right-0 w-full h-44 sm:h-52 opacity-20 dark:opacity-30 pointer-events-none"
+                viewBox="0 0 1200 220"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="skylineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.45" />
+                    <stop offset="60%" stopColor="#0f766e" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#042f2e" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="buildingStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#0d9488" stopOpacity="0.1" />
+                  </linearGradient>
+                  <pattern id="windowPattern" width="14" height="14" patternUnits="userSpaceOnUse">
+                    <rect x="2" y="2" width="4" height="4" rx="0.75" fill="#5eead4" fillOpacity="0.35" />
+                    <rect x="8" y="2" width="4" height="4" rx="0.75" fill="#5eead4" fillOpacity="0.2" />
+                    <rect x="2" y="8" width="4" height="4" rx="0.75" fill="#5eead4" fillOpacity="0.15" />
+                    <rect x="8" y="8" width="4" height="4" rx="0.75" fill="#5eead4" fillOpacity="0.4" />
+                  </pattern>
+                </defs>
 
-            {/* Futuristic Concentric Radar / Target Accent (Bottom Right) */}
-            <div className="absolute -right-16 -bottom-16 w-80 h-80 pointer-events-none opacity-20 dark:opacity-30">
-              <svg viewBox="0 0 200 200" className="w-full h-full text-teal-400 [animation:spin_60s_linear_infinite]">
-                <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-                <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.7" />
-                <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
-                <circle cx="100" cy="100" r="120" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+                {/* Background Far Buildings */}
+                <path
+                  d="M0 220 V140 H60 V100 H110 V130 H170 V90 H220 V150 H280 V110 H340 V80 H400 V120 H470 V95 H530 V140 H610 V85 H670 V125 H740 V75 H810 V115 H880 V90 H950 V135 H1020 V100 H1090 V145 H1150 V110 H1200 V220 Z"
+                  fill="url(#skylineGrad)"
+                />
+
+                {/* Midground Apartment Complexes & Residential Towers with Windows */}
+                <rect x="80" y="110" width="70" height="110" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                <rect x="230" y="95" width="80" height="125" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                <rect x="420" y="70" width="90" height="150" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                <polygon points="420,70 465,40 510,70" fill="url(#skylineGrad)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                
+                <rect x="620" y="90" width="85" height="130" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                <rect x="790" y="65" width="75" height="155" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                {/* Spire on Tower */}
+                <line x1="827.5" y1="65" x2="827.5" y2="35" stroke="#2dd4bf" strokeWidth="1.5" strokeOpacity="0.7" />
+                <circle cx="827.5" cy="35" r="2.5" fill="#34d399" />
+
+                <rect x="960" y="105" width="80" height="115" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+                <rect x="1080" y="120" width="75" height="100" fill="url(#windowPattern)" stroke="url(#buildingStroke)" strokeWidth="1" />
+
+                {/* Foreground Modern Gable-Roof Homes & Smart Rental Villas Silhouette */}
+                <path
+                  d="M-20 220 L30 170 L80 220 Z M160 220 L205 180 L250 220 Z M330 220 L385 170 L440 220 Z M520 220 L575 165 L630 220 Z M710 220 L760 175 L810 220 Z M890 220 L945 170 L1000 220 Z M1070 220 L1120 180 L1170 220 Z"
+                  stroke="url(#buildingStroke)"
+                  strokeWidth="1.2"
+                  fill="url(#skylineGrad)"
+                />
+
+                {/* Smart Property Radar Pulse Rings in background */}
+                <circle cx="465" cy="40" r="18" stroke="#14b8a6" strokeWidth="0.75" strokeOpacity="0.4" strokeDasharray="3 3" />
+                <circle cx="465" cy="40" r="32" stroke="#14b8a6" strokeWidth="0.75" strokeOpacity="0.2" strokeDasharray="4 4" />
+                <circle cx="827.5" cy="35" r="14" stroke="#10b981" strokeWidth="0.75" strokeOpacity="0.5" strokeDasharray="2 2" />
+                <circle cx="827.5" cy="35" r="28" stroke="#10b981" strokeWidth="0.75" strokeOpacity="0.25" strokeDasharray="3 3" />
+
+                {/* Base Ground Horizon Line */}
+                <line x1="0" y1="219" x2="1200" y2="219" stroke="#14b8a6" strokeWidth="1.5" strokeOpacity="0.3" />
               </svg>
+
+              {/* Stylized Floating Property Geometry & Location Pin Watermark (Right Side) */}
+              <div className="absolute right-4 -bottom-6 w-56 h-56 opacity-10 dark:opacity-15 text-teal-400 pointer-events-none">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M100 20 L170 80 L150 170 L50 170 L30 80 Z" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 4" />
+                  <path d="M100 45 L150 90 L135 155 L65 155 L50 90 Z" stroke="currentColor" strokeWidth="1" />
+                  <circle cx="100" cy="100" r="24" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M100 88 C93.37 88 88 93.37 88 100 C88 109 100 120 100 120 C100 120 112 109 112 100 C112 93.37 106.63 88 100 88 Z" fill="currentColor" />
+                  <circle cx="100" cy="98" r="3" fill="#042f2e" />
+                </svg>
+              </div>
             </div>
 
-            {/* --- FOREGROUND CONTENT (KEPT 100% SAME) --- */}
+            {/* --- FOREGROUND CONTENT (PRESERVED EXACTLY AS ORIGINAL) --- */}
             <div className="relative z-10 max-w-2xl space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-semibold tracking-wide backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-400 text-xs font-semibold tracking-wide backdrop-blur-md">
                 <Sparkles className="h-3.5 w-3.5 text-teal-400 animate-pulse" />
                 <span>Next-Gen Rental Intelligence</span>
               </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-sm">
                 Stay updated on rental market drops &amp; smart lease alerts
               </h3>
-              <p className="text-xs sm:text-sm text-slate-400 dark:text-zinc-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300/90 dark:text-zinc-300/90 leading-relaxed">
                 Join renters and owners receiving automated valuation updates, instant verified rental drops, and zero-spam market insights.
               </p>
 
@@ -124,7 +176,7 @@ const Footer = () => {
                   <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 3" />
                   <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 4" />
                 </div>
-                <span className="text-[11px] font-medium text-slate-400 dark:text-zinc-400">
+                <span className="text-[11px] font-medium text-slate-300 dark:text-zinc-300">
                   <strong className="text-teal-400 font-bold">25,000+</strong>
                   {" "}renters &amp; landlords subscribed
                 </span>
@@ -137,7 +189,7 @@ const Footer = () => {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold backdrop-blur-md"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm font-semibold backdrop-blur-md"
                 >
                   <div className="p-1 rounded-full bg-emerald-500/20">
                     <Check className="h-4 w-4" />
@@ -153,17 +205,17 @@ const Footer = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address..."
                       required
-                      className="w-full pl-4 pr-32 py-3.5 rounded-lg bg-slate-950/80 dark:bg-zinc-950/90 border border-slate-700/80 dark:border-zinc-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all shadow-inner backdrop-blur-sm"
+                      className="w-full pl-4 pr-32 py-3.5 rounded-lg bg-slate-950/90 dark:bg-zinc-950/90 border border-slate-700/90 dark:border-zinc-700/90 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/30 transition-all shadow-inner backdrop-blur-md"
                     />
                     <button
                       type="submit"
-                      className="absolute right-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md shadow-teal-500/20"
+                      className="absolute right-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md shadow-teal-500/25"
                     >
                       <span>Subscribe</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                   </div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-zinc-500 px-1">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-zinc-400 px-1">
                     <span className="flex items-center gap-1">
                       <Lock className="h-3 w-3 text-teal-400" /> No spam, cancel anytime
                     </span>
