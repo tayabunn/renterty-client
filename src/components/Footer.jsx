@@ -61,7 +61,7 @@ const Footer = () => {
             {/* --- PROPERTY & REAL ESTATE THEMED BACKGROUND GRAPHICS --- */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
               {/* Radial Lighting Cones */}
-              <div className="absolute -top-24 -left-20 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl" />
+              <div className="absolute -top-24 -left-20 w-80 h-80 bg-teal-500/15 rounded-full blur-3xl" />
               <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl" />
               <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 bg-teal-600/10 rounded-full blur-2xl" />
 
@@ -78,8 +78,8 @@ const Footer = () => {
               {/* Glowing Top Edge Reflection */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
 
-              {/* Left Dark Gradient Overlay for Smooth Depth & Text Contrast */}
-              <div className="absolute inset-y-0 left-0 w-full sm:w-3/4 lg:w-3/5 bg-gradient-to-r from-slate-950 via-slate-950/85 to-transparent dark:from-zinc-950 dark:via-zinc-950/85 z-[1]" />
+              {/* Smooth Dark Gradient from the Left for Text Contrast & Depth */}
+              <div className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-1/2 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent dark:from-zinc-950 dark:via-zinc-950/80 z-[1]" />
 
               {/* Vector Architectural Real Estate & High-Rise Skyline Silhouette */}
               <svg
