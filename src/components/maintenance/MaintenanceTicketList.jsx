@@ -256,7 +256,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
     <div className="space-y-6 w-full text-left">
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Tickets</span>
             <span className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
@@ -269,7 +269,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Emergency / Urgent</span>
             <span className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400">
@@ -282,7 +282,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Dispatched Active</span>
             <span className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
@@ -295,7 +295,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Resolved</span>
             <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
@@ -310,7 +310,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       </div>
 
       {/* Filter Tabs & Search */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-xl overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All Tickets' },
@@ -345,7 +345,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       </div>
 
       {filteredTickets.length === 0 ? (
-        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-3xl bg-white/60 dark:bg-zinc-900/60">
+        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg bg-white/60 dark:bg-zinc-900/60">
           <Wrench className="w-10 h-10 text-slate-400 mx-auto mb-3" />
           <p className="text-xs sm:text-sm text-slate-500 font-medium">No maintenance tickets match the selected filter.</p>
         </div>
@@ -354,7 +354,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           {filteredTickets.map((ticket) => (
             <div
               key={ticket._id}
-              className="group p-5 sm:p-6 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
             >
               {/* Corner Ambient Glows */}
               <div className="absolute -right-8 -top-8 size-36 bg-amber-500/10 dark:bg-amber-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -406,7 +406,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
 
                 {/* AI Triaging Diagnostic Box */}
                 {ticket.aiTriaging && (
-                  <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 space-y-1.5">
+                  <div className="p-3.5 rounded-lg bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
                       <span className="flex items-center gap-1.5 text-teal-700 dark:text-teal-300 font-extrabold">
                         <Sparkles className="w-3.5 h-3.5 text-teal-500" />
@@ -492,7 +492,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       {/* GPS LIVE TRACKER MODAL */}
       {gpsTrackerModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-lg w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-lg w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600">
@@ -514,7 +514,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
             </div>
 
             {/* Simulated Live GPS Radar Graphic */}
-            <div className="relative h-48 rounded-2xl bg-gradient-to-br from-slate-900 to-indigo-950 p-4 overflow-hidden border border-indigo-900/50 flex flex-col justify-between text-white">
+            <div className="relative h-48 rounded-lg bg-gradient-to-br from-slate-900 to-indigo-950 p-4 overflow-hidden border border-indigo-900/50 flex flex-col justify-between text-white">
               {/* Radar Grid Lines */}
               <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-40 rounded-full border border-indigo-500/30 animate-ping pointer-events-none" />
@@ -584,7 +584,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       {/* SAFETY GUIDELINES MODAL */}
       {safetyModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600">
@@ -605,7 +605,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               </button>
             </div>
 
-            <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/80 space-y-2 text-xs">
+            <div className="p-4 rounded-lg bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/80 space-y-2 text-xs">
               <span className="font-bold text-amber-900 dark:text-amber-200 block uppercase tracking-wider text-[11px]">
                 Immediate Recommended Action:
               </span>
@@ -643,7 +643,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
 
       {/* MANAGE WORK ORDER DRAWER */}
       {selectedTicket && (
-        <div className="mt-4 p-6 rounded-3xl border border-teal-500/40 bg-teal-50/20 dark:bg-teal-950/20 space-y-4">
+        <div className="mt-4 p-6 rounded-lg border border-teal-500/40 bg-teal-50/20 dark:bg-teal-950/20 space-y-4">
           <div className="flex items-center justify-between">
             <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
               <Wrench className="w-4 h-4 text-teal-500" />
@@ -661,7 +661,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
             <p><strong>Property:</strong> {selectedTicket.propertyTitle} ({selectedTicket.propertyLocation})</p>
             <p><strong>Reported By:</strong> {selectedTicket.tenantName} ({selectedTicket.tenantEmail})</p>
             {selectedTicket.aiTriaging?.recommendedAction && (
-              <p className="p-3 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
+              <p className="p-3 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800">
                 <strong className="text-teal-600 dark:text-teal-400">AI Action:</strong> {selectedTicket.aiTriaging.recommendedAction}
               </p>
             )}

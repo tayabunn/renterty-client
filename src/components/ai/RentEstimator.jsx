@@ -49,7 +49,7 @@ export default function RentEstimator({
   };
 
   return (
-    <div className="p-3.5 sm:p-4 bg-linear-to-br from-emerald-500/10 via-teal-500/5 to-transparent dark:from-emerald-950/30 dark:via-teal-950/20 dark:to-transparent border border-emerald-500/20 rounded-2xl space-y-3">
+    <div className="p-3.5 sm:p-4 bg-linear-to-br from-emerald-500/10 via-teal-500/5 to-transparent dark:from-emerald-950/30 dark:via-teal-950/20 dark:to-transparent border border-emerald-500/20 rounded-lg space-y-3">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
         <div className="flex items-center space-x-2">
           <div className="p-1.5 bg-emerald-500 text-white rounded-lg">

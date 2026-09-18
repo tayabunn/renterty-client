@@ -84,7 +84,7 @@ export default function Recommendations() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-2xl overflow-hidden hover:border-teal-500/40 transition-all group flex flex-col justify-between"
+              className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-lg overflow-hidden hover:border-teal-500/40 transition-all group flex flex-col justify-between"
             >
               <div>
                 {/* Image Banner & Match Score Badge */}

@@ -64,7 +64,7 @@ export default function AdminUsers() {
   }
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-2xl overflow-hidden text-left">
+    <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-lg overflow-hidden text-left">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
           <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">

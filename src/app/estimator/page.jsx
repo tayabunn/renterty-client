@@ -278,11 +278,11 @@ function EstimatorContent() {
             {/* Top Interactive Grid: 2 Columns */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* LEFT COLUMN: Controls & Sliders */}
-              <div className="lg:col-span-7 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500 dark:hover:border-teal-400 transition-colors duration-300 p-6 sm:p-8 rounded-3xl text-left space-y-7">
+              <div className="lg:col-span-7 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500 dark:hover:border-teal-400 transition-colors duration-300 p-6 sm:p-8 rounded-lg text-left space-y-7">
                 {/* Card Title */}
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-zinc-800">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-2xl">
+                    <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-lg">
                       <Wallet className="h-5 w-5" />
                     </div>
                     <div>
@@ -500,7 +500,7 @@ function EstimatorContent() {
                 {/* Hero Metric Card */}
                 <motion.div
                   layout
-                  className="bg-gradient-to-br from-white via-teal-50/25 to-emerald-50/40 dark:from-zinc-900 dark:via-teal-950/20 dark:to-zinc-900 border border-teal-500/40 p-6 sm:p-8 rounded-3xl space-y-6"
+                  className="bg-gradient-to-br from-white via-teal-50/25 to-emerald-50/40 dark:from-zinc-900 dark:via-teal-950/20 dark:to-zinc-900 border border-teal-500/40 p-6 sm:p-8 rounded-lg space-y-6"
                 >
                   <div className="flex items-center justify-between pb-3 border-b border-teal-500/20">
                     <span className="text-xs font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400 flex items-center space-x-1.5">
@@ -626,7 +626,7 @@ function EstimatorContent() {
                   {/* Primary CTA */}
                   <Link
                     href={`/properties?maxPrice=${activeRecommendedRent}`}
-                    className="flex items-center justify-center space-x-2 w-full py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-extrabold rounded-2xl text-sm shadow-md hover:shadow-lg transition-all transform active:scale-98"
+                    className="flex items-center justify-center space-x-2 w-full py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-extrabold rounded-lg text-sm shadow-md hover:shadow-lg transition-all transform active:scale-98"
                   >
                     <span>Browse Properties Under ${activeRecommendedRent.toLocaleString()}/mo</span>
                     <ArrowRight className="h-4 w-4" />
@@ -660,7 +660,7 @@ function EstimatorContent() {
               </div>
 
               {loadingProps ? (
-                <div className="py-12 flex flex-col items-center justify-center space-y-3 bg-white dark:bg-zinc-900 rounded-3xl border border-slate-200 dark:border-zinc-800">
+                <div className="py-12 flex flex-col items-center justify-center space-y-3 bg-white dark:bg-zinc-900 rounded-lg border border-slate-200 dark:border-zinc-800">
                   <Loader2 className="h-8 w-8 animate-spin text-teal-500" />
                   <span className="text-xs font-semibold text-slate-500 dark:text-zinc-400">
                     Finding properties fitting your budget...
@@ -672,7 +672,7 @@ function EstimatorContent() {
                     <Link
                       key={prop._id}
                       href={`/properties/${prop._id}`}
-                      className="group bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-3xl overflow-hidden hover:border-teal-500/40 transition-all duration-300 flex flex-col"
+                      className="group bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-lg overflow-hidden hover:border-teal-500/40 transition-all duration-300 flex flex-col"
                     >
                       <div className="relative h-48 w-full overflow-hidden bg-slate-100 dark:bg-zinc-800">
                         <Image
@@ -682,7 +682,7 @@ function EstimatorContent() {
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 400px"
                         />
-                        <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-xl text-white text-xs font-black">
+                        <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-white text-xs font-black">
                           ${prop.rent?.toLocaleString()}/mo
                         </div>
                         <div className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-teal-500/90 backdrop-blur-xs text-white text-[11px] font-bold rounded-lg">
@@ -720,8 +720,8 @@ function EstimatorContent() {
                   ))}
                 </div>
               ) : (
-                <div className="py-12 bg-white dark:bg-zinc-900 border border-dashed border-slate-200 dark:border-zinc-800 rounded-3xl text-center space-y-3 p-6">
-                  <div className="p-3 bg-teal-500/10 text-teal-500 rounded-2xl w-fit mx-auto">
+                <div className="py-12 bg-white dark:bg-zinc-900 border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg text-center space-y-3 p-6">
+                  <div className="p-3 bg-teal-500/10 text-teal-500 rounded-lg w-fit mx-auto">
                     <Building className="h-6 w-6" />
                   </div>
                   <h4 className="text-sm font-bold text-slate-800 dark:text-zinc-200">
@@ -732,7 +732,7 @@ function EstimatorContent() {
                   </p>
                   <Link
                     href="/properties"
-                    className="inline-block px-5 py-2.5 bg-teal-500 hover:bg-teal-600 text-white text-xs font-bold rounded-xl transition"
+                    className="inline-block px-5 py-2.5 bg-teal-500 hover:bg-teal-600 text-white text-xs font-bold rounded-lg transition"
                   >
                     Browse All Properties
                   </Link>
@@ -741,14 +741,14 @@ function EstimatorContent() {
             </div>
 
             {/* BOTTOM SECTION 2: Financial Guidance & Tips */}
-            <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 p-6 sm:p-8 rounded-3xl text-left space-y-4">
+            <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 p-6 sm:p-8 rounded-lg text-left space-y-4">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <Info className="w-5 h-5 text-teal-500" />
                 <span>Renter Financial Literacy & Qualification FAQs</span>
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
+                <div className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
                   <h4 className="text-xs font-bold text-slate-800 dark:text-zinc-200 flex items-center space-x-1.5">
                     <CheckCircle2 className="w-4 h-4 text-teal-500 shrink-0" />
                     <span>What is the 30% Rule?</span>
@@ -758,7 +758,7 @@ function EstimatorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
+                <div className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
                   <h4 className="text-xs font-bold text-slate-800 dark:text-zinc-200 flex items-center space-x-1.5">
                     <CheckCircle2 className="w-4 h-4 text-teal-500 shrink-0" />
                     <span>How Landlords Screen Renters</span>
@@ -768,7 +768,7 @@ function EstimatorContent() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
+                <div className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950/60 border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
                   <h4 className="text-xs font-bold text-slate-800 dark:text-zinc-200 flex items-center space-x-1.5">
                     <CheckCircle2 className="w-4 h-4 text-teal-500 shrink-0" />
                     <span>Strategies to Lower Costs</span>
@@ -786,9 +786,9 @@ function EstimatorContent() {
           /* ========================================================================= */
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Input Form Card */}
-            <div className="lg:col-span-7 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500 dark:hover:border-teal-400 transition-colors duration-300 p-6 sm:p-8 rounded-3xl text-left">
+            <div className="lg:col-span-7 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500 dark:hover:border-teal-400 transition-colors duration-300 p-6 sm:p-8 rounded-lg text-left">
               <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100 dark:border-zinc-800">
-                <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-2xl">
+                <div className="p-2.5 bg-teal-500/10 text-teal-500 rounded-lg">
                   <TrendingUp className="h-5 w-5" />
                 </div>
                 <div>
@@ -813,7 +813,7 @@ function EstimatorContent() {
                       placeholder="e.g. Miami, FL"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-900 rounded-xl text-sm font-medium outline-none transition"
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-900 rounded-lg text-sm font-medium outline-none transition"
                     />
                   </div>
                 </div>
@@ -828,7 +828,7 @@ function EstimatorContent() {
                       <select
                         value={propertyType}
                         onChange={(e) => setPropertyType(e.target.value)}
-                        className="w-full p-2.5 pr-10 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-200 outline-none cursor-pointer appearance-none"
+                        className="w-full p-2.5 pr-10 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-lg text-sm font-semibold text-slate-800 dark:text-zinc-200 outline-none cursor-pointer appearance-none"
                       >
                         <option value="Apartment">Apartment</option>
                         <option value="House">House</option>
@@ -849,7 +849,7 @@ function EstimatorContent() {
                       required
                       value={size}
                       onChange={(e) => setSize(e.target.value)}
-                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-xl text-sm font-medium outline-none"
+                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-lg text-sm font-medium outline-none"
                     />
                   </div>
                 </div>
@@ -865,7 +865,7 @@ function EstimatorContent() {
                       min="1"
                       value={bedrooms}
                       onChange={(e) => setBedrooms(e.target.value)}
-                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-xl text-sm font-medium outline-none"
+                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-lg text-sm font-medium outline-none"
                     />
                   </div>
                   <div>
@@ -878,7 +878,7 @@ function EstimatorContent() {
                       step="0.5"
                       value={bathrooms}
                       onChange={(e) => setBathrooms(e.target.value)}
-                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-xl text-sm font-medium outline-none"
+                      className="w-full p-2.5 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-teal-500 rounded-lg text-sm font-medium outline-none"
                     />
                   </div>
                 </div>
@@ -894,7 +894,7 @@ function EstimatorContent() {
                         key={amenity}
                         type="button"
                         onClick={() => handleAmenityToggle(amenity)}
-                        className={`p-2 rounded-xl text-xs font-bold text-left border transition cursor-pointer ${
+                        className={`p-2 rounded-lg text-xs font-bold text-left border transition cursor-pointer ${
                           amenities.includes(amenity)
                             ? "bg-teal-50 border-teal-300 text-teal-700 dark:bg-teal-950/40 dark:border-teal-800 dark:text-teal-300"
                             : "bg-slate-50 border-slate-200 text-slate-600 dark:bg-zinc-950 dark:border-zinc-800 dark:text-zinc-400"
@@ -910,7 +910,7 @@ function EstimatorContent() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                  className="w-full py-3.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 cursor-pointer"
                 >
                   {loading ? (
                     <>
@@ -933,7 +933,7 @@ function EstimatorContent() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-gradient-to-br from-white via-teal-50/20 to-emerald-50/30 dark:from-zinc-900 dark:via-teal-950/20 dark:to-zinc-900 border border-teal-500/30 p-6 sm:p-8 rounded-3xl space-y-6"
+                  className="bg-gradient-to-br from-white via-teal-50/20 to-emerald-50/30 dark:from-zinc-900 dark:via-teal-950/20 dark:to-zinc-900 border border-teal-500/30 p-6 sm:p-8 rounded-lg space-y-6"
                 >
                   <div className="flex items-center justify-between pb-3 border-b border-teal-500/20">
                     <span className="text-xs font-bold uppercase tracking-wider text-teal-600 dark:text-teal-400">
@@ -955,7 +955,7 @@ function EstimatorContent() {
                   </div>
 
                   {/* Rent Range */}
-                  <div className="p-4 bg-white/80 dark:bg-zinc-950/60 rounded-2xl border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
+                  <div className="p-4 bg-white/80 dark:bg-zinc-950/60 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 space-y-2">
                     <div className="flex justify-between text-xs font-bold text-slate-600 dark:text-zinc-400">
                       <span>Low: ${estimateResult.lowRange?.toLocaleString() || "2,200"}</span>
                       <span>High: ${estimateResult.highRange?.toLocaleString() || "2,750"}</span>
@@ -987,14 +987,14 @@ function EstimatorContent() {
                     )}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&size=${size}&propertyType=${encodeURIComponent(
                       propertyType
                     )}&amenities=${encodeURIComponent(amenities.join(","))}`}
-                    className="block w-full text-center py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-slate-900 rounded-xl font-bold text-xs shadow-md transition"
+                    className="block w-full text-center py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-slate-900 rounded-lg font-bold text-xs shadow-md transition"
                   >
                     List This Property on Renterty &rarr;
                   </Link>
                 </motion.div>
               ) : (
-                <div className="bg-white dark:bg-zinc-900 border border-dashed border-slate-300 dark:border-zinc-800 p-8 rounded-3xl text-center space-y-3">
-                  <div className="p-3 bg-teal-500/10 text-teal-500 rounded-2xl w-fit mx-auto">
+                <div className="bg-white dark:bg-zinc-900 border border-dashed border-slate-300 dark:border-zinc-800 p-8 rounded-lg text-center space-y-3">
+                  <div className="p-3 bg-teal-500/10 text-teal-500 rounded-lg w-fit mx-auto">
                     <Sparkles className="h-6 w-6" />
                   </div>
                   <h4 className="text-sm font-bold text-slate-800 dark:text-zinc-200">Awaiting Property Details</h4>

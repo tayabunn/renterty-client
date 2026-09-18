@@ -110,7 +110,7 @@ export default function OwnerProperties() {
 
   if (properties.length === 0) {
     return (
-      <div className="text-center py-16 border border-dashed border-slate-200 dark:border-zinc-800 rounded-2xl">
+      <div className="text-center py-16 border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg">
         <Trash2 className="h-10 w-10 text-slate-400 mx-auto mb-3" />
         <h3 className="text-base font-bold text-slate-900 dark:text-white">No properties added yet</h3>
         <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">Add a new property to start leasing your space.</p>
@@ -120,7 +120,7 @@ export default function OwnerProperties() {
 
   return (
     <div className="space-y-6 text-left">
-      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden relative">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden relative">
         <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
         <div className="overflow-x-auto relative z-10">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
@@ -140,7 +140,7 @@ export default function OwnerProperties() {
                     <img
                       src={prop.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=100"}
                       alt={prop.title}
-                      className="h-10 w-16 object-cover rounded-xl border border-slate-200/80 dark:border-zinc-700"
+                      className="h-10 w-16 object-cover rounded-lg border border-slate-200/80 dark:border-zinc-700"
                     />
                     <span className="font-bold text-slate-900 dark:text-white">{prop.title}</span>
                   </td>
@@ -181,14 +181,14 @@ export default function OwnerProperties() {
                   <td className="px-6 py-4 text-right space-x-2">
                     <button
                       onClick={() => handleEditOpen(prop)}
-                      className="p-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-xl transition cursor-pointer"
+                      className="p-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition cursor-pointer"
                       title="Edit Listing"
                     >
                       <Edit3 className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(prop._id)}
-                      className="p-2 text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition cursor-pointer"
+                      className="p-2 text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition cursor-pointer"
                       title="Delete Listing"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -204,20 +204,20 @@ export default function OwnerProperties() {
       {/* Admin Rejection Feedback Modal */}
       {showFeedbackModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg p-8 max-w-md w-full shadow-2xl relative">
             <button
               onClick={() => setShowFeedbackModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-zinc-800"
+              className="absolute top-4 right-4 p-2 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-zinc-800"
             >
               <X className="h-5 w-5" />
             </button>
             <h3 className="text-lg font-black text-slate-900 dark:text-white mb-4">Rejection Feedback</h3>
-            <div className="p-4 bg-red-50 dark:bg-red-950/10 border border-red-200/50 dark:border-red-900/20 text-sm text-red-600 dark:text-red-400 rounded-2xl italic leading-relaxed">
+            <div className="p-4 bg-red-50 dark:bg-red-950/10 border border-red-200/50 dark:border-red-900/20 text-sm text-red-600 dark:text-red-400 rounded-lg italic leading-relaxed">
               &ldquo;{activeFeedback}&rdquo;
             </div>
             <button
               onClick={() => setShowFeedbackModal(false)}
-              className="mt-6 w-full py-2.5 bg-slate-900 dark:bg-zinc-800 text-white rounded-xl font-bold"
+              className="mt-6 w-full py-2.5 bg-slate-900 dark:bg-zinc-800 text-white rounded-lg font-bold"
             >
               Close
             </button>
@@ -228,10 +228,10 @@ export default function OwnerProperties() {
       {/* Edit Property Modal */}
       {showEditModal && editProperty && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl p-8 max-w-lg w-full shadow-2xl relative my-8">
+          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg p-8 max-w-lg w-full shadow-2xl relative my-8">
             <button
               onClick={() => setShowEditModal(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl text-slate-500 hover:bg-slate-50 dark:hover:bg-zinc-800"
+              className="absolute top-4 right-4 p-2 rounded-lg text-slate-500 hover:bg-slate-50 dark:hover:bg-zinc-800"
             >
               <X className="h-5 w-5" />
             </button>

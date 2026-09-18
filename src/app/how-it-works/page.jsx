@@ -147,14 +147,14 @@ export default function HowItWorksPage() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: index * 0.08 }}
-                className="group bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-7 sm:p-9 rounded-3xl relative overflow-hidden hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-colors duration-300 text-left flex flex-col justify-between"
+                className="group bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-7 sm:p-9 rounded-lg relative overflow-hidden hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-colors duration-300 text-left flex flex-col justify-between"
               >
                 {/* Corner Ambient Glow */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
                 <div className="space-y-5 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <div className="size-14 text-white rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <span className="px-3.5 py-1 bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 rounded-full text-xs font-black tracking-wider border border-slate-200/80 dark:border-zinc-700">

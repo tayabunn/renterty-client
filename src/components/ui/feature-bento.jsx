@@ -51,7 +51,7 @@ export const FeatureBento = ({
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:auto-rows-[290px]">
           {/* 1. Hero Card - Large (2 cols x 2 rows) */}
-          <div className="md:col-span-2 md:row-span-2 min-h-[380px] md:min-h-0 bg-gradient-to-br from-teal-900 via-teal-950 to-slate-950 rounded-3xl p-7 sm:p-10 text-white flex flex-col justify-end relative overflow-hidden group border border-teal-500/20">
+          <div className="md:col-span-2 md:row-span-2 min-h-[380px] md:min-h-0 bg-gradient-to-br from-teal-900 via-teal-950 to-slate-950 rounded-lg p-7 sm:p-10 text-white flex flex-col justify-end relative overflow-hidden group border border-teal-500/20">
             {/* Background Image with Zoom */}
             <div
               className="absolute inset-0 bg-cover bg-center opacity-35 group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -76,7 +76,7 @@ export const FeatureBento = ({
           </div>
 
           {/* 2. Stats Card 1 (Col 3, Row 1) */}
-          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 rounded-3xl p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 border border-teal-400/20 text-white">
+          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 rounded-lg p-7 sm:p-8 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 border border-teal-400/20 text-white">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -104,7 +104,7 @@ export const FeatureBento = ({
           </div>
 
           {/* 3. Feature Card (Col 3, Row 2) */}
-          <div className="bg-white dark:bg-zinc-900 rounded-3xl p-7 sm:p-8 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg p-7 sm:p-8 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-15 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -132,7 +132,7 @@ export const FeatureBento = ({
           {/* 4. CTA Card (Col 1, Row 3) */}
           <Link
             href={ctaLink}
-            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-3xl p-7 sm:p-8 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden"
+            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden"
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -161,7 +161,7 @@ export const FeatureBento = ({
           </Link>
 
           {/* 5. Stats Card 2 (Col 2, Row 3) */}
-          <div className="bg-slate-950 dark:bg-zinc-900 rounded-3xl p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all">
+          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -185,7 +185,7 @@ export const FeatureBento = ({
           </div>
 
           {/* 6. Stats Card 3 (Col 3, Row 3) */}
-          <div className="bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-600 rounded-3xl p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group transition-all duration-300 border border-teal-400/30">
+          <div className="bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-600 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group transition-all duration-300 border border-teal-400/30">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{

@@ -149,15 +149,15 @@ export default function AdminBookings() {
 
       {/* KPI Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Booking Volume</span>
           <p className="text-2xl font-black text-slate-900 dark:text-white mt-1">${totalPlatformVolume.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Platform Commission (10%)</span>
           <p className="text-2xl font-black text-teal-600 dark:text-teal-400 mt-1">${totalCommission.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Active Reservations</span>
           <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">
             {bookings.filter((b) => b.bookingStatus === "Approved").length} Active
@@ -166,7 +166,7 @@ export default function AdminBookings() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800 rounded-xl overflow-x-auto">
           {["ALL", "Approved", "Pending", "Rejected"].map((tab) => (
             <button
@@ -196,7 +196,7 @@ export default function AdminBookings() {
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden">
+      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-xs sm:text-sm">
             <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">

@@ -213,7 +213,7 @@ function PropertiesContent() {
       <Recommendations />
 
       {/* Traditional Filters Form Card */}
-      <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-3xl shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-8">
+      <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-lg shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-8">
         <form onSubmit={handleApplyFilters} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
           {/* Location */}
           <div className="text-left space-y-2 col-span-1 md:col-span-2">
@@ -328,7 +328,7 @@ function PropertiesContent() {
           Showing <span className="text-slate-900 dark:text-white font-bold">{properties.length}</span> rental listings
         </div>
 
-        <div className="flex items-center bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1 rounded-2xl">
+        <div className="flex items-center bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1 rounded-lg">
           <button
             type="button"
             onClick={() => setViewMode("grid")}
@@ -379,7 +379,7 @@ function PropertiesContent() {
           </span>
         </div>
       ) : properties.length === 0 ? (
-        <div className="text-center py-20 border border-dashed border-slate-200 dark:border-zinc-800 rounded-2xl">
+        <div className="text-center py-20 border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg">
           <Building className="h-12 w-12 text-slate-400 mx-auto mb-4" />
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">No properties found</h3>
           <p className="text-slate-500 dark:text-zinc-400 text-sm mt-1">
@@ -403,7 +403,7 @@ function PropertiesContent() {
                 <div
                   key={property._id}
                   onClick={() => setSelectedMapProperty(property)}
-                  className={`group bg-white dark:bg-zinc-900/40 rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col cursor-pointer ${
+                  className={`group bg-white dark:bg-zinc-900/40 rounded-lg overflow-hidden border transition-all duration-300 flex flex-col cursor-pointer ${
                     selectedMapProperty?._id === property._id
                       ? "border-teal-500 ring-2 ring-teal-500/20 shadow-lg"
                       : "border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-md hover:border-slate-300"
@@ -500,7 +500,7 @@ function PropertiesContent() {
             {properties.map((property) => (
               <div
                 key={property._id}
-                className="group bg-white dark:bg-zinc-900/40 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col h-full"
+                className="group bg-white dark:bg-zinc-900/40 rounded-lg overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col h-full"
               >
                 {/* Image overlay */}
                 <div className="relative h-56 overflow-hidden">

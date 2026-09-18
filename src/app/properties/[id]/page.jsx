@@ -416,12 +416,12 @@ export default function PropertyDetails() {
             {/* Left Content Area: Images, details, reviews */}
             <div className="lg:col-span-2 space-y-8">
               {/* Media Card */}
-              <div className="rounded-3xl overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-[30rem] relative">
+              <div className="rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-[30rem] relative">
                 <PropertyDetailImage property={property} />
               </div>
 
               {/* Description Card */}
-              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-6">
+              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-6">
                 <div className="space-y-3">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">About Property</h3>
                   <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed whitespace-pre-line">
@@ -431,17 +431,17 @@ export default function PropertyDetails() {
 
                 {/* Property Details Grid specs */}
                 <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 dark:border-zinc-800 text-center">
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-2xl border border-slate-200/50 dark:border-zinc-800/50">
+                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
                     <BedDouble className="h-6 w-6 text-teal-500 mx-auto mb-2" />
                     <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Bedrooms</span>
                     <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.bedrooms} Beds</span>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-2xl border border-slate-200/50 dark:border-zinc-800/50">
+                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
                     <Bath className="h-6 w-6 text-teal-500 mx-auto mb-2" />
                     <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Bathrooms</span>
                     <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.bathrooms} Baths</span>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-2xl border border-slate-200/50 dark:border-zinc-800/50">
+                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
                     <Maximize className="h-6 w-6 text-teal-500 mx-auto mb-2" />
                     <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Property Size</span>
                     <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.size} sqft</span>
@@ -450,7 +450,7 @@ export default function PropertyDetails() {
               </div>
 
               {/* Included Amenities Card */}
-              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-4">
+              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-4">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">Included Amenities</h3>
                 {property.amenities.length === 0 ? (
                   <span className="text-slate-500 text-sm">No specific amenities declared.</span>
@@ -473,7 +473,7 @@ export default function PropertyDetails() {
 
               {/* Extra Features Card */}
               {property.extraFeatures && (
-                <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-3">
+                <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-3">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">Extra Features</h3>
                   <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed">
                     {property.extraFeatures}
@@ -482,14 +482,14 @@ export default function PropertyDetails() {
               )}
 
               {/* Reviews Card & AI Sentiment Insights */}
-              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-8">
+              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-8">
                 <ReviewInsights propertyId={id} title="AI Review & Community Sentiment" />
 
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">Tenant Reviews</h3>
 
                 {/* Add Review input form */}
                 {user && user.role === "Tenant" && (
-                  <form onSubmit={handleSubmitReview} className="space-y-4 bg-slate-50 dark:bg-zinc-950 p-5 rounded-2xl border border-slate-200/60 dark:border-zinc-800/60">
+                  <form onSubmit={handleSubmitReview} className="space-y-4 bg-slate-50 dark:bg-zinc-950 p-5 rounded-lg border border-slate-200/60 dark:border-zinc-800/60">
                     <h4 className="text-sm font-bold text-slate-900 dark:text-white">Leave a Review</h4>
                     <div className="flex items-center space-x-2">
                       <span className="text-xs font-semibold text-slate-500">Rating:</span>
@@ -565,7 +565,7 @@ export default function PropertyDetails() {
 
             {/* Right Side Sticky Card: Booking Panel */}
             <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200/60 dark:border-zinc-800/60 shadow-md sticky top-24 space-y-6">
+              <div className="bg-white dark:bg-zinc-900 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-md sticky top-24 space-y-6">
                 <div>
                   <span className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider block mb-1">RENT PRICE</span>
                   <div className="flex items-baseline space-x-1.5">
@@ -577,7 +577,7 @@ export default function PropertyDetails() {
                 </div>
 
                 {/* Host Card Info */}
-                <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-2xl border border-slate-200/50 dark:border-zinc-800/50 space-y-3">
+                <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50 space-y-3">
                   <span className="text-[10px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider block">PROPERTY OWNER</span>
                   <div className="flex items-center space-x-3">
                     {property.ownerId && property.ownerId.photo ? (
@@ -719,7 +719,7 @@ export default function PropertyDetails() {
               initial={{ scale: 0.95, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 15 }}
-              className="relative w-full max-w-lg bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl z-10 space-y-6 overflow-hidden"
+              className="relative w-full max-w-lg bg-white dark:bg-zinc-900 p-8 rounded-lg border border-slate-200 dark:border-zinc-800 shadow-2xl z-10 space-y-6 overflow-hidden"
             >
               <div className="text-left">
                 <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">

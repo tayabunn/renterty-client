@@ -145,13 +145,13 @@ export default function AddProperty() {
 
   return (
     <div className="w-full">
-      <div className="group w-full bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-6 sm:p-8 md:p-10 lg:p-12 rounded-3xl hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left">
+      <div className="group w-full bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-6 sm:p-8 md:p-10 lg:p-12 rounded-lg hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left">
         {/* Corner Ambient Glow Orb */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
 
         {/* Card Header with Bento Styling */}
         <div className="flex items-start sm:items-center space-x-3.5 sm:space-x-4 mb-8 sm:mb-10 relative z-10">
-          <div className="size-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 shrink-0 group-hover:scale-105 transition-transform">
+          <div className="size-14 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 shrink-0 group-hover:scale-105 transition-transform">
             <Sparkles className="h-7 w-7 text-white" />
           </div>
           <div className="space-y-1">

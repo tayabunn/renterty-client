@@ -320,7 +320,7 @@ export default function Home() {
         {/* Hero Banner Section Wrapper */}
         <div className="relative w-[90%] mx-auto pt-6 pb-10 md:pb-12">
           {/* Rounded Hero Card (acts as background container) */}
-          <div className="relative w-full min-h-[55vh] sm:min-h-[60vh] flex items-center justify-center rounded-3xl overflow-hidden shadow-2xl bg-linear-to-t from-slate-950 to-slate-800/50">
+          <div className="relative w-full min-h-[55vh] sm:min-h-[60vh] flex items-center justify-center rounded-lg overflow-hidden shadow-2xl bg-linear-to-t from-slate-950 to-slate-800/50">
             {/* Background Image / Overlay */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -368,7 +368,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl shadow-slate-950/20 border border-white/10 dark:border-zinc-800/10"
+              className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-lg shadow-2xl shadow-slate-950/20 border border-white/10 dark:border-zinc-800/10"
             >
               <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
                 {/* Location */}
@@ -476,7 +476,7 @@ export default function Home() {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[...Array(8)].map((_, i) => (
-                  <div key={i} className="animate-pulse bg-white dark:bg-zinc-900 rounded-3xl h-[450px] border border-slate-200 dark:border-zinc-800"></div>
+                  <div key={i} className="animate-pulse bg-white dark:bg-zinc-900 rounded-lg h-[450px] border border-slate-200 dark:border-zinc-800"></div>
                 ))}
               </div>
             ) : (
@@ -491,7 +491,7 @@ export default function Home() {
                   <motion.div
                     key={property._id}
                     variants={itemVariants}
-                    className="group bg-white dark:bg-zinc-900/50 rounded-3xl overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700/80 transition-all duration-300 flex flex-col h-full"
+                    className="group bg-white dark:bg-zinc-900/50 rounded-lg overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700/80 transition-all duration-300 flex flex-col h-full"
                   >
                     {/* Image Wrap */}
                     <div className="relative h-52 overflow-hidden">
@@ -603,7 +603,7 @@ export default function Home() {
               className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
             >
               {/* Card 1: Verified Properties */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -648,7 +648,7 @@ export default function Home() {
               </div>
 
               {/* Card 2: Secure Payments */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -693,7 +693,7 @@ export default function Home() {
               </div>
 
               {/* Card 3: Transparent Reviews */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -771,7 +771,7 @@ export default function Home() {
                   <figure
                     key={idx}
                     className={cn(
-                      "relative h-full w-80 cursor-pointer overflow-hidden rounded-2xl border p-4 transition-all duration-300 text-left",
+                      "relative h-full w-80 cursor-pointer overflow-hidden rounded-lg border p-4 transition-all duration-300 text-left",
                       "border-slate-200/80 bg-white hover:bg-slate-50/80 hover:shadow-md",
                       "dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:bg-zinc-850/50"
                     )}
@@ -803,7 +803,7 @@ export default function Home() {
                   <figure
                     key={idx}
                     className={cn(
-                      "relative h-full w-80 cursor-pointer overflow-hidden rounded-2xl border p-4 transition-all duration-300 text-left",
+                      "relative h-full w-80 cursor-pointer overflow-hidden rounded-lg border p-4 transition-all duration-300 text-left",
                       "border-slate-200/80 bg-white hover:bg-slate-50/80 hover:shadow-md",
                       "dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:bg-zinc-850/50"
                     )}
@@ -874,7 +874,7 @@ export default function Home() {
                   onClick={() => {
                     router.push(`/properties?location=${city.name}`);
                   }}
-                  className="group relative rounded-3xl h-80 overflow-hidden cursor-pointer shadow-md hover:shadow-2xl border border-slate-200/50 dark:border-zinc-800/50 hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300"
+                  className="group relative rounded-lg h-80 overflow-hidden cursor-pointer shadow-md hover:shadow-2xl border border-slate-200/50 dark:border-zinc-800/50 hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300"
                 >
                   <Image
                     src={city.img}
@@ -1001,7 +1001,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
                     whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
-                    className="group relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-7 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-400/40 shadow-lg shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
+                    className="group relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-7 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-400/40 shadow-lg shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
                   >
                     {/* MagicUI Border Beam on Hover */}
                     <BorderBeam
@@ -1016,7 +1016,7 @@ export default function Home() {
 
                     {/* Radial Spotlight on Hover */}
                     <div
-                      className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      className="absolute -inset-px rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                       style={{
                         background: `radial-gradient(600px circle at top left, ${stat.glowColor}, transparent 70%)`
                       }}
@@ -1085,7 +1085,7 @@ export default function Home() {
             </div>
 
             {/* Interactive Live Trust Banner Ribbon */}
-            <div className="relative bg-linear-to-r from-teal-500/5 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/30 dark:via-emerald-950/40 dark:to-teal-950/30 border border-teal-500/20 dark:border-teal-500/15 rounded-2xl p-4 sm:p-5 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div className="relative bg-linear-to-r from-teal-500/5 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/30 dark:via-emerald-950/40 dark:to-teal-950/30 border border-teal-500/20 dark:border-teal-500/15 rounded-lg p-4 sm:p-5 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
               <div className="flex items-center space-x-3">
                 <div className="p-2.5 bg-teal-500 text-white rounded-xl shadow-md shadow-teal-500/20 shrink-0">
                   <Zap className="h-5 w-5" />

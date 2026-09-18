@@ -163,7 +163,7 @@ export default function ContactPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-3xl p-6 backdrop-blur-xl shadow-xl flex flex-col justify-between gap-5 hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 group"
+                  className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-lg p-6 backdrop-blur-xl shadow-xl flex flex-col justify-between gap-5 hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 group"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
@@ -203,7 +203,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
             
             {/* LEFT: Contact Form (7 Cols) */}
-            <div className="lg:col-span-7 bg-slate-900/70 dark:bg-zinc-900/70 border border-slate-800/80 dark:border-zinc-800/80 rounded-3xl p-6 sm:p-8 md:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+            <div className="lg:col-span-7 bg-slate-900/70 dark:bg-zinc-900/70 border border-slate-800/80 dark:border-zinc-800/80 rounded-lg p-6 sm:p-8 md:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
               <div className="mb-6 space-y-2">
                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-teal-400 uppercase tracking-wider">
                   <MessageSquare className="h-4 w-4" />
@@ -369,7 +369,7 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               
               {/* Card 1: 24/7 AI Concierge Box */}
-              <div className="bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-teal-950/40 border border-slate-800/80 dark:border-teal-500/20 rounded-3xl p-6 sm:p-7 backdrop-blur-xl shadow-xl space-y-4">
+              <div className="bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-teal-950/40 border border-slate-800/80 dark:border-teal-500/20 rounded-lg p-6 sm:p-7 backdrop-blur-xl shadow-xl space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-semibold">
                     <Bot className="h-3.5 w-3.5" />
@@ -411,7 +411,7 @@ export default function ContactPage() {
               </div>
 
               {/* Card 2: Operations Support & Hours */}
-              <div className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-3xl p-6 sm:p-7 backdrop-blur-xl shadow-xl space-y-4">
+              <div className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-lg p-6 sm:p-7 backdrop-blur-xl shadow-xl space-y-4">
                 <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-white">
                   <Clock className="h-4 w-4 text-teal-400" />
                   <span>Support Availability</span>
@@ -434,7 +434,7 @@ export default function ContactPage() {
               </div>
 
               {/* Card 3: Security & Escrow Guarantee */}
-              <div className="bg-slate-900/40 dark:bg-zinc-900/40 border border-slate-800/60 rounded-3xl p-5 flex items-center gap-3.5 text-xs text-slate-400">
+              <div className="bg-slate-900/40 dark:bg-zinc-900/40 border border-slate-800/60 rounded-lg p-5 flex items-center gap-3.5 text-xs text-slate-400">
                 <div className="p-2.5 rounded-2xl bg-teal-500/10 text-teal-400 shrink-0">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
@@ -473,7 +473,7 @@ export default function ContactPage() {
                 return (
                   <div
                     key={idx}
-                    className="rounded-2xl bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 overflow-hidden transition-colors"
+                    className="rounded-lg bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 overflow-hidden transition-colors"
                   >
                     <button
                       onClick={() => setActiveFaq(isOpen ? null : idx)}

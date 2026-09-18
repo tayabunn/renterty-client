@@ -319,7 +319,7 @@ export default function TenantFavorites() {
       </div>
 
       {/* Filter & Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
         <div className="flex items-center gap-2">
           {/* View Mode Toggle */}
           <div className="flex items-center p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-xl">
@@ -369,7 +369,7 @@ export default function TenantFavorites() {
       </div>
 
       {filteredFavorites.length === 0 ? (
-        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-3xl bg-white/60 dark:bg-zinc-900/60">
+        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg bg-white/60 dark:bg-zinc-900/60">
           <Heart className="w-10 h-10 text-slate-400 mx-auto mb-3" />
           <h4 className="text-base font-bold text-slate-800 dark:text-zinc-200">No properties match your search</h4>
           <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm mx-auto">
@@ -386,7 +386,7 @@ export default function TenantFavorites() {
             return (
               <div
                 key={fav._id}
-                className="group rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between relative"
+                className="group rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between relative"
               >
                 {/* Image Section */}
                 <div className="relative h-52 w-full overflow-hidden bg-slate-100 dark:bg-zinc-800">
@@ -446,7 +446,7 @@ export default function TenantFavorites() {
                   </div>
 
                   {/* Specs Strip */}
-                  <div className="flex items-center justify-between text-xs py-2.5 px-3 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200/60 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-semibold">
+                  <div className="flex items-center justify-between text-xs py-2.5 px-3 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200/60 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 font-semibold">
                     <span className="flex items-center gap-1">
                       <Bed className="w-3.5 h-3.5 text-teal-500" />
                       <span>{prop.bedrooms} Beds</span>
@@ -502,7 +502,7 @@ export default function TenantFavorites() {
         </div>
       ) : (
         /* TABLE VIEW */
-        <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden">
+        <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-xs sm:text-sm">
               <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
@@ -577,7 +577,7 @@ export default function TenantFavorites() {
       {/* MODAL: SIDE-BY-SIDE PROPERTY COMPARISON MATRIX */}
       {compareModal && selectedForCompare.length > 0 && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-4xl w-full shadow-2xl space-y-5 relative overflow-hidden text-left max-h-[90vh] flex flex-col">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-4xl w-full shadow-2xl space-y-5 relative overflow-hidden text-left max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600">
@@ -605,7 +605,7 @@ export default function TenantFavorites() {
                   return (
                     <div
                       key={fav._id}
-                      className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-3 text-xs"
+                      className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-3 text-xs"
                     >
                       <img
                         src={prop.images?.[0]}
@@ -676,7 +676,7 @@ export default function TenantFavorites() {
       {/* MODAL: QUICK BOOK TOUR */}
       {tourModalProperty && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600">

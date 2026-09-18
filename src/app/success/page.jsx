@@ -101,7 +101,7 @@ function SuccessContent() {
       )}
 
       {/* Invoice Details Box */}
-      <div className="mt-8 bg-white dark:bg-zinc-900 p-6 rounded-2xl border border-slate-200/60 dark:border-zinc-800/60 text-left space-y-4 shadow-sm">
+      <div className="mt-8 bg-white dark:bg-zinc-900 p-6 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 text-left space-y-4 shadow-sm">
         <h3 className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider border-b border-slate-100 dark:border-zinc-800 pb-2">
           TRANSACTION RECEIPT
         </h3>

@@ -410,7 +410,7 @@ function DashboardContent() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.95 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute right-0 top-11 lg:left-full lg:right-auto lg:top-0 lg:ml-4 w-80 sm:w-88 max-w-[calc(100vw-2rem)] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-slate-200/80 dark:border-zinc-800 rounded-2xl shadow-2xl z-50 overflow-hidden"
+                    className="absolute right-0 top-11 lg:left-full lg:right-auto lg:top-0 lg:ml-4 w-80 sm:w-88 max-w-[calc(100vw-2rem)] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-slate-200/80 dark:border-zinc-800 rounded-lg shadow-2xl z-50 overflow-hidden"
                   >
                       {/* Header */}
                       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-zinc-800/80 bg-slate-50/50 dark:bg-zinc-900/50">
@@ -657,7 +657,7 @@ function DashboardContent() {
         {!(user.role === "Admin" && activeTab === "overview") && (
           <section className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
           {/* KPI Card 1 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
             {/* Corner Ambient Glow Orb */}
             <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -666,7 +666,7 @@ function DashboardContent() {
                 <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {user.role === "Owner" ? "100%" : "Active"}
                 </span>
-                <div className="size-11 sm:size-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   <ShieldCheck className="h-5.5 w-5.5 text-white" />
                 </div>
               </div>
@@ -683,7 +683,7 @@ function DashboardContent() {
           </div>
 
           {/* KPI Card 2 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
             {/* Corner Ambient Glow Orb */}
             <div className="absolute -right-6 -top-6 size-28 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -692,7 +692,7 @@ function DashboardContent() {
                 <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {user.role === "Owner" ? "Stripe" : "Instant"}
                 </span>
-                <div className="size-11 sm:size-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   <DollarSign className="h-5.5 w-5.5 text-white" />
                 </div>
               </div>
@@ -709,7 +709,7 @@ function DashboardContent() {
           </div>
 
           {/* KPI Card 3 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
             {/* Corner Ambient Glow Orb */}
             <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -718,7 +718,7 @@ function DashboardContent() {
                 <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   24/7
                 </span>
-                <div className="size-11 sm:size-12 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   <Wrench className="h-5.5 w-5.5 text-white" />
                 </div>
               </div>
@@ -735,7 +735,7 @@ function DashboardContent() {
           </div>
 
           {/* KPI Card 4 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
             {/* Corner Ambient Glow Orb */}
             <div className="absolute -right-6 -top-6 size-28 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -744,7 +744,7 @@ function DashboardContent() {
                 <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   Live
                 </span>
-                <div className="size-11 sm:size-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                   <Calendar className="h-5.5 w-5.5 text-white" />
                 </div>
               </div>

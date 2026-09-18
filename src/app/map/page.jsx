@@ -172,7 +172,7 @@ export default function MapExplorerPage() {
               <span className="text-xs font-semibold text-slate-400">Loading map listings...</span>
             </div>
           ) : properties.length === 0 ? (
-            <div className="text-center py-16 px-4 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+            <div className="text-center py-16 px-4 bg-white dark:bg-zinc-900 rounded-lg border border-slate-200 dark:border-zinc-800">
               <MapPin className="h-10 w-10 text-slate-300 dark:text-zinc-600 mx-auto mb-3" />
               <h3 className="text-sm font-bold text-slate-800 dark:text-zinc-200">No properties found</h3>
               <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">Try adjusting your filters or location search.</p>
@@ -185,7 +185,7 @@ export default function MapExplorerPage() {
                   <div
                     key={prop._id}
                     onClick={() => setSelectedProperty(prop)}
-                    className={`group bg-white dark:bg-zinc-900 rounded-2xl border p-3.5 transition-all duration-200 cursor-pointer ${
+                    className={`group bg-white dark:bg-zinc-900 rounded-lg border p-3.5 transition-all duration-200 cursor-pointer ${
                       isSelected
                         ? "border-teal-500 ring-2 ring-teal-500/20"
                         : "border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/50"

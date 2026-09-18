@@ -62,10 +62,10 @@ export default function ListingQuality({ property, isOwnerView = false }) {
           aria-label="AI Listing Risk & Quality Audit"
           className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 text-left"
         >
-          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl overflow-y-auto max-h-[90vh] text-left">
+          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg max-w-lg w-full p-6 sm:p-7 shadow-2xl overflow-y-auto max-h-[90vh] text-left">
             <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-zinc-800 text-left">
               <div className="flex items-center space-x-3 text-left">
-                <div className="p-2.5 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-2xl shrink-0">
+                <div className="p-2.5 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-lg shrink-0">
                   <ShieldAlert className="h-5 w-5" />
                 </div>
                 <div className="text-left space-y-0.5">
@@ -96,7 +96,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
               <div className="mt-5 space-y-4 text-left">
                 {/* Score Meters */}
                 <div className="grid grid-cols-2 gap-3 text-left">
-                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-2xl border border-slate-200 dark:border-zinc-700 text-center">
+                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-lg border border-slate-200 dark:border-zinc-700 text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 block">
                       Quality Score
                     </span>
@@ -106,7 +106,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
                     </span>
                   </div>
 
-                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-2xl border border-slate-200 dark:border-zinc-700 text-center">
+                  <div className="p-3.5 bg-slate-50 dark:bg-zinc-800/70 rounded-lg border border-slate-200 dark:border-zinc-700 text-center">
                     <span className="text-[10px] uppercase font-bold text-slate-400 block">
                       Risk Level
                     </span>
@@ -129,7 +129,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Issues list if any */}
                 {auditResult.issues && auditResult.issues.length > 0 && (
-                  <div className="p-4 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-2xl space-y-2 text-left">
+                  <div className="p-4 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-lg space-y-2 text-left">
                     <span className="text-xs font-bold text-rose-800 dark:text-rose-300 flex items-center gap-1.5">
                       <AlertTriangle className="h-4 w-4 shrink-0" />
                       <span>Flags & Discrepancies:</span>
@@ -144,7 +144,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Warnings list if any */}
                 {auditResult.warnings && auditResult.warnings.length > 0 && (
-                  <div className="p-4 bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 rounded-2xl space-y-2 text-left">
+                  <div className="p-4 bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/60 rounded-lg space-y-2 text-left">
                     <span className="text-xs font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
                       <AlertTriangle className="h-4 w-4 shrink-0" />
                       <span>Considerations:</span>
@@ -159,7 +159,7 @@ export default function ListingQuality({ property, isOwnerView = false }) {
 
                 {/* Recommendations */}
                 {auditResult.recommendations && auditResult.recommendations.length > 0 && (
-                  <div className="p-4 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/80 dark:border-indigo-900/60 rounded-2xl space-y-2 text-left">
+                  <div className="p-4 bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/80 dark:border-indigo-900/60 rounded-lg space-y-2 text-left">
                     <span className="text-xs font-bold text-indigo-800 dark:text-indigo-300 flex items-center gap-1.5">
                       <CheckCircle2 className="h-4 w-4 shrink-0" />
                       <span>Recommendations:</span>

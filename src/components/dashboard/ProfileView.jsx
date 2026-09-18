@@ -104,7 +104,7 @@ export default function ProfileView({ user: propUser }) {
   };
 
   return (
-    <div className="group w-full max-w-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-8 sm:p-10 rounded-3xl hover:border-teal-500/40 dark:hover:border-teal-500/40 text-left relative overflow-hidden transition-all duration-300">
+    <div className="group w-full max-w-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 p-8 sm:p-10 rounded-lg hover:border-teal-500/40 dark:hover:border-teal-500/40 text-left relative overflow-hidden transition-all duration-300">
       {/* Corner Ambient Glow Orb */}
       <div className="absolute -right-10 -top-10 size-40 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
 

@@ -142,7 +142,7 @@ export default function AIAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-22 right-4 sm:right-6 w-[94vw] sm:w-[420px] max-h-[600px] h-[75vh] z-50 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-22 right-4 sm:right-6 w-[94vw] sm:w-[420px] max-h-[600px] h-[75vh] z-50 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 bg-linear-to-r from-teal-500 to-emerald-600 text-white flex items-center justify-between">

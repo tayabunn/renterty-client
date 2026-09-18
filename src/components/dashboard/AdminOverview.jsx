@@ -48,13 +48,13 @@ export default function AdminOverview({ onNavigateTab }) {
   if (loading && !stats) {
     return (
       <div className="space-y-6">
-        <div className="h-10 bg-slate-200 dark:bg-zinc-800 rounded-2xl w-1/3 animate-pulse" />
+        <div className="h-10 bg-slate-200 dark:bg-zinc-800 rounded-lg w-1/3 animate-pulse" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-36 bg-slate-200 dark:bg-zinc-800 rounded-3xl animate-pulse" />
+            <div key={i} className="h-36 bg-slate-200 dark:bg-zinc-800 rounded-lg animate-pulse" />
           ))}
         </div>
-        <div className="h-96 bg-slate-200 dark:bg-zinc-800 rounded-3xl animate-pulse" />
+        <div className="h-96 bg-slate-200 dark:bg-zinc-800 rounded-lg animate-pulse" />
       </div>
     );
   }
@@ -172,7 +172,7 @@ export default function AdminOverview({ onNavigateTab }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
-              className="relative p-6 sm:p-7 rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 flex flex-col justify-between overflow-hidden group"
+              className="relative p-6 sm:p-7 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 flex flex-col justify-between overflow-hidden group"
             >
               {/* Corner Ambient Glow Orb */}
               <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -211,7 +211,7 @@ export default function AdminOverview({ onNavigateTab }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="relative p-6 sm:p-8 rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 overflow-hidden space-y-6 group"
+        className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 overflow-hidden space-y-6 group"
       >
         {/* Corner Ambient Glow Orb */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -312,7 +312,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 overflow-hidden group"
+          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 overflow-hidden group"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -367,7 +367,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 flex flex-col justify-between overflow-hidden group"
+          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 flex flex-col justify-between overflow-hidden group"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -390,9 +390,9 @@ export default function AdminOverview({ onNavigateTab }) {
 
             <div className="space-y-3">
               {properties.pending > 0 ? (
-                <div className="p-4 rounded-2xl bg-teal-50/50 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between">
+                <div className="p-4 rounded-lg bg-teal-50/50 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="size-10 rounded-xl bg-teal-500 text-white flex items-center justify-center font-bold">
+                    <div className="size-10 rounded-lg bg-teal-500 text-white flex items-center justify-center font-bold">
                       <Building className="h-5 w-5" />
                     </div>
                     <div>
@@ -406,13 +406,13 @@ export default function AdminOverview({ onNavigateTab }) {
                   </div>
                   <button
                     onClick={() => onNavigateTab && onNavigateTab("admin-properties")}
-                    className="px-3 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition shadow-xs cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition shadow-xs cursor-pointer"
                   >
                     Review Listings
                   </button>
                 </div>
               ) : (
-                <div className="p-6 rounded-2xl bg-slate-50/60 dark:bg-zinc-800/40 border border-dashed border-slate-200 dark:border-zinc-800 text-center space-y-1">
+                <div className="p-6 rounded-lg bg-slate-50/60 dark:bg-zinc-800/40 border border-dashed border-slate-200 dark:border-zinc-800 text-center space-y-1">
                   <CheckCircle2 className="h-6 w-6 text-emerald-500 mx-auto" />
                   <div className="text-xs font-bold text-slate-800 dark:text-zinc-200">Moderation Queue Clear</div>
                   <div className="text-[11px] text-slate-400">All submitted property listings are reviewed and up to date.</div>

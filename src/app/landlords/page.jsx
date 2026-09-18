@@ -161,7 +161,7 @@ export default function LandlordsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-6 md:auto-rows-[290px]">
           {/* Hero Card - Large (2 cols x 2 rows) */}
-          <div className="md:col-span-2 md:row-span-2 min-h-[300px] sm:min-h-[380px] md:min-h-0 bg-gradient-to-br from-teal-900 via-teal-950 to-slate-950 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 text-white flex flex-col justify-end relative overflow-hidden group border border-teal-500/20 shadow-lg">
+          <div className="md:col-span-2 md:row-span-2 min-h-[300px] sm:min-h-[380px] md:min-h-0 bg-gradient-to-br from-teal-900 via-teal-950 to-slate-950 rounded-lg p-5 sm:p-8 md:p-10 text-white flex flex-col justify-end relative overflow-hidden group border border-teal-500/20 shadow-lg">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -189,7 +189,7 @@ export default function LandlordsPage() {
           </div>
 
           {/* Stats Card 1 (Col 3, Row 1) */}
-          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 border border-teal-400/20 text-white min-h-[190px] sm:min-h-0">
+          <div className="bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 rounded-lg p-5 sm:p-7 flex flex-col justify-between relative overflow-hidden group transition-all duration-300 border border-teal-400/20 text-white min-h-[190px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -200,7 +200,7 @@ export default function LandlordsPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/75 via-teal-900/40 to-transparent" />
             <div className="absolute -right-8 -top-8 size-32 bg-white/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
             <div className="relative z-10">
-              <div className="size-11 sm:size-14 text-white rounded-xl sm:rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 border border-white/20">
+              <div className="size-11 sm:size-14 text-white rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 border border-white/20">
                 <CreditCard className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
               </div>
               <h4 className="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-1">
@@ -217,7 +217,7 @@ export default function LandlordsPage() {
           </div>
 
           {/* Feature Card (Col 3, Row 2) */}
-          <div className="bg-white dark:bg-zinc-900 rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden min-h-[190px] sm:min-h-0">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg p-5 sm:p-7 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden min-h-[190px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-15 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -226,7 +226,7 @@ export default function LandlordsPage() {
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-zinc-900 dark:via-zinc-900/80 dark:to-transparent" />
-            <div className="relative z-10 size-11 sm:size-13 rounded-xl sm:rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white text-lg font-bold shadow-sm shadow-teal-500/20 group-hover:scale-110 transition-transform">
+            <div className="relative z-10 size-11 sm:size-13 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white text-lg font-bold shadow-sm shadow-teal-500/20 group-hover:scale-110 transition-transform">
               <Wrench className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div className="space-y-1.5 sm:space-y-2 relative z-10">
@@ -245,7 +245,7 @@ export default function LandlordsPage() {
           {/* CTA Card (Col 1, Row 3) */}
           <Link
             href={user ? "/dashboard?tab=add-property" : "/register?role=Owner"}
-            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden min-h-[180px] sm:min-h-0"
+            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden min-h-[180px] sm:min-h-0"
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -274,7 +274,7 @@ export default function LandlordsPage() {
           </Link>
 
           {/* Stats Card 2 (Col 2, Row 3) */}
-          <div className="bg-slate-950 dark:bg-zinc-900 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all min-h-[160px] sm:min-h-0">
+          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all min-h-[160px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -298,7 +298,7 @@ export default function LandlordsPage() {
           </div>
 
           {/* Stats Card 3 (Col 3, Row 3) */}
-          <div className="bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-600 rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group transition-all duration-300 border border-teal-400/30 min-h-[160px] sm:min-h-0">
+          <div className="bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-600 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group transition-all duration-300 border border-teal-400/30 min-h-[160px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -320,7 +320,7 @@ export default function LandlordsPage() {
 
       {/* Embedded AI Rent Calculator Section */}
       <section id="valuation-calculator" className="py-8 sm:py-16 w-[90%] mx-auto scroll-mt-20">
-        <div className="bg-gradient-to-br from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-900 border border-teal-500/20 dark:border-teal-800/40 rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8">
+        <div className="bg-gradient-to-br from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-900 border border-teal-500/20 dark:border-teal-800/40 rounded-lg p-4 sm:p-8 lg:p-12 space-y-6 sm:space-y-8">
           <div className="text-center flex flex-col items-center justify-center pb-4 sm:pb-6 border-b border-teal-500/20 dark:border-zinc-800">
             <div className="max-w-4xl mx-auto">
               <div className="inline-flex items-center space-x-1.5 sm:space-x-2 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-700 dark:text-teal-300 text-[10px] sm:text-xs font-bold mb-2">
@@ -439,7 +439,7 @@ export default function LandlordsPage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-4 sm:p-6 bg-white dark:bg-zinc-900 border border-teal-500/30 rounded-xl sm:rounded-2xl space-y-4 shadow-sm"
+              className="p-4 sm:p-6 bg-white dark:bg-zinc-900 border border-teal-500/30 rounded-lg space-y-4 shadow-sm"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-slate-100 dark:border-zinc-800">
                 <div>
@@ -493,7 +493,7 @@ export default function LandlordsPage() {
               </div>
             </motion.div>
           ) : (
-            <div className="p-4 bg-white/60 dark:bg-zinc-900/60 border border-dashed border-teal-500/20 rounded-xl sm:rounded-2xl text-center">
+            <div className="p-4 bg-white/60 dark:bg-zinc-900/60 border border-dashed border-teal-500/20 rounded-lg text-center">
               <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
                 Enter your property details above and click the sparkle button to get your real-time valuation and list immediately
               </p>
@@ -517,7 +517,7 @@ export default function LandlordsPage() {
             return (
               <div
                 key={index}
-                className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-xl sm:rounded-2xl overflow-hidden transition"
+                className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden transition"
               >
                 <button
                   onClick={() => setOpenFaq(isOpen ? null : index)}
@@ -543,7 +543,7 @@ export default function LandlordsPage() {
 
       {/* Bottom CTA Banner */}
       <section className="py-8 sm:py-14 w-[90%] mx-auto pb-20 sm:pb-14">
-        <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 dark:from-zinc-950 dark:via-teal-950/80 dark:to-zinc-950 text-white border border-teal-500/30 p-5 sm:p-8 lg:p-10 xl:p-14 text-center group shadow-2xl">
+        <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-950 via-teal-950 to-slate-950 dark:from-zinc-950 dark:via-teal-950/80 dark:to-zinc-950 text-white border border-teal-500/30 p-5 sm:p-8 lg:p-10 xl:p-14 text-center group shadow-2xl">
           {/* 1. High-Res Luxury Architectural Background Image */}
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-1000 ease-out pointer-events-none"
@@ -574,9 +574,9 @@ export default function LandlordsPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="hidden lg:flex absolute left-3 lg:left-4 xl:left-8 2xl:left-12 top-1/2 -translate-y-1/2 -rotate-3 hover:rotate-0 transition-all duration-300 p-3 xl:p-4 rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-teal-500/30 shadow-2xl items-center gap-2.5 xl:gap-3.5 text-left max-w-[230px] xl:max-w-xs pointer-events-auto scale-[0.82] lg:scale-[0.84] xl:scale-95 2xl:scale-100 origin-left"
+            className="hidden lg:flex absolute left-3 lg:left-4 xl:left-8 2xl:left-12 top-1/2 -translate-y-1/2 -rotate-3 hover:rotate-0 transition-all duration-300 p-3 xl:p-4 rounded-lg bg-slate-900/90 backdrop-blur-xl border border-teal-500/30 shadow-2xl items-center gap-2.5 xl:gap-3.5 text-left max-w-[230px] xl:max-w-xs pointer-events-auto scale-[0.82] lg:scale-[0.84] xl:scale-95 2xl:scale-100 origin-left"
           >
-            <div className="size-9 xl:size-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shrink-0 shadow-md shadow-emerald-500/20">
+            <div className="size-9 xl:size-11 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shrink-0 shadow-md shadow-emerald-500/20">
               <DollarSign className="w-5 h-5 xl:w-6 xl:h-6" />
             </div>
             <div className="min-w-0">
@@ -595,9 +595,9 @@ export default function LandlordsPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:flex absolute right-3 lg:right-4 xl:right-8 2xl:right-12 top-1/2 -translate-y-1/2 rotate-3 hover:rotate-0 transition-all duration-300 p-3 xl:p-4 rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-teal-500/30 shadow-2xl items-center gap-2.5 xl:gap-3.5 text-left max-w-[230px] xl:max-w-xs pointer-events-auto scale-[0.82] lg:scale-[0.84] xl:scale-95 2xl:scale-100 origin-right"
+            className="hidden lg:flex absolute right-3 lg:right-4 xl:right-8 2xl:right-12 top-1/2 -translate-y-1/2 rotate-3 hover:rotate-0 transition-all duration-300 p-3 xl:p-4 rounded-lg bg-slate-900/90 backdrop-blur-xl border border-teal-500/30 shadow-2xl items-center gap-2.5 xl:gap-3.5 text-left max-w-[230px] xl:max-w-xs pointer-events-auto scale-[0.82] lg:scale-[0.84] xl:scale-95 2xl:scale-100 origin-right"
           >
-            <div className="size-9 xl:size-11 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shrink-0 shadow-md shadow-teal-500/20">
+            <div className="size-9 xl:size-11 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shrink-0 shadow-md shadow-teal-500/20">
               <FileSignature className="w-5 h-5 xl:w-6 xl:h-6" />
             </div>
             <div className="min-w-0">

@@ -146,7 +146,7 @@ export default function OwnerAnalytics() {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Earnings */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -178,7 +178,7 @@ export default function OwnerAnalytics() {
         </div>
 
         {/* Total Properties */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -210,7 +210,7 @@ export default function OwnerAnalytics() {
         </div>
 
         {/* Total Bookings */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -243,7 +243,7 @@ export default function OwnerAnalytics() {
       </div>
 
       {/* Monthly Earnings Chart */}
-      <div className="group bg-white/90 dark:bg-zinc-900/90 p-7 sm:p-9 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300 relative overflow-hidden">
+      <div className="group bg-white/90 dark:bg-zinc-900/90 p-7 sm:p-9 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300 relative overflow-hidden">
         {/* Corner Ambient Glow */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
 

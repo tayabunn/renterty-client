@@ -197,7 +197,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 overflow-y-auto">
       <div 
-        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"
         aria-labelledby="lease-modal-title"
@@ -205,7 +205,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
         {/* Modal Header */}
         <div className="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               <FileText className="w-6 h-6" />
             </div>
             <div>
@@ -222,7 +222,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -238,7 +238,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
           ) : (
             <>
               {/* Document Overview Card */}
-              <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
                 <div>
                   <span className="text-slate-400 block mb-0.5">Monthly Rent</span>
                   <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">
@@ -270,7 +270,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
               </div>
 
               {/* Lease Agreement Clauses */}
-              <div className="border border-slate-200 dark:border-slate-800 rounded-2xl p-4 bg-white dark:bg-slate-900/60 space-y-3">
+              <div className="border border-slate-200 dark:border-slate-800 rounded-lg p-4 bg-white dark:bg-slate-900/60 space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Standard Terms & Tenancy Obligations
                 </h4>
@@ -286,7 +286,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
 
               {/* Signatures Status Card */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+                <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Tenant Signature</span>
                     {lease?.tenantSignature?.signedAt ? (
@@ -306,7 +306,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+                <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-xs font-bold text-slate-700 dark:text-slate-300">Landlord Signature</span>
                     {lease?.landlordSignature?.signedAt ? (
@@ -329,7 +329,7 @@ export default function LeaseSignatureModal({ isOpen, onClose, property, user })
 
               {/* Interactive E-Signature Pad & Alternatives (If not signed yet) */}
               {!isSignedByCurrent && (
-                <div className="p-5 rounded-2xl border-2 border-dashed border-emerald-500/40 bg-emerald-50/20 dark:bg-emerald-950/10 space-y-4">
+                <div className="p-5 rounded-lg border-2 border-dashed border-emerald-500/40 bg-emerald-50/20 dark:bg-emerald-950/10 space-y-4">
                   
                   {/* Signature Mode Switcher Tabs */}
                   <div className="flex items-center justify-between pb-2 border-b border-emerald-500/20">

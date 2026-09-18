@@ -143,7 +143,7 @@ export default function OwnerRequests() {
         </div>
       </div>
 
-      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden relative">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden relative">
         <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
         <div className="overflow-x-auto relative z-10">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">

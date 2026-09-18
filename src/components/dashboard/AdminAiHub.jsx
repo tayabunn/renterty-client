@@ -173,11 +173,11 @@ export default function AdminAiHub() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
-              className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 flex flex-col justify-between space-y-4 hover:border-teal-500/40 dark:hover:border-teal-400/40 transition-all duration-300 group"
+              className="p-6 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 flex flex-col justify-between space-y-4 hover:border-teal-500/40 dark:hover:border-teal-400/40 transition-all duration-300 group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className={`p-2.5 rounded-2xl bg-linear-to-tr ${svc.color} text-white shadow-md shadow-teal-500/10 group-hover:scale-105 transition-transform`}>
+                  <div className={`p-2.5 rounded-lg bg-linear-to-tr ${svc.color} text-white shadow-md shadow-teal-500/10 group-hover:scale-105 transition-transform`}>
                     <Icon className="h-4 w-4" />
                   </div>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400">
@@ -217,7 +217,7 @@ export default function AdminAiHub() {
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.2 }}
-          className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
         >
           <div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
@@ -230,7 +230,7 @@ export default function AdminAiHub() {
           </div>
 
           <div className="space-y-4">
-            <div className="p-4 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-center space-y-1">
+            <div className="p-4 rounded-lg bg-teal-500/10 border border-teal-500/20 text-center space-y-1">
               <span className="text-3xl font-black text-teal-600 dark:text-teal-400">91.4 / 100</span>
               <div className="text-xs font-bold text-slate-700 dark:text-zinc-300">Platform Quality Score</div>
               <div className="text-[11px] text-slate-500 dark:text-zinc-400">Based on photo resolution, verified amenities & descriptions.</div>
@@ -275,7 +275,7 @@ export default function AdminAiHub() {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.2 }}
-          className="lg:col-span-2 p-6 sm:p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="lg:col-span-2 p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
@@ -309,7 +309,7 @@ export default function AdminAiHub() {
             {filteredLogs.map((log) => (
               <div
                 key={log._id || log.prompt}
-                className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-800/60 border border-slate-200/60 dark:border-zinc-700/60 space-y-2 hover:border-teal-500/40 transition-colors"
+                className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-800/60 border border-slate-200/60 dark:border-zinc-700/60 space-y-2 hover:border-teal-500/40 transition-colors"
               >
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-slate-800 dark:text-zinc-200 uppercase tracking-wider text-[10px] px-2 py-0.5 rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400">

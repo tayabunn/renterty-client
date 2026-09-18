@@ -245,7 +245,7 @@ export default function ToursView({ isOwner = false }) {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Scheduled Tours</span>
             <span className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400">
@@ -258,7 +258,7 @@ export default function ToursView({ isOwner = false }) {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Live Video Calls</span>
             <span className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
@@ -271,7 +271,7 @@ export default function ToursView({ isOwner = false }) {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">In-Person Visits</span>
             <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
@@ -284,7 +284,7 @@ export default function ToursView({ isOwner = false }) {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Confirmed</span>
             <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
@@ -299,7 +299,7 @@ export default function ToursView({ isOwner = false }) {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-xl overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All Tours' },
@@ -339,7 +339,7 @@ export default function ToursView({ isOwner = false }) {
           <p className="text-xs text-slate-500">Loading tour schedule...</p>
         </div>
       ) : filteredTours.length === 0 ? (
-        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-3xl bg-white/60 dark:bg-zinc-900/60">
+        <div className="p-12 text-center border border-dashed border-slate-200 dark:border-zinc-800 rounded-lg bg-white/60 dark:bg-zinc-900/60">
           <Calendar className="w-10 h-10 text-slate-400 mx-auto mb-3" />
           <h4 className="text-base font-bold text-slate-800 dark:text-zinc-200">No Tours Match Your Filter</h4>
           <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm mx-auto">
@@ -351,7 +351,7 @@ export default function ToursView({ isOwner = false }) {
           {filteredTours.map((tour) => (
             <div
               key={tour._id}
-              className="group p-5 sm:p-6 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
             >
               {/* Corner Ambient Glows */}
               <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -396,7 +396,7 @@ export default function ToursView({ isOwner = false }) {
                 </div>
 
                 {/* Date & Time Strip */}
-                <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
+                <div className="p-3.5 rounded-lg bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
                   <span className="flex items-center gap-2 font-extrabold text-slate-900 dark:text-zinc-100">
                     <Calendar className="w-4 h-4 text-teal-500" />
                     <span>{new Date(tour.tourDate).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</span>
@@ -409,7 +409,7 @@ export default function ToursView({ isOwner = false }) {
 
                 {/* Special Instructions & Notes */}
                 {tour.notes && (
-                  <div className="p-3 bg-slate-50/80 dark:bg-zinc-800/50 rounded-2xl border border-slate-100 dark:border-zinc-800 text-xs text-slate-600 dark:text-zinc-300">
+                  <div className="p-3 bg-slate-50/80 dark:bg-zinc-800/50 rounded-lg border border-slate-100 dark:border-zinc-800 text-xs text-slate-600 dark:text-zinc-300">
                     <strong className="text-slate-900 dark:text-white">Note: </strong>
                     <span>{tour.notes}</span>
                   </div>
@@ -474,7 +474,7 @@ export default function ToursView({ isOwner = false }) {
       {/* LIVE VIDEO TOUR ROOM MODAL */}
       {liveRoomModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-4xl w-full h-[650px] max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-left relative animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-lg max-w-4xl w-full h-[650px] max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-left relative animate-in fade-in zoom-in-95 duration-200">
             {/* Top Room Bar */}
             <div className="flex items-center justify-between p-4 px-6 border-b border-zinc-800 bg-zinc-950">
               <div className="flex items-center gap-3">
@@ -508,7 +508,7 @@ export default function ToursView({ isOwner = false }) {
               />
 
               {/* Host Overlay Video Feed (Picture in Picture) */}
-              <div className="absolute top-4 right-4 w-40 h-28 rounded-2xl overflow-hidden border-2 border-teal-500 shadow-xl bg-zinc-800 flex flex-col justify-between p-2">
+              <div className="absolute top-4 right-4 w-40 h-28 rounded-lg overflow-hidden border-2 border-teal-500 shadow-xl bg-zinc-800 flex flex-col justify-between p-2">
                 <img
                   src={liveRoomModal.hostAvatar}
                   alt="Host Video"
@@ -521,7 +521,7 @@ export default function ToursView({ isOwner = false }) {
               </div>
 
               {/* Tenant Self Preview (Bottom Left) */}
-              <div className="absolute bottom-4 left-4 w-32 h-24 rounded-2xl overflow-hidden border border-zinc-700 shadow-lg bg-zinc-900 flex items-center justify-center">
+              <div className="absolute bottom-4 left-4 w-32 h-24 rounded-lg overflow-hidden border border-zinc-700 shadow-lg bg-zinc-900 flex items-center justify-center">
                 {isVideoOn ? (
                   <div className="text-center">
                     <User className="w-8 h-8 text-teal-400 mx-auto" />
@@ -588,7 +588,7 @@ export default function ToursView({ isOwner = false }) {
       {/* RESCHEDULE MODAL */}
       {rescheduleModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <h4 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Calendar className="w-4 h-4 text-teal-500" />
               <span>Reschedule Tour Appointment</span>

@@ -364,7 +364,7 @@ export default function ChatList({ currentUser }) {
       </div>
 
       {/* Main Conversational Workspace (2-Column Inbox) */}
-      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px] max-h-[780px]">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px] max-h-[780px]">
         {/* LEFT COLUMN: Conversation Threads List (4 cols) */}
         <div className="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-zinc-800/80 flex flex-col bg-slate-50/50 dark:bg-zinc-950/40">
           {/* Search Box */}
@@ -376,7 +376,7 @@ export default function ChatList({ currentUser }) {
                 placeholder="Search messages or host..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3.5 py-2 text-xs font-medium rounded-xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-500"
+                className="w-full pl-9 pr-3.5 py-2 text-xs font-medium rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-500"
               />
             </div>
           </div>
@@ -393,7 +393,7 @@ export default function ChatList({ currentUser }) {
                     // Clear unread
                     setConversations(prev => prev.map(c => c.conversationId === conv.conversationId ? { ...c, unreadCount: 0 } : c));
                   }}
-                  className={`p-3.5 rounded-2xl transition-all duration-200 cursor-pointer flex items-start gap-3 relative ${
+                  className={`p-3.5 rounded-lg transition-all duration-200 cursor-pointer flex items-start gap-3 relative ${
                     isSelected
                       ? 'bg-white dark:bg-zinc-900 border border-teal-500/40 dark:border-teal-500/40 ring-1 ring-teal-500/20'
                       : 'hover:bg-white/80 dark:hover:bg-zinc-900/60 border border-transparent'
@@ -402,14 +402,14 @@ export default function ChatList({ currentUser }) {
                   {/* Avatar & Online status */}
                   <div className="relative shrink-0">
                     {conv.isBot ? (
-                      <div className="size-11 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center font-bold shadow-xs">
+                      <div className="size-11 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center font-bold shadow-xs">
                         <Bot className="w-5 h-5" />
                       </div>
                     ) : (
                       <img
                         src={conv.otherUserAvatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100'}
                         alt={conv.otherUserName}
-                        className="size-11 rounded-2xl object-cover border border-slate-200 dark:border-zinc-700"
+                        className="size-11 rounded-lg object-cover border border-slate-200 dark:border-zinc-700"
                       />
                     )}
                     {conv.isOnline && (
@@ -451,14 +451,14 @@ export default function ChatList({ currentUser }) {
             <div className="flex items-center gap-3">
               <div className="relative">
                 {activeConv.isBot ? (
-                  <div className="size-10 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center font-bold">
+                  <div className="size-10 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center font-bold">
                     <Bot className="w-5 h-5" />
                   </div>
                 ) : (
                   <img
                     src={activeConv.otherUserAvatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100'}
                     alt={activeConv.otherUserName}
-                    className="size-10 rounded-2xl object-cover border border-slate-200 dark:border-zinc-700"
+                    className="size-10 rounded-lg object-cover border border-slate-200 dark:border-zinc-700"
                   />
                 )}
                 {activeConv.isOnline && (
@@ -506,7 +506,7 @@ export default function ChatList({ currentUser }) {
           {/* Messages Thread Timeline */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-slate-50/30 dark:bg-zinc-950/30">
             {/* Property Reference Card */}
-            <div className="p-3.5 rounded-2xl bg-teal-50/50 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between text-xs">
+            <div className="p-3.5 rounded-lg bg-teal-50/50 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-teal-600" />
                 <span className="text-slate-700 dark:text-zinc-300 font-medium">

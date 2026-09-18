@@ -185,12 +185,12 @@ export default function ShareModal({ isOpen, onClose, property }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ type: "spring", duration: 0.35, bounce: 0.1 }}
-          className="relative w-full max-w-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-3xl shadow-2xl overflow-hidden z-10 text-left"
+          className="relative w-full max-w-lg bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg shadow-2xl overflow-hidden z-10 text-left"
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-zinc-800">
             <div className="flex items-center space-x-2.5">
-              <div className="p-2 bg-teal-500/10 text-teal-600 dark:text-teal-400 rounded-xl">
+              <div className="p-2 bg-teal-500/10 text-teal-600 dark:text-teal-400 rounded-lg">
                 <Share2 className="w-5 h-5" />
               </div>
               <div>
@@ -200,7 +200,7 @@ export default function ShareModal({ isOpen, onClose, property }) {
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+              className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -208,8 +208,8 @@ export default function ShareModal({ isOpen, onClose, property }) {
 
           <div className="p-6 space-y-6">
             {/* Property Preview Card */}
-            <div className="flex items-center space-x-3.5 p-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-800/60 border border-slate-100 dark:border-zinc-800">
-              <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-200/60 dark:border-zinc-700">
+            <div className="flex items-center space-x-3.5 p-3.5 rounded-lg bg-slate-50 dark:bg-zinc-800/60 border border-slate-100 dark:border-zinc-800">
+              <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-slate-200/60 dark:border-zinc-700">
                 <Image
                   src={property.images?.[0] || "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200"}
                   alt={propertyTitle}
@@ -235,7 +235,7 @@ export default function ShareModal({ isOpen, onClose, property }) {
                   <button
                     key={platform.name}
                     onClick={platform.action}
-                    className={`flex flex-col items-center justify-center p-3 rounded-2xl border transition-all duration-200 hover:scale-[1.04] active:scale-95 group ${platform.color}`}
+                    className={`flex flex-col items-center justify-center p-3 rounded-lg border transition-all duration-200 hover:scale-[1.04] active:scale-95 group ${platform.color}`}
                   >
                     <div className="mb-1.5 transition-transform group-hover:scale-110">
                       {platform.icon}

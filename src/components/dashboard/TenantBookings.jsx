@@ -262,7 +262,7 @@ export default function TenantBookings() {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Active Leases</span>
             <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
@@ -275,7 +275,7 @@ export default function TenantBookings() {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Pending Review</span>
             <span className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
@@ -288,7 +288,7 @@ export default function TenantBookings() {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Paid</span>
             <span className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400">
@@ -301,7 +301,7 @@ export default function TenantBookings() {
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Next Key Access</span>
             <span className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
@@ -316,7 +316,7 @@ export default function TenantBookings() {
       </div>
 
       {/* Filter & Search Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-2xl">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-xl overflow-x-auto no-scrollbar">
           {[
             { id: "ALL", label: "All Bookings", count: bookings.length },
@@ -360,7 +360,7 @@ export default function TenantBookings() {
         {filteredBookings.map((b) => (
           <div
             key={b._id}
-            className="group p-5 sm:p-6 rounded-3xl bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+            className="group p-5 sm:p-6 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
           >
             {/* Ambient Background Glows */}
             <div className="absolute -right-10 -top-10 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -509,10 +509,10 @@ export default function TenantBookings() {
       {/* MODAL 1: Digital Lease Agreement Modal */}
       {activeModal === "lease" && selectedBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-2xl w-full shadow-2xl space-y-5 relative overflow-hidden text-left max-h-[90vh] flex flex-col">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-2xl w-full shadow-2xl space-y-5 relative overflow-hidden text-left max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600">
+                <div className="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
@@ -524,14 +524,14 @@ export default function TenantBookings() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto space-y-4 pr-1 text-xs text-slate-600 dark:text-zinc-300">
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200/80 dark:border-zinc-800 space-y-2">
+              <div className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200/80 dark:border-zinc-800 space-y-2">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <span className="text-[11px] text-slate-400 block font-bold uppercase">Premises</span>
@@ -560,7 +560,7 @@ export default function TenantBookings() {
                 <p>4. <strong>Smart Lock & Access:</strong> Digital key codes are personal and strictly non-transferable.</p>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
+              <div className="p-3.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   <span className="font-bold text-emerald-800 dark:text-emerald-300">Tenant & Landlord E-Signatures Verified</span>
@@ -572,13 +572,13 @@ export default function TenantBookings() {
             <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-end gap-2.5">
               <button
                 onClick={() => setActiveModal(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="px-4 py-2 rounded-lg text-xs font-bold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 Close
               </button>
               <button
                 onClick={() => handleDownloadLease(selectedBooking.bookingRef)}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Download PDF Agreement</span>
@@ -591,10 +591,10 @@ export default function TenantBookings() {
       {/* MODAL 2: Key Pass & Check-In Guide */}
       {activeModal === "access" && selectedBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-5 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-5 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600">
+                <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600">
                   <Key className="w-5 h-5" />
                 </div>
                 <div>
@@ -606,7 +606,7 @@ export default function TenantBookings() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -614,7 +614,7 @@ export default function TenantBookings() {
 
             <div className="space-y-4">
               {/* Door Code Box */}
-              <div className="p-4 rounded-2xl bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/80 text-center space-y-2">
+              <div className="p-4 rounded-lg bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/80 text-center space-y-2">
                 <span className="text-xs font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
                   Front Door Keypad PIN
                 </span>
@@ -624,7 +624,7 @@ export default function TenantBookings() {
                   </span>
                   <button
                     onClick={() => handleCopy(selectedBooking.smartLockCode)}
-                    className="p-2 rounded-xl bg-white dark:bg-zinc-800 border border-purple-300 dark:border-purple-700 text-purple-600 hover:bg-purple-50 transition cursor-pointer"
+                    className="p-2 rounded-lg bg-white dark:bg-zinc-800 border border-purple-300 dark:border-purple-700 text-purple-600 hover:bg-purple-50 transition cursor-pointer"
                     title="Copy Key Code"
                   >
                     {copiedCode ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
@@ -636,7 +636,7 @@ export default function TenantBookings() {
               </div>
 
               {/* Wi-Fi Credentials */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-2 text-xs">
+              <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-2 text-xs">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-700 dark:text-zinc-300">Wi-Fi Network:</span>
                   <span className="font-mono font-extrabold text-slate-900 dark:text-white">{selectedBooking.wifiName}</span>
@@ -656,8 +656,8 @@ export default function TenantBookings() {
               </div>
 
               {/* QR Code Demo */}
-              <div className="p-3 rounded-2xl bg-slate-100 dark:bg-zinc-800/60 flex items-center gap-3">
-                <div className="p-2.5 bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-700 shrink-0">
+              <div className="p-3 rounded-lg bg-slate-100 dark:bg-zinc-800/60 flex items-center gap-3">
+                <div className="p-2.5 bg-white dark:bg-zinc-900 rounded-lg border border-slate-200 dark:border-zinc-700 shrink-0">
                   <QrCode className="w-8 h-8 text-teal-600" />
                 </div>
                 <div className="text-xs">
@@ -670,7 +670,7 @@ export default function TenantBookings() {
             <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex justify-end">
               <button
                 onClick={() => setActiveModal(null)}
-                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-xl text-xs font-bold hover:opacity-90 transition cursor-pointer"
+                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-lg text-xs font-bold hover:opacity-90 transition cursor-pointer"
               >
                 Got It
               </button>
@@ -682,10 +682,10 @@ export default function TenantBookings() {
       {/* MODAL 3: Escrow & Payment Receipt */}
       {activeModal === "receipt" && selectedBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-5 relative overflow-hidden text-left">
+          <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-5 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600">
+                <div className="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <CreditCard className="w-5 h-5" />
                 </div>
                 <div>
@@ -697,13 +697,13 @@ export default function TenantBookings() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-3 text-xs">
+            <div className="p-4 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 space-y-3 text-xs">
               <div className="flex justify-between">
                 <span className="text-slate-500 font-medium">First Month Rent:</span>
                 <span className="font-extrabold text-slate-900 dark:text-white">${selectedBooking.monthlyRent.toLocaleString()}</span>
@@ -727,13 +727,13 @@ export default function TenantBookings() {
             <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-end gap-2">
               <button
                 onClick={() => setActiveModal(null)}
-                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="px-4 py-2 rounded-lg text-xs font-bold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 Close
               </button>
               <button
                 onClick={() => handleDownloadReceipt(selectedBooking.bookingRef)}
-                className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Save Receipt</span>

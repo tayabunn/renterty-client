@@ -53,7 +53,7 @@ export default function SmartSearch({ onApplyFilters, onSearchResults }) {
     <div
       role="search"
       aria-label="AI Smart Property Search"
-      className="w-full bg-linear-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/40 border border-teal-500/30 dark:border-teal-500/20 rounded-2xl p-4 sm:p-6 shadow-lg shadow-teal-500/5 mb-6 backdrop-blur-md"
+      className="w-full bg-linear-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/40 border border-teal-500/30 dark:border-teal-500/20 rounded-lg p-4 sm:p-6 shadow-lg shadow-teal-500/5 mb-6 backdrop-blur-md"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-3">

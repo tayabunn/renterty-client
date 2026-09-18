@@ -79,7 +79,7 @@ export default function ReviewInsights({ propertyId = null, ownerId = null, titl
 
   if (loading) {
     return (
-      <div className="p-6 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-2xl flex items-center justify-center space-x-2 text-xs text-slate-500">
+      <div className="p-6 bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 rounded-lg flex items-center justify-center space-x-2 text-xs text-slate-500">
         <Loader2 className="h-4 w-4 animate-spin text-teal-500" />
         <span>Analyzing tenant review sentiments...</span>
       </div>
@@ -89,7 +89,7 @@ export default function ReviewInsights({ propertyId = null, ownerId = null, titl
   if (!insights) return null;
 
   return (
-    <div className="group p-6 sm:p-8 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-3xl transition-all duration-300 relative overflow-hidden space-y-6">
+    <div className="group p-6 sm:p-8 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg transition-all duration-300 relative overflow-hidden space-y-6">
       {/* Corner Ambient Glow */}
       <div className="absolute -right-10 -top-10 size-40 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
 
@@ -123,7 +123,7 @@ export default function ReviewInsights({ propertyId = null, ownerId = null, titl
           {insights.topics.map((t, idx) => (
             <div
               key={idx}
-              className="p-3.5 bg-slate-50/80 dark:bg-zinc-800/80 rounded-2xl border border-slate-200/70 dark:border-zinc-700/70 space-y-2"
+              className="p-3.5 bg-slate-50/80 dark:bg-zinc-800/80 rounded-lg border border-slate-200/70 dark:border-zinc-700/70 space-y-2"
             >
               <div className="flex justify-between items-center text-xs">
                 <span className="font-bold text-slate-800 dark:text-zinc-200">{t.name}</span>
@@ -149,7 +149,7 @@ export default function ReviewInsights({ propertyId = null, ownerId = null, titl
       {/* Praise and Improvements Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1 relative z-10">
         {insights.topPraise && insights.topPraise.length > 0 && (
-          <div className="p-4 bg-teal-50/60 dark:bg-teal-950/20 border border-teal-500/20 rounded-2xl space-y-1.5">
+          <div className="p-4 bg-teal-50/60 dark:bg-teal-950/20 border border-teal-500/20 rounded-lg space-y-1.5">
             <span className="text-xs font-bold text-teal-900 dark:text-teal-200 flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 text-teal-600 dark:text-teal-400" /> Key Tenant Praise:
             </span>
@@ -162,7 +162,7 @@ export default function ReviewInsights({ propertyId = null, ownerId = null, titl
         )}
 
         {insights.areasToImprove && insights.areasToImprove.length > 0 && (
-          <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 border border-amber-500/20 rounded-2xl space-y-1.5">
+          <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 border border-amber-500/20 rounded-lg space-y-1.5">
             <span className="text-xs font-bold text-amber-900 dark:text-amber-200 flex items-center gap-1.5">
               <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400" /> Actionable Insights:
             </span>
