@@ -145,10 +145,10 @@ export default function MapExplorerPage() {
       </section>
 
       {/* Main Split-Screen Container */}
-      <div className="flex-1 flex flex-col md:flex-row h-[calc(100vh-100px)] min-h-[680px] lg:min-h-[750px] overflow-hidden">
+      <div className="flex-1 flex flex-col md:flex-row h-[calc(100dvh-120px)] min-h-[480px] sm:min-h-[560px] md:min-h-[680px] lg:min-h-[750px] overflow-hidden">
         {/* Left Side: Property Cards List */}
         <div
-          className={`w-full md:w-[45%] lg:w-[40%] xl:w-[35%] h-full overflow-y-auto p-4 sm:p-6 space-y-4 border-r border-slate-200/80 dark:border-zinc-800/80 ${
+          className={`w-full md:w-[45%] lg:w-[40%] xl:w-[35%] h-full overflow-y-auto p-3.5 sm:p-5 md:p-6 space-y-4 border-r border-slate-200/80 dark:border-zinc-800/80 ${
             mobileView === "map" ? "hidden md:block" : "block"
           }`}
         >

@@ -226,9 +226,9 @@ function EstimatorContent() {
               </>
             ) : (
               <>
-                Smart Rental Valuation &{" "}
+                Smart Rental Valuation{" "}
                 <span className="bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent">
-                  Pricing Estimator
+                  & Pricing Estimator
                 </span>
               </>
             )}

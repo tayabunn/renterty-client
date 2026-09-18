@@ -655,7 +655,7 @@ function DashboardContent() {
       <main className="flex-1 p-4 sm:p-6 lg:p-8 min-w-0 max-w-full overflow-x-hidden space-y-6">
         {/* Top Metric Cards Row (Only shown when not on comprehensive Admin Overview) */}
         {!(user.role === "Admin" && activeTab === "overview") && (
-          <section className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
           {/* KPI Card 1 */}
           <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
             {/* Corner Ambient Glow Orb */}

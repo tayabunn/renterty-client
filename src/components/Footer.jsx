@@ -66,14 +66,14 @@ const Footer = () => {
               <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 bg-teal-600/10 rounded-full blur-2xl" />
 
               {/* Architectural Blueprint Dot-Grid Mesh */}
-              <div 
+              {/* <div 
                 className="absolute inset-0 opacity-[0.14] dark:opacity-[0.18]"
                 style={{
                   backgroundImage: `radial-gradient(#14b8a6 1px, transparent 1px), radial-gradient(#059669 1px, transparent 1px)`,
                   backgroundSize: "28px 28px",
                   backgroundPosition: "0 0, 14px 14px"
                 }}
-              />
+              /> */}
 
               {/* Glowing Top Edge Reflection */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
@@ -201,18 +201,18 @@ const Footer = () => {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubscribe} className="space-y-2.5">
-                  <div className="relative flex items-center">
+                  <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address..."
                       required
-                      className="w-full pl-4 pr-32 py-3.5 rounded-lg bg-slate-950/90 dark:bg-zinc-950/90 border border-slate-700/90 dark:border-zinc-700/90 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/30 transition-all shadow-inner backdrop-blur-md"
+                      className="w-full pl-4 pr-4 sm:pr-32 py-3 sm:py-3.5 rounded-lg bg-slate-950/90 dark:bg-zinc-950/90 border border-slate-700/90 dark:border-zinc-700/90 text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-500/30 transition-all shadow-inner backdrop-blur-md"
                     />
                     <button
                       type="submit"
-                      className="absolute right-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md shadow-teal-500/25"
+                      className="sm:absolute sm:right-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 shadow-md shadow-teal-500/25"
                     >
                       <span>Subscribe</span>
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -239,10 +239,10 @@ const Footer = () => {
         <div className="pb-6 space-y-5">
           
           {/* Main Combined Row: Contacts, Trust Badges & Socials */}
-          <div className="flex flex-col xl:flex-row items-center justify-between gap-4 py-4 px-5 rounded-lg bg-slate-900/40 dark:bg-zinc-900/40 border border-slate-800/60 dark:border-zinc-800/60 text-xs text-slate-400 dark:text-zinc-400">
+          <div className="flex flex-col xl:flex-row items-center justify-between gap-4 py-4 px-4 sm:px-5 rounded-lg bg-slate-900/40 dark:bg-zinc-900/40 border border-slate-800/60 dark:border-zinc-800/60 text-xs text-slate-400 dark:text-zinc-400">
             
             {/* Direct Contact & Live Support */}
-            <div className="flex flex-wrap items-center justify-center xl:justify-start gap-3 sm:gap-4">
+            <div className="flex flex-wrap items-center justify-center xl:justify-start gap-2.5 sm:gap-4">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -277,7 +277,7 @@ const Footer = () => {
             </div>
 
             {/* Inline Trust Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] text-slate-400 dark:text-zinc-400">
+            <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[11px] text-slate-400 dark:text-zinc-400">
               <div className="flex items-center gap-1.5">
                 <Lock className="h-3 w-3 text-teal-400 shrink-0" />
                 <span>256-Bit SSL</span>
@@ -359,7 +359,7 @@ const Footer = () => {
             </div>
 
             {/* Right: Legal Pipes & Back To Top */}
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2.5 sm:gap-4">
               <Link href="/privacy" className="hover:text-teal-400 dark:hover:text-teal-300 transition-colors">
                 Privacy Policy
               </Link>
@@ -396,7 +396,7 @@ const Footer = () => {
         aria-hidden="true"
         className="w-full flex justify-center items-center overflow-hidden text-center pointer-events-none select-none mt-8 -mb-6 md:-mb-10 opacity-70"
       >
-        <span className="text-[14vw] sm:text-[18.4vw] md:text-[18.4vw] ml-[-25] font-extrabold leading-[.75] tracking-tight bg-gradient-to-b from-slate-800/40 via-teal-950/20 to-transparent dark:from-zinc-800/40 dark:via-teal-950/20 dark:to-transparent bg-clip-text text-transparent block text-center">
+        <span className="text-[14vw] sm:text-[18.4vw] md:text-[18.4vw] font-extrabold leading-[.75] tracking-tight bg-gradient-to-b from-slate-800/40 via-teal-950/20 to-transparent dark:from-zinc-800/40 dark:via-teal-950/20 dark:to-transparent bg-clip-text text-transparent block text-center">
           RENTERTY
         </span>
       </div>

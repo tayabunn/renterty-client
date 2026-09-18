@@ -370,9 +370,9 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-lg shadow-2xl shadow-slate-950/20 border border-white/10 dark:border-zinc-800/10"
             >
-              <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+              <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
                 {/* Location */}
-                <div className="text-left space-y-2">
+                <div className="text-left space-y-2 col-span-1 sm:col-span-2 md:col-span-1">
                   <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <MapPin className="h-3.5 w-3.5 text-teal-500" />
                     <span>LOCATION</span>
@@ -387,7 +387,7 @@ export default function Home() {
                 </div>
 
                 {/* Property Type */}
-                <div className="text-left space-y-2">
+                <div className="text-left space-y-2 col-span-1">
                   <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <Building className="h-3.5 w-3.5 text-teal-500" />
                     <span>TYPE</span>
@@ -410,7 +410,7 @@ export default function Home() {
                 </div>
 
                 {/* Min Price */}
-                <div className="text-left space-y-2">
+                <div className="text-left space-y-2 col-span-1">
                   <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <DollarSign className="h-3.5 w-3.5 text-teal-500" />
                     <span>MIN PRICE</span>
@@ -425,7 +425,7 @@ export default function Home() {
                 </div>
 
                 {/* Max Price */}
-                <div className="text-left space-y-2">
+                <div className="text-left space-y-2 col-span-1">
                   <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <DollarSign className="h-3.5 w-3.5 text-teal-500" />
                     <span>MAX PRICE</span>
@@ -440,7 +440,7 @@ export default function Home() {
                 </div>
 
                 {/* Search Button */}
-                <div className="flex items-end">
+                <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-1">
                   <button
                     type="submit"
                     className="w-full flex items-center justify-center space-x-2 py-3 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold transition-all duration-200 cursor-pointer h-[46px]"

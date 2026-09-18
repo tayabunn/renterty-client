@@ -213,10 +213,10 @@ function PropertiesContent() {
       <Recommendations />
 
       {/* Traditional Filters Form Card */}
-      <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-lg shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-8">
-        <form onSubmit={handleApplyFilters} className="grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+      <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-5 sm:p-6 rounded-lg shadow-xl shadow-slate-950/5 border border-slate-200/80 dark:border-zinc-800/80 mb-8">
+        <form onSubmit={handleApplyFilters} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
           {/* Location */}
-          <div className="text-left space-y-2 col-span-1 md:col-span-2">
+          <div className="text-left space-y-2 col-span-1 sm:col-span-2 lg:col-span-2">
             <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <MapPin className="h-3.5 w-3.5 text-teal-500" />
               <span>SEARCH CITY</span>
@@ -231,7 +231,7 @@ function PropertiesContent() {
           </div>
 
           {/* Property Type */}
-          <div className="text-left space-y-2">
+          <div className="text-left space-y-2 col-span-1">
             <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <Building className="h-3.5 w-3.5 text-teal-500" />
               <span>PROPERTY TYPE</span>
@@ -254,7 +254,7 @@ function PropertiesContent() {
           </div>
 
           {/* Min Price */}
-          <div className="text-left space-y-2">
+          <div className="text-left space-y-2 col-span-1">
             <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <DollarSign className="h-3.5 w-3.5 text-teal-500" />
               <span>MIN PRICE ($)</span>
@@ -269,7 +269,7 @@ function PropertiesContent() {
           </div>
 
           {/* Max Price */}
-          <div className="text-left space-y-2">
+          <div className="text-left space-y-2 col-span-1">
             <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <DollarSign className="h-3.5 w-3.5 text-teal-500" />
               <span>MAX PRICE ($)</span>
@@ -284,7 +284,7 @@ function PropertiesContent() {
           </div>
 
           {/* Sort selection */}
-          <div className="text-left space-y-2">
+          <div className="text-left space-y-2 col-span-1 sm:col-span-2 lg:col-span-2">
             <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
               <ArrowUpDown className="h-3.5 w-3.5 text-teal-500" />
               <span>SORT BY PRICE</span>
@@ -304,7 +304,7 @@ function PropertiesContent() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex gap-3 col-span-1 md:col-span-4">
+          <div className="flex gap-3 col-span-1 sm:col-span-2 lg:col-span-3">
             <button
               type="submit"
               className="flex-1 flex items-center justify-center space-x-2 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 cursor-pointer text-sm h-[46px]"

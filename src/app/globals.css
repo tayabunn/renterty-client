@@ -210,6 +210,25 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   clip-path: var(--magicui-theme-vt-clip-from);
 }
 
+/* Global Responsive Base & Viewport Overflow Protection */
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+  max-width: 100vw;
+  width: 100%;
+}
+
+/* Responsive Image and Media containment */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Leaflet Full-Height Overrides */
 .leaflet-container {
   width: 100% !important;

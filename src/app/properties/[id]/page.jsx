@@ -416,12 +416,12 @@ export default function PropertyDetails() {
             {/* Left Content Area: Images, details, reviews */}
             <div className="lg:col-span-2 space-y-8">
               {/* Media Card */}
-              <div className="rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-[30rem] relative">
+              <div className="rounded-lg overflow-hidden shadow-md border border-slate-200 dark:border-zinc-800 h-64 sm:h-80 md:h-[26rem] lg:h-[30rem] relative">
                 <PropertyDetailImage property={property} />
               </div>
 
               {/* Description Card */}
-              <div className="bg-white dark:bg-zinc-900/40 p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-6">
+              <div className="bg-white dark:bg-zinc-900/40 p-5 sm:p-7 md:p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-6">
                 <div className="space-y-3">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">About Property</h3>
                   <p className="text-slate-600 dark:text-zinc-300 text-sm leading-relaxed whitespace-pre-line">
@@ -430,21 +430,21 @@ export default function PropertyDetails() {
                 </div>
 
                 {/* Property Details Grid specs */}
-                <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100 dark:border-zinc-800 text-center">
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
-                    <BedDouble className="h-6 w-6 text-teal-500 mx-auto mb-2" />
-                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Bedrooms</span>
-                    <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.bedrooms} Beds</span>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-slate-100 dark:border-zinc-800 text-center">
+                  <div className="p-3.5 sm:p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
+                    <BedDouble className="h-5 w-5 sm:h-6 sm:w-6 text-teal-500 mx-auto mb-1.5 sm:mb-2" />
+                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-0.5">Bedrooms</span>
+                    <span className="font-extrabold text-slate-900 dark:text-white text-sm sm:text-base">{property.bedrooms} Beds</span>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
-                    <Bath className="h-6 w-6 text-teal-500 mx-auto mb-2" />
-                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Bathrooms</span>
-                    <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.bathrooms} Baths</span>
+                  <div className="p-3.5 sm:p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
+                    <Bath className="h-5 w-5 sm:h-6 sm:w-6 text-teal-500 mx-auto mb-1.5 sm:mb-2" />
+                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-0.5">Bathrooms</span>
+                    <span className="font-extrabold text-slate-900 dark:text-white text-sm sm:text-base">{property.bathrooms} Baths</span>
                   </div>
-                  <div className="p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
-                    <Maximize className="h-6 w-6 text-teal-500 mx-auto mb-2" />
-                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-1">Property Size</span>
-                    <span className="font-extrabold text-slate-900 dark:text-white text-base">{property.size} sqft</span>
+                  <div className="p-3.5 sm:p-4 bg-slate-50 dark:bg-zinc-950 rounded-lg border border-slate-200/50 dark:border-zinc-800/50">
+                    <Maximize className="h-5 w-5 sm:h-6 sm:w-6 text-teal-500 mx-auto mb-1.5 sm:mb-2" />
+                    <span className="text-xs text-slate-400 dark:text-zinc-500 block mb-0.5">Property Size</span>
+                    <span className="font-extrabold text-slate-900 dark:text-white text-sm sm:text-base">{property.size} sqft</span>
                   </div>
                 </div>
               </div>
@@ -719,7 +719,7 @@ export default function PropertyDetails() {
               initial={{ scale: 0.95, opacity: 0, y: 15 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 15 }}
-              className="relative w-full max-w-lg bg-white dark:bg-zinc-900 p-8 rounded-lg border border-slate-200 dark:border-zinc-800 shadow-2xl z-10 space-y-6 overflow-hidden"
+              className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg border border-slate-200 dark:border-zinc-800 shadow-2xl z-10 space-y-6"
             >
               <div className="text-left">
                 <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">

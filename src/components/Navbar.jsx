@@ -139,7 +139,7 @@ const Navbar = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.95 }}
                           transition={{ duration: 0.15, ease: "easeOut" }}
-                          className="absolute right-0 top-11 w-64 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-slate-200/80 dark:border-zinc-800 rounded-lg shadow-2xl p-4 z-50 space-y-3"
+                          className="absolute right-0 top-11 w-64 max-w-[calc(100vw-2rem)] bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-slate-200/80 dark:border-zinc-800 rounded-lg shadow-2xl p-4 z-50 space-y-3"
                         >
                           {/* User Info Header */}
                           <div className="space-y-0.5 pb-2.5 border-b border-slate-100 dark:border-zinc-800/80 text-left">
@@ -156,9 +156,9 @@ const Navbar = () => {
                             <Link
                               href="/dashboard"
                               onClick={() => setUserMenuOpen(false)}
-                              className="flex items-center space-x-2 w-full px-2.5 py-2 rounded-xl text-xs xl:text-sm font-semibold text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-left"
+                              className="flex items-center space-x-2 w-full px-2.5 py-2.5 rounded-xl text-xs xl:text-sm font-semibold text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer text-left"
                             >
-                              <LayoutDashboard className="h-4 w-4 text-teal-500" />
+                              <LayoutDashboard className="h-4 w-4 text-teal-500 shrink-0" />
                               <span>Dashboard</span>
                             </Link>
                           </div>
@@ -197,7 +197,7 @@ const Navbar = () => {
             </div>
 
           {/* Mobile and Tablet menu button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-1.5 sm:space-x-2">
             <AnimatedThemeToggler
               className="p-2 text-slate-500 hover:text-slate-800 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg transition"
               aria-label="Toggle Theme"
@@ -207,7 +207,7 @@ const Navbar = () => {
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none transition-all cursor-pointer"
+              className="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 dark:text-zinc-400 dark:hover:text-zinc-100 dark:hover:bg-zinc-900 focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:outline-none transition-all cursor-pointer min-h-[40px] min-w-[40px]"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -217,7 +217,7 @@ const Navbar = () => {
 
       {/* Mobile and Tablet Dropdown Menu */}
       {isOpen && (
-        <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="lg:hidden px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-zinc-950/95 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-md">
+        <div id="mobile-menu" role="region" aria-label="Mobile Navigation" className="lg:hidden px-3 pt-2 pb-4 space-y-1.5 bg-white/98 dark:bg-zinc-950/98 border-b border-slate-200 dark:border-zinc-800 backdrop-blur-xl shadow-xl">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -225,9 +225,9 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`flex items-center px-3 py-2 rounded-md text-base font-medium transition-all ${
+                className={`flex items-center px-3.5 py-2.5 rounded-lg text-sm sm:text-base font-medium transition-all ${
                   active
-                    ? "bg-slate-100 dark:bg-zinc-900 text-teal-600 dark:text-teal-400"
+                    ? "bg-slate-100 dark:bg-zinc-900 text-teal-600 dark:text-teal-400 font-bold"
                     : "text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-900/50 hover:text-slate-900 dark:hover:text-zinc-100"
                 }`}
               >
@@ -236,27 +236,27 @@ const Navbar = () => {
             );
           })}
           {user ? (
-            <div className="pt-4 pb-2 border-t border-slate-200 dark:border-zinc-800 mt-4 px-3">
-              <div className="flex items-center space-x-3 mb-3">
+            <div className="pt-3 pb-1 border-t border-slate-200 dark:border-zinc-800 mt-3 px-1">
+              <div className="flex items-center space-x-3 mb-3 p-2 rounded-lg bg-slate-50 dark:bg-zinc-900/60">
                 {user.photo ? (
-                  <img src={user.photo} alt={user.name} className="h-10 w-10 rounded-full object-cover" />
+                  <img src={user.photo} alt={user.name} className="h-10 w-10 rounded-full object-cover shrink-0 ring-2 ring-teal-500/20" />
                 ) : (
-                  <div className="h-10 w-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-lg">
+                  <div className="h-10 w-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
                     {user.name ? user.name[0].toUpperCase() : <User className="h-5 w-5" />}
                   </div>
                 )}
-                <div>
-                  <div className="text-sm font-semibold text-slate-900 dark:text-zinc-100">{user.name}</div>
-                  <div className="text-xs text-slate-500 dark:text-zinc-400">{user.email}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-semibold text-slate-900 dark:text-zinc-100 truncate">{user.name}</div>
+                  <div className="text-xs text-slate-500 dark:text-zinc-400 truncate">{user.email}</div>
                 </div>
               </div>
               <div className="space-y-1">
                 <Link
                   href="/dashboard"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-slate-600 dark:text-zinc-400 hover:bg-slate-50 dark:hover:bg-zinc-900/50 hover:text-slate-900 dark:hover:text-zinc-100 rounded-md"
+                  className="flex items-center space-x-2.5 w-full px-3 py-2.5 text-sm sm:text-base font-medium text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-900 hover:text-slate-900 dark:hover:text-zinc-100 rounded-lg transition-colors"
                 >
-                  <LayoutDashboard className="h-5 w-5" />
+                  <LayoutDashboard className="h-4.5 w-4.5 text-teal-500 shrink-0" />
                   <span>Dashboard</span>
                 </Link>
                 <button
@@ -265,21 +265,21 @@ const Navbar = () => {
                     handleLogout();
                   }}
                   aria-label="Sign Out"
-                  className="flex items-center space-x-2 w-full px-3 py-2 text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-md text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none"
+                  className="flex items-center space-x-2.5 w-full px-3 py-2.5 text-sm sm:text-base font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg text-left cursor-pointer focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none transition-colors"
                 >
-                  <LogOut className="h-5 w-5" />
+                  <LogOut className="h-4.5 w-4.5 shrink-0" />
                   <span>Log Out</span>
                 </button>
               </div>
             </div>
           ) : (
-            <div className="pt-4 border-t border-slate-200 dark:border-zinc-800 flex flex-col space-y-2 px-3 mt-4">
+            <div className="pt-3 border-t border-slate-200 dark:border-zinc-800 flex flex-col space-y-2 px-1 mt-3">
               <InteractiveHoverButton
                 onClick={() => {
                   setIsOpen(false);
                   router.push("/login");
                 }}
-                className="w-full text-center justify-center"
+                className="w-full text-center justify-center py-3 text-sm font-bold"
               >
                 Book now
               </InteractiveHoverButton>
