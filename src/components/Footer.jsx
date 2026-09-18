@@ -56,7 +56,7 @@ const Footer = () => {
             TOP ROW: Interactive Newsletter & AI Rental Concierge Value Proposition
            ========================================================================= */}
         <div className="mb-8 pb-8 border-b border-slate-800/80 dark:border-zinc-800/80">
-          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950/60 dark:from-zinc-950 dark:via-zinc-900 dark:to-teal-950/60 p-5 sm:p-7 md:p-8 rounded-lg border border-teal-500/25 dark:border-teal-500/20 backdrop-blur-xl shadow-2xl shadow-teal-950/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8">
+          <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950/60 dark:from-zinc-950 dark:via-zinc-900 dark:to-teal-950/60 p-5 sm:p-7 md:p-8 rounded-lg border border-teal-500/25 dark:border-teal-500/20 backdrop-blur-xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8">
             
             {/* --- PROPERTY & REAL ESTATE THEMED BACKGROUND GRAPHICS --- */}
             <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
