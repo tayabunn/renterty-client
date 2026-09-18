@@ -56,10 +56,56 @@ const Footer = () => {
             TOP ROW: Interactive Newsletter & AI Rental Concierge Value Proposition
            ========================================================================= */}
         <div className="mb-8 pb-8 border-b border-slate-800/80 dark:border-zinc-800/80">
-          <div className="bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-teal-950/30 dark:from-zinc-900/90 dark:via-zinc-900/50 dark:to-teal-950/40 p-5 sm:p-7 md:p-8 rounded-lg border border-slate-800/80 dark:border-teal-500/20 backdrop-blur-xl shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8">
+          <div className="relative overflow-hidden rounded-lg border border-teal-500/30 dark:border-teal-500/30 bg-gradient-to-br from-slate-900/95 via-slate-900/80 to-teal-950/50 dark:from-zinc-900/95 dark:via-zinc-900/85 dark:to-teal-950/60 p-5 sm:p-7 md:p-8 backdrop-blur-2xl shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 md:gap-8 group">
             
-            <div className="max-w-2xl space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-semibold tracking-wide">
+            {/* --- REDESIGNED BACKGROUND GRAPHICS & ACCENTS --- */}
+            {/* Top Radiant Neon Rim */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent" />
+            <div className="absolute top-0 right-1/4 w-1/2 h-[1px] bg-gradient-to-r from-teal-400 via-emerald-300 to-transparent blur-[1px]" />
+
+            {/* Ambient Multi-Mesh Glowing Orbs */}
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-teal-500/25 via-emerald-500/20 to-transparent rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-gradient-to-tr from-emerald-600/20 via-teal-500/15 to-transparent rounded-full blur-3xl pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.12),transparent_70%)] pointer-events-none" />
+
+            {/* Angled Light Sweep Beam */}
+            <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(20,184,166,0.06)_40%,rgba(16,185,129,0.08)_60%,transparent_100%)] pointer-events-none" />
+
+            {/* Architectural Blueprint Grid Pattern Overlay */}
+            <svg
+              className="absolute inset-0 w-full h-full opacity-[0.14] dark:opacity-[0.18] pointer-events-none select-none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <pattern id="footer-cta-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-teal-400" />
+                  <circle cx="24" cy="24" r="1" className="text-emerald-400 fill-current" />
+                </pattern>
+                <radialGradient id="footer-cta-mask" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="white" stopOpacity="1" />
+                  <stop offset="70%" stopColor="white" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="white" stopOpacity="0.1" />
+                </radialGradient>
+                <mask id="footer-cta-grid-mask">
+                  <rect width="100%" height="100%" fill="url(#footer-cta-mask)" />
+                </mask>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#footer-cta-grid)" mask="url(#footer-cta-grid-mask)" />
+            </svg>
+
+            {/* Futuristic Concentric Radar / Target Accent (Bottom Right) */}
+            <div className="absolute -right-16 -bottom-16 w-80 h-80 pointer-events-none opacity-20 dark:opacity-30">
+              <svg viewBox="0 0 200 200" className="w-full h-full text-teal-400 [animation:spin_60s_linear_infinite]">
+                <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+                <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.7" />
+                <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
+                <circle cx="100" cy="100" r="120" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+              </svg>
+            </div>
+
+            {/* --- FOREGROUND CONTENT (KEPT 100% SAME) --- */}
+            <div className="relative z-10 max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-semibold tracking-wide backdrop-blur-md">
                 <Sparkles className="h-3.5 w-3.5 text-teal-400 animate-pulse" />
                 <span>Next-Gen Rental Intelligence</span>
               </div>
@@ -86,12 +132,12 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Subscription Box */}
-            <div className="w-full lg:w-auto lg:min-w-[380px] shrink-0">
+            <div className="relative z-10 w-full lg:w-auto lg:min-w-[380px] shrink-0">
               {subscribed ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-3 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-semibold backdrop-blur-md"
                 >
                   <div className="p-1 rounded-full bg-emerald-500/20">
                     <Check className="h-4 w-4" />
@@ -107,7 +153,7 @@ const Footer = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address..."
                       required
-                      className="w-full pl-4 pr-32 py-3.5 rounded-lg bg-slate-950/80 dark:bg-zinc-950/90 border border-slate-700/80 dark:border-zinc-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all shadow-inner"
+                      className="w-full pl-4 pr-32 py-3.5 rounded-lg bg-slate-950/80 dark:bg-zinc-950/90 border border-slate-700/80 dark:border-zinc-700/80 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all shadow-inner backdrop-blur-sm"
                     />
                     <button
                       type="submit"
