@@ -318,9 +318,9 @@ export default function Home() {
 
       <main id="main-content" className="flex-1">
         {/* Hero Banner Section Wrapper */}
-        <div className="relative w-[90%] mx-auto pt-6 pb-10 md:pb-12">
+        <div className="relative w-[90%] mx-auto pt-4 sm:pt-6 pb-6 sm:pb-10 md:pb-12">
           {/* Rounded Hero Card (acts as background container) */}
-          <div className="relative w-full min-h-[55vh] sm:min-h-[60vh] flex items-center justify-center rounded-lg overflow-hidden shadow-2xl bg-linear-to-t from-slate-950 to-slate-800/50">
+          <div className="relative w-full min-h-[50vh] sm:min-h-[58vh] flex items-center justify-center rounded-lg overflow-hidden shadow-2xl bg-linear-to-t from-slate-950 to-slate-800/50">
             {/* Background Image / Overlay */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -334,18 +334,18 @@ export default function Home() {
             </div>
 
             {/* Hero Content (Centered) */}
-            <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6 px-6 py-16 md:py-20">
+            <div className="relative z-10 max-w-3xl mx-auto text-center space-y-4 sm:space-y-6 px-3.5 sm:px-6 py-10 sm:py-16 md:py-20">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
-                <span className="inline-flex items-center space-x-1.5 px-3 py-1 bg-teal-500/10 text-teal-400 rounded-full text-xs font-semibold uppercase tracking-wider border border-teal-500/25 backdrop-blur-xs">
+                <span className="inline-flex items-center space-x-1.5 px-3 py-1 bg-teal-500/10 text-teal-400 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider border border-teal-500/25 backdrop-blur-xs">
                   <Sparkles className="h-3 w-3 animate-spin text-teal-400" />
                   <span>PREMIUM HOME RENTAL MARKETPLACE</span>
                 </span>
-                <h1 className="scroll-m-20 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                <h1 className="scroll-m-20 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
                   Find Your Next
                   <br />
                   <span className="text-teal-400">
@@ -355,7 +355,7 @@ export default function Home() {
                     />
                   </span>
                 </h1>
-                <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-200 dark:text-zinc-300 font-medium leading-relaxed">
+                <p className="max-w-2xl mx-auto text-xs sm:text-base md:text-lg text-slate-200 dark:text-zinc-300 font-medium leading-relaxed">
                   Renterty connects property owners and tenants through a secure, transparent, and beautiful portal. Browse vetted rentals, secure booking slots, and pay reservation fees online
                 </p>
               </motion.div>
@@ -363,17 +363,17 @@ export default function Home() {
           </div>
 
           {/* Search Bar Panel - Responsive: flows naturally below card on mobile, overlaps on desktop */}
-          <div className="relative md:absolute bottom-auto md:-bottom-3 left-0 md:left-1/2 md:-translate-x-1/2 w-full max-w-5xl px-0 md:px-8 z-20 mt-6 md:mt-10">
+          <div className="relative md:absolute bottom-auto md:-bottom-3 left-0 md:left-1/2 md:-translate-x-1/2 w-full max-w-5xl px-0 md:px-8 z-20 mt-4 md:mt-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-6 rounded-lg shadow-2xl shadow-slate-950/20 border border-white/10 dark:border-zinc-800/10"
+              className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md p-4 sm:p-6 rounded-lg shadow-2xl shadow-slate-950/20 border border-white/10 dark:border-zinc-800/10"
             >
-              <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
+              <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 items-end">
                 {/* Location */}
-                <div className="text-left space-y-2 col-span-1 sm:col-span-2 md:col-span-1">
-                  <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
+                <div className="text-left space-y-1.5 sm:space-y-2 col-span-1 sm:col-span-2 md:col-span-1">
+                  <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <MapPin className="h-3.5 w-3.5 text-teal-500" />
                     <span>LOCATION</span>
                   </label>
@@ -382,13 +382,13 @@ export default function Home() {
                     placeholder="e.g. New York"
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
-                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
+                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
                   />
                 </div>
 
                 {/* Property Type */}
-                <div className="text-left space-y-2 col-span-1">
-                  <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
+                <div className="text-left space-y-1.5 sm:space-y-2 col-span-1">
+                  <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <Building className="h-3.5 w-3.5 text-teal-500" />
                     <span>TYPE</span>
                   </label>
@@ -396,7 +396,7 @@ export default function Home() {
                     <select
                       value={searchType}
                       onChange={(e) => setSearchType(e.target.value)}
-                      className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 pr-10 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200 appearance-none cursor-pointer"
+                      className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-2.5 sm:py-3 pr-10 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200 appearance-none cursor-pointer"
                     >
                       <option value="All" className="bg-white dark:bg-zinc-900 text-slate-800 dark:text-white">All Types</option>
                       <option value="Apartment" className="bg-white dark:bg-zinc-900 text-slate-800 dark:text-white">Apartment</option>
@@ -410,8 +410,8 @@ export default function Home() {
                 </div>
 
                 {/* Min Price */}
-                <div className="text-left space-y-2 col-span-1">
-                  <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
+                <div className="text-left space-y-1.5 sm:space-y-2 col-span-1">
+                  <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <DollarSign className="h-3.5 w-3.5 text-teal-500" />
                     <span>MIN PRICE</span>
                   </label>
@@ -420,13 +420,13 @@ export default function Home() {
                     placeholder="Min ($)"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
-                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
+                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
                   />
                 </div>
 
                 {/* Max Price */}
-                <div className="text-left space-y-2 col-span-1">
-                  <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
+                <div className="text-left space-y-1.5 sm:space-y-2 col-span-1">
+                  <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
                     <DollarSign className="h-3.5 w-3.5 text-teal-500" />
                     <span>MAX PRICE</span>
                   </label>
@@ -435,7 +435,7 @@ export default function Home() {
                     placeholder="Max ($)"
                     value={maxPrice}
                     onChange={(e) => setMaxPrice(e.target.value)}
-                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-3 rounded-xl text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
+                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
                   />
                 </div>
 
@@ -443,9 +443,9 @@ export default function Home() {
                 <div className="flex items-end col-span-1 sm:col-span-2 md:col-span-1">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center space-x-2 py-3 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold transition-all duration-200 cursor-pointer h-[46px]"
+                    className="w-full flex items-center justify-center space-x-2 py-2.5 sm:py-3 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold transition-all duration-200 cursor-pointer h-[42px] sm:h-[46px] text-xs sm:text-sm"
                   >
-                    <Search className="h-5 w-5" />
+                    <Search className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>Search</span>
                   </button>
                 </div>
@@ -455,10 +455,10 @@ export default function Home() {
         </div>
 
         {/* Featured Properties Section */}
-        <div className="relative w-[90%] pt-16 md:pt-20 pb-12 md:pb-16 mx-auto overflow-hidden">
+        <div className="relative w-[90%] pt-8 sm:pt-12 md:pt-20 pb-10 sm:pb-14 md:pb-16 mx-auto overflow-hidden">
           <div className="relative z-10">
-            <div className="text-center space-y-3 mb-10 md:mb-12">
-              <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
+            <div className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="scroll-m-20 text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
                 <BlurInText
                   text="Featured Rental Properties"
                   blurAmount={10}
@@ -468,7 +468,7 @@ export default function Home() {
                   trigger="inView"
                 />
               </h2>
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-xs sm:text-sm font-medium">
                 Explore our curated selection of verified, highly-rated rental properties available for instant reservation
               </p>
             </div>
@@ -565,14 +565,14 @@ export default function Home() {
         </div>
 
         {/* Why Choose Us Section */}
-        <section className="relative w-[90%] max-w-7xl py-16 md:py-24 mx-auto">
+        <section className="relative w-[90%] max-w-7xl py-10 sm:py-16 md:py-24 mx-auto">
           {/* Subtle Ambient Background Glows */}
           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-72 h-72 bg-teal-500/10 dark:bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-72 h-72 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
-            <div className="text-center space-y-4 mb-12 md:mb-16">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-linear-to-r from-teal-500/15 via-emerald-500/15 to-teal-500/15 text-teal-700 dark:text-teal-300 rounded-full text-xs font-semibold uppercase tracking-wider border border-teal-500/30 shadow-xs backdrop-blur-md">
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-12 md:mb-16">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 bg-linear-to-r from-teal-500/15 via-emerald-500/15 to-teal-500/15 text-teal-700 dark:text-teal-300 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider border border-teal-500/30 shadow-xs backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
@@ -580,7 +580,7 @@ export default function Home() {
                 <span>Trust & Transparency</span>
               </div>
 
-              <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
+              <h2 className="scroll-m-20 text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900 dark:text-white first:mt-0">
                 <BlurInText
                   text="Why Book With Renterty"
                   blurAmount={10}
@@ -590,7 +590,7 @@ export default function Home() {
                   trigger="inView"
                 />
               </h2>
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-xs sm:text-sm font-medium">
                 We make renting homes secure, transparent, and pleasant for both renters and property managers
               </p>
             </div>
@@ -600,10 +600,10 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, staggerChildren: 0.15 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
             >
               {/* Card 1: Verified Properties */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -618,21 +618,21 @@ export default function Home() {
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-4 sm:space-y-5 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                      <ShieldCheck className="h-7 w-7 text-white" />
+                    <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                      <ShieldCheck className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
                     <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       01
                     </span>
                   </div>
 
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Verified Properties
                     </h3>
-                    <p className="text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
                       All property listings undergo administrative review and moderation. No spam, no scams, just legitimate and gorgeous spaces.
                     </p>
                   </div>
@@ -648,7 +648,7 @@ export default function Home() {
               </div>
 
               {/* Card 2: Secure Payments */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -663,21 +663,21 @@ export default function Home() {
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-4 sm:space-y-5 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-2xl shadow-md shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                      <CreditCard className="h-7 w-7 text-white" />
+                    <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                      <CreditCard className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
                     <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       02
                     </span>
                   </div>
 
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Secure Payments
                     </h3>
-                    <p className="text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
                       Pay reservation booking fees safely using Stripe. Transactions are encrypted, keeping your money secure until approvals.
                     </p>
                   </div>
@@ -693,7 +693,7 @@ export default function Home() {
               </div>
 
               {/* Card 3: Transparent Reviews */}
-              <div className="group relative p-7 sm:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -708,21 +708,21 @@ export default function Home() {
                   className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
 
-                <div className="space-y-5 relative z-10">
+                <div className="space-y-4 sm:space-y-5 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                      <Star className="h-7 w-7 text-white" />
+                    <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                      <Star className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
                     <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       03
                     </span>
                   </div>
 
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Transparent Reviews
                     </h3>
-                    <p className="text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
                       Honest ratings and reviews from real tenants. Gain insights into properties, hosts, and neighborhoods before signing.
                     </p>
                   </div>
@@ -1001,7 +1001,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
                     whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
-                    className="group relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-7 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-400/40 shadow-lg shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
+                    className="group relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-5 sm:p-7 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-400/40 shadow-lg shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
                   >
                     {/* MagicUI Border Beam on Hover */}
                     <BorderBeam

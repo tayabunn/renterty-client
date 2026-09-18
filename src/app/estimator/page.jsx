@@ -241,10 +241,10 @@ function EstimatorContent() {
           </p>
 
           {/* Dynamic Mode Switcher */}
-          <div className="inline-flex p-1.5 bg-slate-200/80 dark:bg-zinc-800/90 rounded-2xl gap-1.5 shadow-inner border border-slate-300/40 dark:border-zinc-700/50 mt-2">
+          <div className="inline-flex flex-col sm:flex-row p-1.5 bg-slate-200/80 dark:bg-zinc-800/90 rounded-2xl gap-1.5 shadow-inner border border-slate-300/40 dark:border-zinc-700/50 mt-2 max-w-full">
             <button
               onClick={() => handleModeSwitch("affordability")}
-              className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+              className={`flex items-center justify-center space-x-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                 activeMode === "affordability"
                   ? "bg-white dark:bg-zinc-900 text-teal-600 dark:text-teal-400 shadow-md scale-[1.02]"
                   : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100"
@@ -255,7 +255,7 @@ function EstimatorContent() {
             </button>
             <button
               onClick={() => handleModeSwitch("landlord")}
-              className={`flex items-center space-x-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+              className={`flex items-center justify-center space-x-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                 activeMode === "landlord"
                   ? "bg-white dark:bg-zinc-900 text-teal-600 dark:text-teal-400 shadow-md scale-[1.02]"
                   : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100"
@@ -526,8 +526,8 @@ function EstimatorContent() {
                   </div>
 
                   {/* 3 Housing Budget Tiers Matrix */}
-                  <div className="grid grid-cols-3 gap-2.5 p-3 rounded-2xl bg-white/90 dark:bg-zinc-950/80 border border-slate-200/70 dark:border-zinc-800/80 text-center">
-                    <div className="p-2 rounded-xl bg-slate-50 dark:bg-zinc-900">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5 p-2.5 sm:p-3 rounded-lg bg-white/90 dark:bg-zinc-950/80 border border-slate-200/70 dark:border-zinc-800/80 text-center">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-slate-50 dark:bg-zinc-900">
                       <span className="text-[10px] font-bold text-slate-500 dark:text-zinc-400 block uppercase">
                         Conservative (25%)
                       </span>
@@ -535,7 +535,7 @@ function EstimatorContent() {
                         ${conservativeRent.toLocaleString()}
                       </span>
                     </div>
-                    <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-300 dark:border-teal-800">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-teal-50 dark:bg-teal-950/40 border border-teal-300 dark:border-teal-800">
                       <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 block uppercase">
                         Standard (30%)
                       </span>
@@ -543,7 +543,7 @@ function EstimatorContent() {
                         ${standardMaxRent.toLocaleString()}
                       </span>
                     </div>
-                    <div className="p-2 rounded-xl bg-slate-50 dark:bg-zinc-900">
+                    <div className="p-2 sm:p-2.5 rounded-lg bg-slate-50 dark:bg-zinc-900">
                       <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 block uppercase">
                         Stretch (35%)
                       </span>
