@@ -137,7 +137,7 @@ export default function AdminProperties() {
 
   return (
     <div className="space-y-6 text-left">
-      <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
             <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
@@ -229,7 +229,7 @@ export default function AdminProperties() {
       {showRejectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
           <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg p-8 max-w-md w-full shadow-2xl relative">
-            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Reject Listing</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Reject Listing</h3>
             <p className="text-xs text-slate-500 dark:text-zinc-500 mb-4">Provide rejection feedback to explain the reasons to the owner.</p>
 
             <form onSubmit={handleRejectSubmit} className="space-y-4">

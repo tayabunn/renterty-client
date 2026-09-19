@@ -96,7 +96,7 @@ export default function AdminSettings() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 space-y-6"
         >
           <div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
@@ -121,60 +121,57 @@ export default function AdminSettings() {
               </div>
               <input
                 type="range"
-                min="5"
+                min="1"
                 max="25"
-                step="1"
+                step="0.5"
                 value={commissionRate}
                 onChange={(e) => setCommissionRate(Number(e.target.value))}
                 className="w-full accent-teal-500 cursor-pointer"
               />
-              <div className="flex justify-between text-[11px] text-slate-400">
-                <span>5% (Competitive)</span>
-                <span>15% (Industry Standard)</span>
+              <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+                <span>1% (Competitive)</span>
+                <span>10% (Standard)</span>
                 <span>25% (Premium)</span>
               </div>
             </div>
 
-            {/* Escrow holding period */}
+            {/* Escrow Threshold */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
-                Escrow Payout Holding Window
-              </label>
-              <div className="relative">
-                <select
-                  value={escrowDays}
-                  onChange={(e) => setEscrowDays(Number(e.target.value))}
-                  className="w-full appearance-none border border-slate-200 dark:border-zinc-700 dark:bg-zinc-800 pl-3.5 pr-10 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 focus:outline-none focus:border-teal-500 cursor-pointer"
-                >
-                  <option value={7}>7 Days after Tenant check-in</option>
-                  <option value={14}>14 Days after Tenant check-in (Recommended)</option>
-                  <option value={30}>30 Days after Tenant check-in</option>
-                </select>
-                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
-              </div>
-            </div>
-
-            {/* Instant Reservation Flat Fee */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
-                Instant Lock Reservation Processing Fee ($)
+                Automated Escrow Payout Threshold ($)
               </label>
               <input
                 type="number"
-                value={instantBookingFee}
-                onChange={(e) => setInstantBookingFee(Number(e.target.value))}
-                className="w-full border border-slate-200 dark:border-zinc-700 dark:bg-zinc-800 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 focus:outline-none focus:border-teal-500"
+                value={escrowThreshold}
+                onChange={(e) => setEscrowThreshold(e.target.value)}
+                className="w-full border border-slate-200 dark:border-zinc-700 dark:bg-zinc-800 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 focus:outline-none focus:border-teal-500"
               />
+            </div>
+
+            {/* Maintenance Auto-Approve Limit */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
+                Maintenance AI Auto-Authorize Limit ($)
+              </label>
+              <input
+                type="number"
+                value={maintenanceLimit}
+                onChange={(e) => setMaintenanceLimit(e.target.value)}
+                className="w-full border border-slate-200 dark:border-zinc-700 dark:bg-zinc-800 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 focus:outline-none focus:border-teal-500"
+              />
+              <span className="text-[11px] text-slate-400">
+                Repair costs below this threshold dispatch certified contractors immediately.
+              </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Global Broadcast Announcement Banner */}
+        {/* Global Platform Banner & Communication */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 space-y-6 flex flex-col justify-between"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -252,7 +249,7 @@ export default function AdminSettings() {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+        className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 space-y-6"
       >
         <div>
           <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">

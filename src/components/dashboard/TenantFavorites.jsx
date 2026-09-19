@@ -301,7 +301,7 @@ export default function TenantFavorites() {
           {selectedForCompare.length > 0 && (
             <button
               onClick={() => setCompareModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-2xl text-xs font-bold shadow-sm transition-all cursor-pointer animate-bounce"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-lg text-xs font-bold shadow-sm transition-all cursor-pointer animate-bounce"
             >
               <Layers className="w-4 h-4" />
               <span>Compare ({selectedForCompare.length})</span>
@@ -310,7 +310,7 @@ export default function TenantFavorites() {
 
           <Link
             href="/#properties"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-2xl text-xs font-bold shadow-sm transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg text-xs font-bold shadow-sm transition-all cursor-pointer"
           >
             <Building className="w-4 h-4" />
             <span>Discover More</span>
@@ -386,7 +386,7 @@ export default function TenantFavorites() {
             return (
               <div
                 key={fav._id}
-                className="group rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between relative"
+                className="group rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 overflow-hidden flex flex-col justify-between relative"
               >
                 {/* Image Section */}
                 <div className="relative h-52 w-full overflow-hidden bg-slate-100 dark:bg-zinc-800">
@@ -418,7 +418,7 @@ export default function TenantFavorites() {
                   {/* Price Tag & Price Drop Banner */}
                   <div className="absolute bottom-3 left-3.5 right-3.5 flex items-end justify-between">
                     <div>
-                      <span className="text-2xl font-black text-white drop-shadow-md">
+                      <span className="text-2xl font-bold text-white drop-shadow-md">
                         ${prop.rent?.toLocaleString()}
                         <span className="text-xs font-semibold text-white/80">/mo</span>
                       </span>
@@ -479,7 +479,7 @@ export default function TenantFavorites() {
                       onClick={() => toggleCompareSelect(fav)}
                       className={`px-3 py-2 rounded-xl text-xs font-bold border transition cursor-pointer flex items-center gap-1.5 ${
                         isCompared
-                          ? "bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-700"
+                          ? "bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border-teal-300 dark:border-teal-700"
                           : "border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800"
                       }`}
                     >
@@ -541,7 +541,7 @@ export default function TenantFavorites() {
                       <td className="px-6 py-4 text-slate-600 dark:text-zinc-300">
                         {prop.bedrooms} Bed • {prop.bathrooms} Bath • {prop.sqft} sqft
                       </td>
-                      <td className="px-6 py-4 font-black text-teal-600 dark:text-teal-400">
+                      <td className="px-6 py-4 font-bold text-teal-600 dark:text-teal-400">
                         ${prop.rent?.toLocaleString()}/mo
                       </td>
                       <td className="px-6 py-4">
@@ -580,7 +580,7 @@ export default function TenantFavorites() {
           <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-4xl w-full shadow-2xl space-y-5 relative overflow-hidden text-left max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600">
+                <div className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <Layers className="w-5 h-5" />
                 </div>
                 <div>
@@ -613,7 +613,7 @@ export default function TenantFavorites() {
                         className="w-full h-32 rounded-xl object-cover"
                       />
                       <h4 className="font-bold text-slate-900 dark:text-white text-sm line-clamp-1">{prop.title}</h4>
-                      <p className="text-teal-600 dark:text-teal-400 font-black text-base">${prop.rent?.toLocaleString()}/mo</p>
+                      <p className="text-teal-600 dark:text-teal-400 font-bold text-base">${prop.rent?.toLocaleString()}/mo</p>
                       
                       <div className="space-y-2 pt-2 border-t border-slate-200 dark:border-zinc-800">
                         <div className="flex justify-between">
@@ -634,7 +634,7 @@ export default function TenantFavorites() {
                         </div>
                         <div className="flex justify-between">
                           <span className="text-slate-500">WalkScore:</span>
-                          <span className="font-bold text-purple-600">{prop.walkScore} / 100</span>
+                          <span className="font-bold text-teal-600">{prop.walkScore} / 100</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-slate-500">Pet Policy:</span>

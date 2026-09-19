@@ -104,7 +104,7 @@ export const FeatureBento = ({
           </div>
 
           {/* 3. Feature Card (Col 3, Row 2) */}
-          <div className="bg-white dark:bg-zinc-900 rounded-lg p-7 sm:p-8 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden">
+          <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-7 sm:p-8 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 group relative overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-15 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -132,7 +132,7 @@ export const FeatureBento = ({
           {/* 4. CTA Card (Col 1, Row 3) */}
           <Link
             href={ctaLink}
-            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden"
+            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden"
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -161,7 +161,7 @@ export const FeatureBento = ({
           </Link>
 
           {/* 5. Stats Card 2 (Col 2, Row 3) */}
-          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all">
+          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-7 sm:p-8 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{

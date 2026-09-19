@@ -35,6 +35,7 @@ export default function Register() {
 
 
   const [submitting, setSubmitting] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   // If user is already logged in, redirect to dashboard
   useEffect(() => {
@@ -73,11 +74,13 @@ export default function Register() {
   };
 
   const handleGoogleLogin = async () => {
+    if (googleLoading || submitting) return;
+    setGoogleLoading(true);
     try {
       await loginWithGoogle();
-      router.push("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error("Google sign-in error:", err);
+      setGoogleLoading(false);
     }
   };
 
@@ -244,14 +247,39 @@ export default function Register() {
                   {/* Google Social SignUp */}
                   <div className="mt-6">
                     <button
+                      type="button"
                       onClick={handleGoogleLogin}
-                      disabled={submitting || loading}
-                      className="w-full flex items-center justify-center py-2.5 px-4 border border-slate-300 dark:border-zinc-800 rounded-lg bg-white dark:bg-zinc-950 text-sm font-medium text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-900 transition-all duration-150 cursor-pointer"
+                      disabled={submitting || loading || googleLoading}
+                      className="group relative w-full flex items-center justify-center py-2.5 px-4 border border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 rounded-lg bg-white dark:bg-zinc-950/80 hover:bg-slate-50 dark:hover:bg-zinc-900 text-sm font-semibold text-slate-700 dark:text-zinc-200 shadow-xs hover:shadow-md transition-all duration-200 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                     >
-                      <svg className="h-5 w-5 text-red-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.466 0-6.277-2.85-6.277-6.36s2.81-6.36 6.277-6.36c1.497 0 2.87.547 3.93 1.543l3.2-3.2C18.96 2.217 15.82 1 12.24 1 5.866 1 .7 6.136.7 12.485c0 6.35 5.166 11.485 11.54 11.485 6.666 0 11.096-4.63 11.096-11.26 0-.768-.08-1.348-.22-1.925H12.24z"/>
-                      </svg>
-                      <span>Google</span>
+                      {googleLoading ? (
+                        <>
+                          <Loader2 className="animate-spin h-4 w-4 mr-2.5 text-teal-600 dark:text-teal-400" />
+                          <span>Connecting to Google...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="h-4.5 w-4.5 mr-3 shrink-0" viewBox="0 0 24 24">
+                            <path
+                              fill="#4285F4"
+                              d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"
+                            />
+                            <path
+                              fill="#34A853"
+                              d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"
+                            />
+                            <path
+                              fill="#FBBC05"
+                              d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
+                            />
+                            <path
+                              fill="#EA4335"
+                              d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+                            />
+                          </svg>
+                          <span>Sign up with Google</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>

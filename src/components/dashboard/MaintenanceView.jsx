@@ -36,7 +36,6 @@ export default function MaintenanceView({ isOwner = false, user }) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
-            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>AI Automated Triaging & Vendor Dispatch Active</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
@@ -53,7 +52,7 @@ export default function MaintenanceView({ isOwner = false, user }) {
         {!isOwner && (
           <button
             onClick={() => setShowNewModal(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-2xl text-xs font-bold shadow-sm transition-all duration-200 self-start sm:self-auto cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg text-xs font-bold shadow-sm transition-all duration-200 self-start sm:self-auto cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Report New Issue</span>

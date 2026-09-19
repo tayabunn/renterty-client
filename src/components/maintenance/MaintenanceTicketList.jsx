@@ -256,55 +256,95 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
     <div className="space-y-6 w-full text-left">
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Tickets</span>
-            <span className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
-              <Wrench className="w-4 h-4" />
-            </span>
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{ticketList.length}</span>
-            <span className="text-[11px] font-semibold text-slate-500">Logged</span>
-          </div>
-        </div>
-
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Emergency / Urgent</span>
-            <span className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400">
-              <Flame className="w-4 h-4" />
-            </span>
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-rose-600 dark:text-rose-400">{emergencyCount}</span>
-            <span className="text-[11px] font-semibold text-rose-600">Priority 1</span>
+        {/* Card 1: Total Tickets */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Total Tickets
+              </span>
+              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
+                <Wrench className="w-4.5 h-4.5 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {ticketList.length}
+              </span>
+              <p className="text-xs font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                Logged In System
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Dispatched Active</span>
-            <span className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
-              <Truck className="w-4 h-4" />
-            </span>
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">{inProgressCount}</span>
-            <span className="text-[11px] font-semibold text-indigo-600">On-Site / ETA</span>
+        {/* Card 2: Emergency / Urgent */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-rose-500/10 dark:bg-rose-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Emergency Priority
+              </span>
+              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
+                <Flame className="w-4.5 h-4.5 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {emergencyCount}
+              </span>
+              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mt-1">
+                {emergencyCount > 0 ? "Urgent Priority 1" : "No Emergencies"}
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Resolved</span>
-            <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
-            </span>
+        {/* Card 3: Dispatched Active */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Dispatched Active
+              </span>
+              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
+                <Truck className="w-4.5 h-4.5 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {inProgressCount}
+              </span>
+              <p className="text-xs font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                On-Site / ETA Active
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">{resolvedCount}</span>
-            <span className="text-[11px] font-semibold text-emerald-600">Closed</span>
+        </div>
+
+        {/* Card 4: Resolved */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Resolved Tickets
+              </span>
+              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
+                <CheckCircle2 className="w-4.5 h-4.5 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                {resolvedCount}
+              </span>
+              <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
+                Closed Successfully
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -354,7 +394,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           {filteredTickets.map((ticket) => (
             <div
               key={ticket._id}
-              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden flex flex-col justify-between space-y-4"
             >
               {/* Corner Ambient Glows */}
               <div className="absolute -right-8 -top-8 size-36 bg-amber-500/10 dark:bg-amber-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -364,8 +404,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                 {/* Header Badge Row */}
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full border backdrop-blur-xs ${getUrgencyBadge(ticket.urgency)}`}>
-                      <span className="size-2 rounded-full bg-current animate-pulse" />
+                    <span className={`inline-flex items-center text-xs font-extrabold px-3 py-1 rounded-full border backdrop-blur-xs ${getUrgencyBadge(ticket.urgency)}`}>
                       <span>{ticket.urgency}</span>
                     </span>
                     <span className={`text-xs font-extrabold px-3 py-1 rounded-full border ${getStatusBadge(ticket.status)}`}>
@@ -520,8 +559,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-40 rounded-full border border-indigo-500/30 animate-ping pointer-events-none" />
               
               <div className="relative z-10 flex items-center justify-between text-xs">
-                <span className="px-2.5 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-bold flex items-center gap-1.5">
-                  <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="px-2.5 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-bold flex items-center">
                   GPS Signal: 5G Active
                 </span>
                 <span className="font-mono text-emerald-400 font-bold">ETA: ~{gpsTrackerModal.etaMinutes} mins</span>

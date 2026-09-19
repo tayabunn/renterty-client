@@ -483,7 +483,7 @@ function DashboardContent() {
                                   );
                                 case "message":
                                   return (
-                                    <div className="h-8 w-8 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+                                    <div className="h-8 w-8 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
                                       <MessageSquare className="h-4 w-4" />
                                     </div>
                                   );
@@ -591,7 +591,6 @@ function DashboardContent() {
                   {user.name ? user.name[0].toUpperCase() : "U"}
                 </div>
               )}
-              <span className="absolute bottom-0.5 right-0.5 h-4.5 w-4.5 rounded-full bg-emerald-500 ring-2 ring-white dark:ring-zinc-900"></span>
             </div>
             <div className="space-y-0.5">
               <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -656,110 +655,106 @@ function DashboardContent() {
         {/* Top Metric Cards Row (Only shown when not on comprehensive Admin Overview) */}
         {!(user.role === "Admin" && activeTab === "overview") && (
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
-          {/* KPI Card 1 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-            {/* Corner Ambient Glow Orb */}
-            <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+            {/* KPI Card 1: Verified Tenant / Listing Status */}
+            <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+              <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
-                  {user.role === "Owner" ? "100%" : "Active"}
-                </span>
-                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                  <ShieldCheck className="h-5.5 w-5.5 text-white" />
+              <div className="relative z-10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                    {user.role === "Owner" ? "100%" : "Active"}
+                  </span>
+                  <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <ShieldCheck className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
+                    {user.role === "Owner" ? "Listing Status" : "Verified Tenant"}
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                    {user.role === "Owner" ? "Verified & Published" : "ID Approved & Trusted"}
+                  </p>
                 </div>
               </div>
-              <div>
-                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
-                  {user.role === "Owner" ? "Listing Status" : "Verified Tenant"}
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5 font-medium">
-                  {user.role === "Owner" ? "Verified & Published" : "ID Approved & Trusted"}
-                </p>
-              </div>
+              <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
             </div>
-            <div className="relative z-10 mt-3.5 h-1.5 w-10 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full" />
-          </div>
 
-          {/* KPI Card 2 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-            {/* Corner Ambient Glow Orb */}
-            <div className="absolute -right-6 -top-6 size-28 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+            {/* KPI Card 2: Secure Payments */}
+            <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+              <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
-                  {user.role === "Owner" ? "Stripe" : "Instant"}
-                </span>
-                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                  <DollarSign className="h-5.5 w-5.5 text-white" />
+              <div className="relative z-10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                    {user.role === "Owner" ? "Stripe" : "Instant"}
+                  </span>
+                  <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <DollarSign className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
+                    Secure Payments
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                    Encrypted Checkout
+                  </p>
                 </div>
               </div>
-              <div>
-                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
-                  Secure Payments
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5 font-medium">
-                  Encrypted Checkout
-                </p>
-              </div>
+              <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
             </div>
-            <div className="relative z-10 mt-3.5 h-1.5 w-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" />
-          </div>
 
-          {/* KPI Card 3 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-            {/* Corner Ambient Glow Orb */}
-            <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+            {/* KPI Card 3: Maintenance & AI */}
+            <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+              <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
-                  24/7
-                </span>
-                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                  <Wrench className="h-5.5 w-5.5 text-white" />
+              <div className="relative z-10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                    24/7
+                  </span>
+                  <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <Wrench className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
+                    Maintenance &amp; AI
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                    Automated Dispatch
+                  </p>
                 </div>
               </div>
-              <div>
-                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
-                  Maintenance & AI
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5 font-medium">
-                  Automated Dispatch
-                </p>
-              </div>
+              <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
             </div>
-            <div className="relative z-10 mt-3.5 h-1.5 w-10 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full" />
-          </div>
 
-          {/* KPI Card 4 */}
-          <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-            {/* Corner Ambient Glow Orb */}
-            <div className="absolute -right-6 -top-6 size-28 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+            {/* KPI Card 4: Interactive Tours */}
+            <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+              <div className="absolute -right-6 -top-6 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
-            <div className="relative z-10 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
-                  Live
-                </span>
-                <div className="size-11 sm:size-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                  <Calendar className="h-5.5 w-5.5 text-white" />
+              <div className="relative z-10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                    Live
+                  </span>
+                  <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <Calendar className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
+                    Interactive Tours
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                    Video &amp; In-Person
+                  </p>
                 </div>
               </div>
-              <div>
-                <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
-                  Interactive Tours
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5 font-medium">
-                  Video & In-Person
-                </p>
-              </div>
+              <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
             </div>
-            <div className="relative z-10 mt-3.5 h-1.5 w-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" />
-          </div>
-        </section>
+          </section>
         )}
 
         {/* Selected Workspace View */}

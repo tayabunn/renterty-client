@@ -146,17 +146,16 @@ export default function OwnerAnalytics() {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Earnings */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-center justify-between">
-              <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+              <div className="size-14 text-white rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <DollarSign className="h-7 w-7 text-white" />
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 rounded-full text-xs font-bold">
-                <span className="size-1.5 rounded-full bg-teal-500 animate-pulse" />
                 <span>Stripe Payouts</span>
               </span>
             </div>
@@ -165,7 +164,7 @@ export default function OwnerAnalytics() {
               <span className="text-xs text-slate-400 dark:text-zinc-500 font-bold uppercase tracking-wider block">
                 Total Net Earnings
               </span>
-              <h3 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
+              <h3 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mt-1 tracking-tight">
                 ${stats.totalEarnings.toLocaleString()}
               </h3>
             </div>
@@ -178,17 +177,16 @@ export default function OwnerAnalytics() {
         </div>
 
         {/* Total Properties */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-center justify-between">
-              <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-2xl shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+              <div className="size-14 text-white rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-2xl shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <Building className="h-7 w-7 text-white" />
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-bold">
-                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Active Units</span>
               </span>
             </div>
@@ -197,7 +195,7 @@ export default function OwnerAnalytics() {
               <span className="text-xs text-slate-400 dark:text-zinc-500 font-bold uppercase tracking-wider block">
                 Total Properties
               </span>
-              <h3 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
+              <h3 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mt-1 tracking-tight">
                 {stats.totalProperties} <span className="text-lg sm:text-xl font-bold text-slate-500 dark:text-zinc-400">Listings</span>
               </h3>
             </div>
@@ -210,17 +208,16 @@ export default function OwnerAnalytics() {
         </div>
 
         {/* Total Bookings */}
-        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
+        <div className="group bg-white/95 dark:bg-zinc-900/95 p-7 sm:p-8 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between">
           {/* Corner Ambient Glow */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-center justify-between">
-              <div className="size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+              <div className="size-14 text-white rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                 <Calendar className="h-7 w-7 text-white" />
               </div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 rounded-full text-xs font-bold">
-                <span className="size-1.5 rounded-full bg-teal-500 animate-pulse" />
                 <span>Verified Tenants</span>
               </span>
             </div>
@@ -229,7 +226,7 @@ export default function OwnerAnalytics() {
               <span className="text-xs text-slate-400 dark:text-zinc-500 font-bold uppercase tracking-wider block">
                 Confirmed Bookings
               </span>
-              <h3 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mt-1 tracking-tight">
+              <h3 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mt-1 tracking-tight">
                 {stats.totalBookings} <span className="text-lg sm:text-xl font-bold text-slate-500 dark:text-zinc-400">Slots</span>
               </h3>
             </div>
@@ -243,7 +240,7 @@ export default function OwnerAnalytics() {
       </div>
 
       {/* Monthly Earnings Chart */}
-      <div className="group bg-white/90 dark:bg-zinc-900/90 p-7 sm:p-9 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300 relative overflow-hidden">
+      <div className="group bg-white/90 dark:bg-zinc-900/90 p-7 sm:p-9 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden">
         {/* Corner Ambient Glow */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
 

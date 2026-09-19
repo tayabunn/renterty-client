@@ -64,7 +64,7 @@ export default function AdminUsers() {
   }
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-slate-200/60 dark:border-zinc-800/60 rounded-lg overflow-hidden text-left">
+    <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 rounded-lg overflow-hidden text-left">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
           <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
@@ -91,7 +91,7 @@ export default function AdminUsers() {
                 <td className="px-6 py-4">{usr.email}</td>
                 <td className="px-6 py-4">
                   <span
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${
                       usr.role === "Admin"
                         ? "bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-300 border-teal-200/80 dark:border-teal-800/60"
                         : usr.role === "Owner"
@@ -99,7 +99,6 @@ export default function AdminUsers() {
                         : "bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 border-slate-200/60 dark:border-zinc-700/60"
                     }`}
                   >
-                    <span className="size-1.5 rounded-full bg-current" />
                     <span>{usr.role}</span>
                   </span>
                 </td>

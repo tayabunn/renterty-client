@@ -493,7 +493,7 @@ export default function ChatList({ currentUser }) {
                   </button>
                   <button
                     onClick={() => toast.success(`Starting live video meeting with ${activeConv.otherUserName}...`)}
-                    className="p-2 rounded-xl text-slate-500 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                    className="p-2 rounded-xl text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
                     title="Video Call"
                   >
                     <Video className="w-4 h-4" />

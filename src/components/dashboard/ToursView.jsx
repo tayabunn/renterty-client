@@ -188,7 +188,7 @@ export default function ToursView({ isOwner = false }) {
       case 'Confirmed':
         return 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800';
       case 'Completed':
-        return 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 border-blue-200 dark:border-blue-800';
+        return 'bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400 border-teal-200 dark:border-teal-800';
       case 'Cancelled':
         return 'bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border-rose-200 dark:border-rose-800';
       default:
@@ -220,7 +220,6 @@ export default function ToursView({ isOwner = false }) {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 text-xs font-bold">
-            <span className="size-2 rounded-full bg-teal-500 animate-pulse" />
             <span>Interactive Real-Time Walkthroughs</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
@@ -230,13 +229,13 @@ export default function ToursView({ isOwner = false }) {
           <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
             {isOwner 
               ? 'Review tenant tour bookings, assign video conference links, and confirm viewing slots.' 
-              : 'Join live HD virtual walkthroughs, access parking notes, and sync appointments with your calendar.'}
+              : 'Join live HD virtual walkthroughs, access parking notes, and sync appointments with your calendar'}
           </p>
         </div>
 
         <Link
           href="/#properties"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-2xl text-xs font-bold shadow-sm transition-all duration-200 self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg text-xs font-bold shadow-sm transition-all duration-200 self-start sm:self-auto cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Book Another Tour</span>
@@ -245,67 +244,111 @@ export default function ToursView({ isOwner = false }) {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Scheduled Tours</span>
-            <span className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400">
-              <Calendar className="w-4 h-4" />
-            </span>
+        {/* Card 1: Scheduled Tours */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Scheduled Tours
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {tours.length}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                Appointments Booked
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{tours.length}</span>
-            <span className="text-[11px] font-semibold text-slate-500">Appointments</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Live Video Calls</span>
-            <span className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
-              <Video className="w-4 h-4" />
-            </span>
+        {/* Card 2: Live Video Calls */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Live Video Calls
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Video className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {totalVideoTours}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                HD Virtual Rooms
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-purple-600 dark:text-purple-400">{totalVideoTours}</span>
-            <span className="text-[11px] font-semibold text-purple-600">HD Virtual</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">In-Person Visits</span>
-            <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-              <MapPin className="w-4 h-4" />
-            </span>
+        {/* Card 3: In-Person Visits */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                In-Person Visits
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {totalInPersonTours}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                Walkthroughs
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">{totalInPersonTours}</span>
-            <span className="text-[11px] font-semibold text-emerald-600">Walkthroughs</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Confirmed</span>
-            <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
-            </span>
+        {/* Card 4: Confirmed */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Confirmed Status
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <CheckCircle2 className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {confirmedCount}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                Host Ready
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{confirmedCount}</span>
-            <span className="text-[11px] font-semibold text-emerald-600">Host Ready</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
       </div>
 
       {/* Filter & Search Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-2 bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg">
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-xl overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800/70 rounded-lg overflow-x-auto no-scrollbar">
           {[
             { id: 'ALL', label: 'All Tours' },
             { id: 'VIDEO', label: 'Video Tours 🎥' },
             { id: 'IN_PERSON', label: 'In-Person 📍' },
-            { id: 'CONFIRMED', label: 'Confirmed' }
+            { id: 'CONFIRMED', label: 'Confirmed ✅' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -328,7 +371,7 @@ export default function ToursView({ isOwner = false }) {
             placeholder="Search property or location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3.5 py-2 text-xs font-medium rounded-xl bg-slate-50 dark:bg-zinc-950 border border-slate-200/80 dark:border-zinc-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-500"
+            className="w-full pl-9 pr-3.5 py-2 text-xs font-medium rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200/80 dark:border-zinc-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-teal-500"
           />
         </div>
       </div>
@@ -351,7 +394,7 @@ export default function ToursView({ isOwner = false }) {
           {filteredTours.map((tour) => (
             <div
               key={tour._id}
-              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+              className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden flex flex-col justify-between space-y-4"
             >
               {/* Corner Ambient Glows */}
               <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -360,15 +403,14 @@ export default function ToursView({ isOwner = false }) {
               <div className="space-y-4 relative z-10">
                 {/* Header Badge Row */}
                 <div className="flex items-center justify-between gap-3">
-                  <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold px-3.5 py-1.5 rounded-full border backdrop-blur-xs ${getStatusBadge(tour.status)}`}>
-                    <span className="size-2 rounded-full bg-current animate-pulse" />
+                  <span className={`inline-flex items-center text-xs font-extrabold px-3.5 py-1.5 rounded-full border backdrop-blur-xs ${getStatusBadge(tour.status)}`}>
                     <span>{tour.status}</span>
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100/80 dark:bg-zinc-800/80 text-slate-700 dark:text-zinc-300 rounded-full text-xs font-bold border border-slate-200/60 dark:border-zinc-700/60">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-teal-50/80 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 rounded-full text-xs font-bold border border-teal-200/80 dark:border-teal-800/60">
                     {tour.tourType === 'Live Video Tour' ? (
-                      <Video className="w-3.5 h-3.5 text-purple-500" />
+                      <Video className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                     ) : (
-                      <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+                      <MapPin className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                     )}
                     <span>{tour.tourType}</span>
                   </span>
@@ -379,7 +421,7 @@ export default function ToursView({ isOwner = false }) {
                   <img
                     src={tour.propertyImage || 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=160'}
                     alt={tour.propertyTitle}
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-slate-200 dark:border-zinc-700 shrink-0 group-hover:scale-105 transition-transform duration-300"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover border border-slate-200 dark:border-zinc-700 shrink-0 group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="min-w-0 flex-1">
                     <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
@@ -396,12 +438,12 @@ export default function ToursView({ isOwner = false }) {
                 </div>
 
                 {/* Date & Time Strip */}
-                <div className="p-3.5 rounded-lg bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
+                <div className="p-3.5 rounded-lg bg-teal-50/60 dark:bg-teal-950/30 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
                   <span className="flex items-center gap-2 font-extrabold text-slate-900 dark:text-zinc-100">
                     <Calendar className="w-4 h-4 text-teal-500" />
                     <span>{new Date(tour.tourDate).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}</span>
                   </span>
-                  <span className="flex items-center gap-1.5 text-slate-700 dark:text-zinc-300 font-bold bg-white/80 dark:bg-zinc-900 px-2.5 py-1 rounded-xl border border-teal-500/20">
+                  <span className="flex items-center gap-1.5 text-slate-700 dark:text-zinc-300 font-bold bg-white/80 dark:bg-zinc-900 px-2.5 py-1 rounded-lg border border-teal-500/20">
                     <Clock className="w-3.5 h-3.5 text-teal-500" />
                     <span>{tour.tourTime}</span>
                   </span>
@@ -421,7 +463,7 @@ export default function ToursView({ isOwner = false }) {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleAddToCalendar(tour)}
-                    className="p-2 rounded-xl border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                    className="p-2 rounded-lg border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
                     title="Add to Google Calendar"
                   >
                     <CalendarCheck className="w-4 h-4 text-teal-500" />
@@ -429,7 +471,7 @@ export default function ToursView({ isOwner = false }) {
 
                   <button
                     onClick={() => setRescheduleModal(tour)}
-                    className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-zinc-700 text-xs font-bold text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-zinc-700 text-xs font-bold text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
                   >
                     Reschedule
                   </button>
@@ -439,7 +481,7 @@ export default function ToursView({ isOwner = false }) {
                   {tour.tourType === 'Live Video Tour' ? (
                     <button
                       onClick={() => setLiveRoomModal(tour)}
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-extrabold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
                     >
                       <Video className="w-3.5 h-3.5" />
                       <span>Join Live HD Room</span>
@@ -449,7 +491,7 @@ export default function ToursView({ isOwner = false }) {
                       href={`https://maps.google.com/?q=${encodeURIComponent(tour.propertyLocation)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold shadow-sm transition-all cursor-pointer flex items-center gap-1.5"
                     >
                       <MapPin className="w-3.5 h-3.5" />
                       <span>Get Directions</span>
@@ -459,7 +501,7 @@ export default function ToursView({ isOwner = false }) {
                   {isOwner && tour.status === 'Pending' && (
                     <button
                       onClick={() => handleStatusChange(tour._id, 'Confirmed')}
-                      className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition cursor-pointer"
+                      className="px-3.5 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-bold hover:from-teal-600 hover:to-emerald-600 transition cursor-pointer"
                     >
                       Confirm
                     </button>
@@ -482,7 +524,7 @@ export default function ToursView({ isOwner = false }) {
                 <div>
                   <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
                     <span>Live HD Tour: {liveRoomModal.propertyTitle}</span>
-                    <span className="px-2 py-0.5 rounded-full bg-purple-950/80 border border-purple-800 text-purple-300 text-[10px] font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-teal-950/80 border border-teal-800 text-teal-300 text-[10px] font-bold">
                       1080p Stream
                     </span>
                   </h3>
@@ -492,7 +534,7 @@ export default function ToursView({ isOwner = false }) {
 
               <button
                 onClick={() => setLiveRoomModal(null)}
-                className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition cursor-pointer"
+                className="p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -547,7 +589,7 @@ export default function ToursView({ isOwner = false }) {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsMicOn(!isMicOn)}
-                  className={`p-3 rounded-2xl font-bold transition cursor-pointer ${
+                  className={`p-3 rounded-lg font-bold transition cursor-pointer ${
                     isMicOn ? 'bg-zinc-800 text-white hover:bg-zinc-700' : 'bg-red-500/20 text-red-400 border border-red-500/40'
                   }`}
                   title={isMicOn ? 'Mute Mic' : 'Unmute Mic'}
@@ -557,7 +599,7 @@ export default function ToursView({ isOwner = false }) {
 
                 <button
                   onClick={() => setIsVideoOn(!isVideoOn)}
-                  className={`p-3 rounded-2xl font-bold transition cursor-pointer ${
+                  className={`p-3 rounded-lg font-bold transition cursor-pointer ${
                     isVideoOn ? 'bg-zinc-800 text-white hover:bg-zinc-700' : 'bg-red-500/20 text-red-400 border border-red-500/40'
                   }`}
                   title={isVideoOn ? 'Turn Off Video' : 'Turn On Video'}
@@ -569,13 +611,13 @@ export default function ToursView({ isOwner = false }) {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => toast.success('Inspection snapshot saved to your dashboard!')}
-                  className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition cursor-pointer"
+                  className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition cursor-pointer"
                 >
                   📸 Take Snapshot
                 </button>
                 <button
                   onClick={() => setLiveRoomModal(null)}
-                  className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition cursor-pointer"
+                  className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition cursor-pointer"
                 >
                   Leave Call
                 </button>
@@ -602,7 +644,7 @@ export default function ToursView({ isOwner = false }) {
                   type="date"
                   value={rescheduleDate}
                   onChange={(e) => setRescheduleDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 text-xs font-medium outline-none focus:border-teal-500"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 text-xs font-medium outline-none focus:border-teal-500"
                 />
               </div>
 
@@ -611,7 +653,7 @@ export default function ToursView({ isOwner = false }) {
                 <select
                   value={rescheduleTime}
                   onChange={(e) => setRescheduleTime(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 text-xs font-medium outline-none focus:border-teal-500"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-950 text-xs font-medium outline-none focus:border-teal-500"
                 >
                   <option value="10:00 AM (EST)">10:00 AM (EST)</option>
                   <option value="11:30 AM (EST)">11:30 AM (EST)</option>
@@ -631,7 +673,7 @@ export default function ToursView({ isOwner = false }) {
               </button>
               <button
                 onClick={handleRescheduleSubmit}
-                className="px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl text-xs font-bold transition cursor-pointer shadow-xs"
+                className="px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg text-xs font-bold transition cursor-pointer shadow-xs"
               >
                 Confirm Reschedule
               </button>

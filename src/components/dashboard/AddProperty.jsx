@@ -156,7 +156,6 @@ export default function AddProperty() {
           </div>
           <div className="space-y-1">
             <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 text-xs font-bold">
-              <span className="size-1.5 rounded-full bg-teal-500 animate-pulse" />
               <span>Property Management Suite</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">

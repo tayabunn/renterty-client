@@ -74,7 +74,7 @@ export default function ContactPage() {
       value: "100 Renterty Avenue, San Francisco, CA 94105",
       link: "https://maps.google.com/?q=San+Francisco,+CA",
       badge: "Mon - Fri, 9am - 6pm PST",
-      badgeColor: "bg-violet-500/10 text-violet-400 border-violet-500/20"
+      badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
     }
   ];
 
@@ -163,7 +163,7 @@ export default function ContactPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-lg p-6 backdrop-blur-xl shadow-xl flex flex-col justify-between gap-5 hover:border-teal-500/40 hover:-translate-y-1 transition-all duration-300 group"
+                  className="bg-slate-900/60 dark:bg-zinc-900/60 border border-slate-800/80 dark:border-zinc-800/80 rounded-lg p-6 backdrop-blur-xl hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 flex flex-col justify-between gap-5 transition-all duration-300 group relative overflow-hidden text-left"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">

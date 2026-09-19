@@ -569,7 +569,7 @@ export default function PropertyDetails() {
                 <div>
                   <span className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider block mb-1">RENT PRICE</span>
                   <div className="flex items-baseline space-x-1.5">
-                    <span className="text-3xl font-black text-slate-900 dark:text-white">${property.rent.toLocaleString()}</span>
+                    <span className="text-3xl font-bold text-slate-900 dark:text-white">${property.rent.toLocaleString()}</span>
                     <span className="text-sm font-semibold text-slate-500 dark:text-zinc-500">
                       /{property.rentType === "Monthly" ? "month" : property.rentType === "Weekly" ? "week" : "day"}
                     </span>
@@ -722,7 +722,7 @@ export default function PropertyDetails() {
               className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg border border-slate-200 dark:border-zinc-800 shadow-2xl z-10 space-y-6"
             >
               <div className="text-left">
-                <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {bookingStep === 1 ? "Book Property Slot" : "Complete Reservation Fee"}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">
@@ -834,7 +834,7 @@ export default function PropertyDetails() {
                     <span className="text-xs font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider block mb-2">
                       RESERVATION FEES (Total Rent)
                     </span>
-                    <div className="text-2xl font-black text-teal-600 dark:text-teal-400">
+                    <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
                       ${property.rent.toLocaleString()} USD
                     </div>
                   </div>

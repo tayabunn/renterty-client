@@ -120,7 +120,7 @@ export default function OwnerProperties() {
 
   return (
     <div className="space-y-6 text-left">
-      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden relative">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 rounded-lg overflow-hidden relative">
         <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
         <div className="overflow-x-auto relative z-10">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
@@ -164,7 +164,6 @@ export default function OwnerProperties() {
                             : "bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800"
                         }`}
                       >
-                        <span className="size-1.5 rounded-full bg-current animate-pulse" />
                         <span>{prop.status}</span>
                       </span>
                       {prop.status === "Rejected" && (
@@ -211,7 +210,7 @@ export default function OwnerProperties() {
             >
               <X className="h-5 w-5" />
             </button>
-            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-4">Rejection Feedback</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Rejection Feedback</h3>
             <div className="p-4 bg-red-50 dark:bg-red-950/10 border border-red-200/50 dark:border-red-900/20 text-sm text-red-600 dark:text-red-400 rounded-lg italic leading-relaxed">
               &ldquo;{activeFeedback}&rdquo;
             </div>
@@ -235,7 +234,7 @@ export default function OwnerProperties() {
             >
               <X className="h-5 w-5" />
             </button>
-            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6">Edit Property Listing</h3>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Edit Property Listing</h3>
 
             <form onSubmit={handleEditSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
               <div>

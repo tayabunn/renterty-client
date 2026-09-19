@@ -137,8 +137,7 @@ export default function AdminOverview({ onNavigateTab }) {
               <Sparkles className="h-3 w-3" />
               <span>EXECUTIVE COMMAND CENTER</span>
             </span>
-            <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               <span>LIVE</span>
             </span>
           </div>
@@ -172,7 +171,7 @@ export default function AdminOverview({ onNavigateTab }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
-              className="relative p-6 sm:p-7 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 flex flex-col justify-between overflow-hidden group"
+              className="relative p-6 sm:p-7 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
             >
               {/* Corner Ambient Glow Orb */}
               <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -181,13 +180,13 @@ export default function AdminOverview({ onNavigateTab }) {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
                   {kpi.title}
                 </span>
-                <div className={`size-11 sm:size-12 rounded-2xl bg-linear-to-tr ${kpi.color} text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                <div className={`size-11 sm:size-12 rounded-lg bg-linear-to-tr ${kpi.color} text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                   <Icon className="h-5 w-5" />
                 </div>
               </div>
 
               <div className="my-2 relative z-10">
-                <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+                <div className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
                   {kpi.value}
                 </div>
               </div>
@@ -211,7 +210,7 @@ export default function AdminOverview({ onNavigateTab }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 overflow-hidden space-y-6 group"
+        className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 overflow-hidden space-y-6 group"
       >
         {/* Corner Ambient Glow Orb */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -312,7 +311,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 overflow-hidden group"
+          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 space-y-6 overflow-hidden group"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -367,7 +366,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/30 transition-all duration-300 space-y-6 flex flex-col justify-between overflow-hidden group"
+          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 space-y-6 flex flex-col justify-between overflow-hidden group"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />

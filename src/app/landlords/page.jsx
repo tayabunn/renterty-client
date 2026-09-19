@@ -217,7 +217,7 @@ export default function LandlordsPage() {
           </div>
 
           {/* Feature Card (Col 3, Row 2) */}
-          <div className="bg-white dark:bg-zinc-900 rounded-lg p-5 sm:p-7 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800 transition-all duration-300 hover:border-teal-500/40 group relative overflow-hidden min-h-[190px] sm:min-h-0">
+          <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-7 flex flex-col justify-between border border-slate-200/80 dark:border-zinc-800/80 transition-all duration-300 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 group relative overflow-hidden min-h-[190px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-15 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{
@@ -245,7 +245,7 @@ export default function LandlordsPage() {
           {/* CTA Card (Col 1, Row 3) */}
           <Link
             href={user ? "/dashboard?tab=add-property" : "/register?role=Owner"}
-            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/50 relative overflow-hidden min-h-[180px] sm:min-h-0"
+            className="bg-gradient-to-br from-slate-950 to-slate-900 dark:from-zinc-900 dark:to-zinc-950 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-between transition-all duration-300 cursor-pointer group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden min-h-[180px] sm:min-h-0"
           >
             <div
               className="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -274,7 +274,7 @@ export default function LandlordsPage() {
           </Link>
 
           {/* Stats Card 2 (Col 2, Row 3) */}
-          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/30 transition-all min-h-[160px] sm:min-h-0">
+          <div className="bg-slate-950 dark:bg-zinc-900 rounded-lg p-5 sm:p-7 text-white flex flex-col justify-center gap-2 relative overflow-hidden group border border-slate-800 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all min-h-[160px] sm:min-h-0">
             <div
               className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-700 ease-out"
               style={{

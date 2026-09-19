@@ -77,7 +77,7 @@ const StripePaymentForm = ({ amount, propertyId, bookingData, onSuccess, onCance
         <span className="text-xs font-bold text-slate-500 dark:text-zinc-500 uppercase tracking-wider block mb-2">
           RESERVATION FEES (Total Rent)
         </span>
-        <div className="text-2xl font-black text-teal-600 dark:text-teal-400">
+        <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
           ${amount.toLocaleString()} USD
         </div>
       </div>

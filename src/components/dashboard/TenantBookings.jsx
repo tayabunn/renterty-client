@@ -253,7 +253,7 @@ export default function TenantBookings() {
 
         <Link
           href="/#properties"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-2xl text-xs font-bold shadow-sm transition-all duration-200 self-start md:self-auto cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-lg text-xs font-bold shadow-sm transition-all duration-200 self-start md:self-auto cursor-pointer"
         >
           <Building className="w-4 h-4" />
           <span>Explore Properties</span>
@@ -262,56 +262,100 @@ export default function TenantBookings() {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Active Leases</span>
-            <span className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
-            </span>
+        {/* Card 1: Active Leases */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Active Leases
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <CheckCircle2 className="h-6 w-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {activeCount}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                Active &amp; Verified
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{activeCount}</span>
-            <span className="text-[11px] font-semibold text-emerald-600">Active</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Pending Review</span>
-            <span className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
-              <Clock className="w-4 h-4" />
-            </span>
+        {/* Card 2: Pending Review */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Pending Review
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Clock className="h-6 w-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                {pendingCount}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                {pendingCount > 0 ? "Awaiting Host Review" : "All Processed"}
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">{pendingCount}</span>
-            <span className="text-[11px] font-semibold text-amber-600">Awaiting Host</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Paid</span>
-            <span className="p-2 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400">
-              <DollarSign className="w-4 h-4" />
-            </span>
+        {/* Card 3: Total Paid */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Total Escrow Paid
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <DollarSign className="h-6 w-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                ${totalSpend.toLocaleString()}
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                100% Escrow Protected
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-teal-600 dark:text-teal-400">${totalSpend.toLocaleString()}</span>
-            <span className="text-[11px] font-semibold text-slate-500">Escrowed</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
-        <div className="p-4 sm:p-5 rounded-lg bg-white/90 dark:bg-zinc-900/90 border border-slate-200/80 dark:border-zinc-800/80">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Next Key Access</span>
-            <span className="p-2 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
-              <Key className="w-4 h-4" />
-            </span>
+        {/* Card 4: Next Key Access */}
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+          <div className="relative z-10 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
+                Smart Key Access
+              </span>
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Key className="h-6 w-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight truncate block group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                Soho 18B
+              </span>
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
+                PIN Code Active
+              </p>
+            </div>
           </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Soho 18B</span>
-            <span className="text-[11px] font-semibold text-purple-600">Code Active</span>
-          </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
       </div>
 
@@ -360,7 +404,7 @@ export default function TenantBookings() {
         {filteredBookings.map((b) => (
           <div
             key={b._id}
-            className="group p-5 sm:p-6 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between space-y-4"
+            className="group p-5 sm:p-6 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden flex flex-col justify-between space-y-4"
           >
             {/* Ambient Background Glows */}
             <div className="absolute -right-10 -top-10 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -371,7 +415,7 @@ export default function TenantBookings() {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <span
-                    className={`inline-flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full border backdrop-blur-xs ${
+                    className={`inline-flex items-center text-xs font-extrabold px-3 py-1 rounded-full border backdrop-blur-xs ${
                       b.bookingStatus === "Approved"
                         ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                         : b.bookingStatus === "Completed"
@@ -379,7 +423,6 @@ export default function TenantBookings() {
                         : "bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800"
                     }`}
                   >
-                    <span className="size-1.5 rounded-full bg-current animate-pulse" />
                     <span>{b.bookingStatus === "Approved" ? "Confirmed Lease" : b.bookingStatus}</span>
                   </span>
 
@@ -399,7 +442,7 @@ export default function TenantBookings() {
                 <img
                   src={b.propertyImage || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=200"}
                   alt={b.propertyName}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border border-slate-200/80 dark:border-zinc-700/80 shrink-0 group-hover:scale-105 transition-transform duration-300"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover border border-slate-200/80 dark:border-zinc-700/80 shrink-0 group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="min-w-0 flex-1 space-y-1">
                   <span className="text-[11px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">
@@ -416,7 +459,7 @@ export default function TenantBookings() {
               </div>
 
               {/* Pricing & Move-in Strip */}
-              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
+              <div className="p-3.5 rounded-lg bg-gradient-to-r from-teal-500/10 via-emerald-500/5 to-transparent dark:from-teal-950/40 dark:via-zinc-800/40 border border-teal-500/20 dark:border-teal-800/40 flex items-center justify-between text-xs sm:text-sm">
                 <div>
                   <span className="text-[11px] text-slate-500 dark:text-zinc-400 block font-medium">Move-in Date</span>
                   <span className="font-extrabold text-slate-900 dark:text-zinc-100 flex items-center gap-1.5 mt-0.5">
@@ -427,7 +470,7 @@ export default function TenantBookings() {
 
                 <div className="text-right">
                   <span className="text-[11px] text-slate-500 dark:text-zinc-400 block font-medium">Rent & Escrow</span>
-                  <span className="font-black text-teal-600 dark:text-teal-400 text-sm sm:text-base">
+                  <span className="font-bold text-teal-600 dark:text-teal-400 text-sm sm:text-base">
                     ${(b.amount || b.monthlyRent || 0).toLocaleString()}
                     <span className="text-[11px] font-medium text-slate-400">/mo</span>
                   </span>
@@ -454,7 +497,7 @@ export default function TenantBookings() {
                       setSelectedBooking(b);
                       setActiveModal("access");
                     }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 text-xs font-bold hover:bg-purple-100 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 text-xs font-bold hover:bg-teal-100 transition-colors cursor-pointer"
                   >
                     <Key className="w-3.5 h-3.5" />
                     <span>Door PIN: {b.smartLockCode}</span>
@@ -594,7 +637,7 @@ export default function TenantBookings() {
           <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-5 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-600">
+                <div className="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <Key className="w-5 h-5" />
                 </div>
                 <div>
@@ -614,23 +657,23 @@ export default function TenantBookings() {
 
             <div className="space-y-4">
               {/* Door Code Box */}
-              <div className="p-4 rounded-lg bg-purple-50/60 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/80 text-center space-y-2">
-                <span className="text-xs font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
+              <div className="p-4 rounded-lg bg-teal-50/60 dark:bg-teal-950/30 border border-teal-200/80 dark:border-teal-800/80 text-center space-y-2">
+                <span className="text-xs font-bold text-teal-700 dark:text-teal-300 uppercase tracking-wider">
                   Front Door Keypad PIN
                 </span>
                 <div className="flex items-center justify-center gap-3">
-                  <span className="text-3xl font-black font-mono text-purple-900 dark:text-purple-200 tracking-widest">
+                  <span className="text-3xl font-bold font-mono text-teal-900 dark:text-teal-200 tracking-widest">
                     {selectedBooking.smartLockCode}
                   </span>
                   <button
                     onClick={() => handleCopy(selectedBooking.smartLockCode)}
-                    className="p-2 rounded-lg bg-white dark:bg-zinc-800 border border-purple-300 dark:border-purple-700 text-purple-600 hover:bg-purple-50 transition cursor-pointer"
+                    className="p-2 rounded-lg bg-white dark:bg-zinc-800 border border-teal-300 dark:border-teal-700 text-teal-600 hover:bg-teal-50 transition cursor-pointer"
                     title="Copy Key Code"
                   >
                     {copiedCode ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
-                <p className="text-[11px] text-purple-600 dark:text-purple-400">
+                <p className="text-[11px] text-teal-600 dark:text-teal-400">
                   Touch the keypad to awaken, enter PIN, then press #
                 </p>
               </div>
@@ -718,7 +761,7 @@ export default function TenantBookings() {
               </div>
               <div className="flex justify-between pt-2 border-t border-slate-200 dark:border-zinc-800">
                 <span className="font-bold text-slate-900 dark:text-white">Total Amount Processed:</span>
-                <span className="font-black text-teal-600 dark:text-teal-400 text-sm">
+                <span className="font-bold text-teal-600 dark:text-teal-400 text-sm">
                   ${(selectedBooking.amount + selectedBooking.depositAmount).toLocaleString()}
                 </span>
               </div>

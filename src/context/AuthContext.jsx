@@ -115,24 +115,20 @@ export const AuthProvider = ({ children }) => {
 
   // Google Login handler
   const loginWithGoogle = async () => {
-    setLoading(true);
     try {
       const response = await authClient.signIn.social({
         provider: "google",
         callbackURL: `${typeof window !== "undefined" ? window.location.origin : ""}/dashboard`
       });
 
-      if (response.error) {
+      if (response?.error) {
         throw new Error(response.error.message || "Google sign-in failed");
       }
 
-      toast.success("Redirecting to Google...");
-      return response.data;
+      return response?.data;
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message || "Failed to connect to Google");
       throw error;
-    } finally {
-      setLoading(false);
     }
   };
 

@@ -63,7 +63,7 @@ export default function AdminAiHub() {
       latency: "210ms",
       status: "Operational",
       badge: "Automated Dispatch",
-      color: "from-indigo-500 to-purple-500"
+      color: "from-teal-500 to-cyan-500"
     },
     {
       name: "Photo Quality & Amenity Vision",
@@ -140,8 +140,7 @@ export default function AdminAiHub() {
               <Bot className="h-3.5 w-3.5" />
               <span>INTELLIGENT OPERATIONS</span>
             </span>
-            <span className="inline-flex items-center space-x-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               <span>4 SERVICES ACTIVE</span>
             </span>
           </div>
@@ -217,7 +216,7 @@ export default function AdminAiHub() {
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.2 }}
-          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 space-y-6"
         >
           <div>
             <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center space-x-2">
@@ -231,7 +230,7 @@ export default function AdminAiHub() {
 
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-teal-500/10 border border-teal-500/20 text-center space-y-1">
-              <span className="text-3xl font-black text-teal-600 dark:text-teal-400">91.4 / 100</span>
+              <span className="text-3xl font-bold text-teal-600 dark:text-teal-400">91.4 / 100</span>
               <div className="text-xs font-bold text-slate-700 dark:text-zinc-300">Platform Quality Score</div>
               <div className="text-[11px] text-slate-500 dark:text-zinc-400">Based on photo resolution, verified amenities & descriptions.</div>
             </div>
@@ -275,7 +274,7 @@ export default function AdminAiHub() {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.2 }}
-          className="lg:col-span-2 p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 space-y-6"
+          className="lg:col-span-2 p-6 sm:p-8 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 space-y-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>

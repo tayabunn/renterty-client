@@ -491,7 +491,7 @@ export default function Home() {
                   <motion.div
                     key={property._id}
                     variants={itemVariants}
-                    className="group bg-white dark:bg-zinc-900/50 rounded-lg overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700/80 transition-all duration-300 flex flex-col h-full"
+                    className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg overflow-hidden border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative transition-all duration-300 flex flex-col justify-between h-full text-left"
                   >
                     {/* Image Wrap */}
                     <div className="relative h-52 overflow-hidden">
@@ -603,7 +603,7 @@ export default function Home() {
               className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
             >
               {/* Card 1: Verified Properties */}
-              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -648,7 +648,7 @@ export default function Home() {
               </div>
 
               {/* Card 2: Secure Payments */}
-              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -693,7 +693,7 @@ export default function Home() {
               </div>
 
               {/* Card 3: Transparent Reviews */}
-              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:-translate-y-1.5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
+              <div className="group relative p-5 sm:p-7 md:p-8 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 text-left flex flex-col justify-between overflow-hidden">
                 {/* Corner Ambient Glow Orb */}
                 <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
 
@@ -868,18 +868,17 @@ export default function Home() {
                 { name: "Malibu", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=400&auto=format&fit=crop&q=60", count: "6 Listings" },
                 { name: "Aspen", img: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=400&auto=format&fit=crop&q=60", count: "4 Listings" }
               ].map((city, idx) => (
-                <motion.div
+                <div
                   key={idx}
-                  whileHover={{ y: -8 }}
                   onClick={() => {
                     router.push(`/properties?location=${city.name}`);
                   }}
-                  className="group relative rounded-lg h-80 overflow-hidden cursor-pointer shadow-md hover:shadow-2xl border border-slate-200/50 dark:border-zinc-800/50 hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300"
+                  className="group relative rounded-lg h-80 overflow-hidden cursor-pointer border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300"
                 >
                   <Image
                     src={city.img}
                     alt={city.name}
-                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
@@ -900,7 +899,7 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -1000,8 +999,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
-                    className="group relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-5 sm:p-7 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-400/40 shadow-lg shadow-slate-200/40 dark:shadow-none hover:shadow-2xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
+                    className="group relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md p-5 sm:p-7 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden text-left"
                   >
                     {/* MagicUI Border Beam on Hover */}
                     <BorderBeam

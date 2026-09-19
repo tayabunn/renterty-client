@@ -294,7 +294,7 @@ const Footer = () => {
               </div>
               <span className="text-slate-700 dark:text-zinc-700 hidden sm:inline">•</span>
               <div className="hidden sm:flex items-center gap-1.5">
-                <Activity className="h-3 w-3 text-violet-400 shrink-0" />
+                <Activity className="h-3 w-3 text-emerald-400 shrink-0" />
                 <span>99.98% Uptime</span>
               </div>
             </div>

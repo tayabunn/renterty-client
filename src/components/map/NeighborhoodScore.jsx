@@ -131,7 +131,7 @@ export default function NeighborhoodScore({ location = 'Downtown Area', property
         <div className="p-3.5 rounded-xl border border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-800/30">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-xs text-slate-600 dark:text-slate-400 font-medium flex items-center gap-1.5">
-              <GraduationCap className="w-3.5 h-3.5 text-purple-500" /> Schools
+              <GraduationCap className="w-3.5 h-3.5 text-teal-500" /> Schools
             </span>
             <span className={`text-xs font-bold px-2 py-0.5 rounded-md border ${getScoreColor(schoolScore)}`}>
               {schoolScore}/100

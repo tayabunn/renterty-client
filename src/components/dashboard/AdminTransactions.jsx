@@ -179,23 +179,23 @@ export default function AdminTransactions() {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Gross Volume Processed</span>
-          <p className="text-2xl font-black text-slate-900 dark:text-white mt-1">${totalProcessed.toLocaleString()}</p>
+          <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">${totalProcessed.toLocaleString()}</p>
           <span className="text-[11px] font-semibold text-emerald-600 flex items-center gap-1 mt-0.5">
             <TrendingUp className="w-3 h-3" /> 100% Escrow Protected
           </span>
         </div>
 
-        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Platform Take-Rate Revenue</span>
-          <p className="text-2xl font-black text-teal-600 dark:text-teal-400 mt-1">${totalFees.toLocaleString()}</p>
+          <p className="text-2xl font-bold text-teal-600 dark:text-teal-400 mt-1">${totalFees.toLocaleString()}</p>
           <span className="text-[11px] font-semibold text-teal-600">5% Automated Take</span>
         </div>
 
-        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80">
+        <div className="p-4 rounded-lg bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300">
           <span className="text-xs font-bold text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Net Landlord Disbursed</span>
-          <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">${totalPayouts.toLocaleString()}</p>
+          <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">${totalPayouts.toLocaleString()}</p>
           <span className="text-[11px] font-semibold text-slate-400">Direct Stripe Transfer</span>
         </div>
       </div>
@@ -235,7 +235,7 @@ export default function AdminTransactions() {
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-xs sm:text-sm">
             <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
@@ -266,7 +266,7 @@ export default function AdminTransactions() {
                       Tenant: {tx.tenantName} ({tx.tenantEmail})
                     </span>
                   </td>
-                  <td className="px-6 py-4 font-black text-slate-900 dark:text-white text-sm sm:text-base">
+                  <td className="px-6 py-4 font-bold text-slate-900 dark:text-white text-sm sm:text-base">
                     ${tx.amount?.toLocaleString()}
                   </td>
                   <td className="px-6 py-4 font-bold text-teal-600 dark:text-teal-400">
@@ -274,13 +274,12 @@ export default function AdminTransactions() {
                   </td>
                   <td className="px-6 py-4">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${
                         tx.escrowStatus === "Payout Released"
                           ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 border-blue-200 dark:border-blue-800"
                           : "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                       }`}
                     >
-                      <span className="size-1.5 rounded-full bg-current animate-pulse" />
                       <span>{tx.escrowStatus || "Escrow Secured"}</span>
                     </span>
                   </td>

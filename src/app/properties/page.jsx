@@ -500,7 +500,7 @@ function PropertiesContent() {
             {properties.map((property) => (
               <div
                 key={property._id}
-                className="group bg-white dark:bg-zinc-900/40 rounded-lg overflow-hidden border border-slate-200/60 dark:border-zinc-800/60 shadow-sm hover:shadow-xl hover:border-slate-300 dark:hover:border-zinc-700 transition-all duration-300 flex flex-col h-full"
+                className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg overflow-hidden border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative transition-all duration-300 flex flex-col justify-between h-full text-left"
               >
                 {/* Image overlay */}
                 <div className="relative h-56 overflow-hidden">
