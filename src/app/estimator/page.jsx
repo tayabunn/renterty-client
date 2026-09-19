@@ -516,7 +516,7 @@ function EstimatorContent() {
                     <span className="text-xs text-slate-500 dark:text-zinc-400 block font-medium">
                       Recommended Max Monthly Rent:
                     </span>
-                    <div className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mt-1 flex items-baseline gap-1">
+                    <div className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mt-1 flex items-baseline gap-1">
                       ${activeRecommendedRent.toLocaleString()}
                       <span className="text-base font-medium text-slate-400 dark:text-zinc-500">/mo</span>
                     </div>
@@ -539,7 +539,7 @@ function EstimatorContent() {
                       <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 block uppercase">
                         Standard (30%)
                       </span>
-                      <span className="text-sm font-black text-teal-600 dark:text-teal-400 block mt-0.5">
+                      <span className="text-sm font-bold text-teal-600 dark:text-teal-400 block mt-0.5">
                         ${standardMaxRent.toLocaleString()}
                       </span>
                     </div>
@@ -614,7 +614,7 @@ function EstimatorContent() {
                         <ShieldCheck className="w-4 h-4 text-teal-500" />
                         <span>Landlord 40x Pre-Qualification</span>
                       </span>
-                      <span className="text-xs font-black text-teal-600 dark:text-teal-400">
+                      <span className="text-xs font-bold text-teal-600 dark:text-teal-400">
                         Up to ${rule40xRent.toLocaleString()}/mo
                       </span>
                     </div>
@@ -682,7 +682,7 @@ function EstimatorContent() {
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 400px"
                         />
-                        <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-white text-xs font-black">
+                        <div className="absolute top-3 right-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-white text-xs font-bold">
                           ${prop.rent?.toLocaleString()}/mo
                         </div>
                         <div className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-teal-500/90 backdrop-blur-xs text-white text-[11px] font-bold rounded-lg">

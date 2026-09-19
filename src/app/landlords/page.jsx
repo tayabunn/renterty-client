@@ -446,7 +446,7 @@ export default function LandlordsPage() {
                   <span className="text-[10px] sm:text-[11px] uppercase font-bold text-teal-600 dark:text-teal-400 block">
                     Recommended Monthly Rental Target
                   </span>
-                  <span className="text-2xl sm:text-4xl font-black text-teal-600 dark:text-teal-400 block mt-0.5">
+                  <span className="text-2xl sm:text-4xl font-bold text-teal-600 dark:text-teal-400 block mt-0.5">
                     ${estResult.estimatedRent?.toLocaleString()}
                     <span className="text-xs sm:text-sm font-medium text-slate-400">/month</span>
                   </span>

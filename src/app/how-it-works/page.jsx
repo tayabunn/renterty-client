@@ -157,7 +157,7 @@ export default function HowItWorksPage() {
                     <div className="size-14 text-white rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-2xl shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <Icon className="h-7 w-7 text-white" />
                     </div>
-                    <span className="px-3.5 py-1 bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 rounded-full text-xs font-black tracking-wider border border-slate-200/80 dark:border-zinc-700">
+                    <span className="px-3.5 py-1 bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 rounded-full text-xs font-bold tracking-wider border border-slate-200/80 dark:border-zinc-700">
                       STEP {item.step}
                     </span>
                   </div>
