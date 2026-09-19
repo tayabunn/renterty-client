@@ -623,7 +623,7 @@ export default function Home() {
                     <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <ShieldCheck className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
-                    <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
+                    <span className="text-xs font-bold text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       01
                     </span>
                   </div>
@@ -668,7 +668,7 @@ export default function Home() {
                     <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-emerald-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <CreditCard className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
-                    <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
+                    <span className="text-xs font-bold text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       02
                     </span>
                   </div>
@@ -713,7 +713,7 @@ export default function Home() {
                     <div className="size-12 sm:size-14 text-white rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-xl sm:text-2xl shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <Star className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
                     </div>
-                    <span className="text-xs font-black text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
+                    <span className="text-xs font-bold text-slate-300 dark:text-zinc-700 tracking-widest uppercase">
                       03
                     </span>
                   </div>
@@ -1045,7 +1045,7 @@ export default function Home() {
                       {/* Metric Display */}
                       <div className="space-y-1.5 pt-1">
                         <div className="flex items-baseline justify-between">
-                          <h3 className={`text-4xl sm:text-[42px] font-black bg-linear-to-r ${stat.color} bg-clip-text text-transparent tracking-tight leading-none group-hover:scale-[1.02] origin-left transition-transform duration-300`}>
+                          <h3 className={`text-4xl sm:text-[42px] font-bold bg-linear-to-r ${stat.color} bg-clip-text text-transparent tracking-tight leading-none group-hover:scale-[1.02] origin-left transition-transform duration-300`}>
                             {stat.value}
                           </h3>
                           <span className="text-[11px] font-semibold text-teal-600 dark:text-teal-400 flex items-center gap-0.5 opacity-80 group-hover:opacity-100 transition-opacity">

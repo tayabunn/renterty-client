@@ -20,7 +20,17 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'recharts',
+      'radix-ui',
+      'react-hot-toast',
+      'leaflet',
+      'react-leaflet',
+      'clsx',
+      'tailwind-merge',
+    ],
   },
 };
 
