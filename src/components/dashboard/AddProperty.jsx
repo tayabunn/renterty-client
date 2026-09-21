@@ -161,8 +161,8 @@ export default function AddProperty() {
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               Add New Property Listing
             </h2>
-            <p className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm">
-              List high-end residential real estate with intelligent automated pricing & AI visual analysis.
+            <p className="text-slate-500 dark:text-zinc-400 text-base sm:text-base">
+              List high-end residential real estate with intelligent automated pricing & AI visual analysis
             </p>
           </div>
 

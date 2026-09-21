@@ -672,7 +672,7 @@ function DashboardContent() {
                   <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
                     {user.role === "Owner" ? "Listing Status" : "Verified Tenant"}
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                  <p className="text-base text-slate-500 dark:text-zinc-400 mt-1 font-medium">
                     {user.role === "Owner" ? "Verified & Published" : "ID Approved & Trusted"}
                   </p>
                 </div>
@@ -697,7 +697,7 @@ function DashboardContent() {
                   <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
                     Secure Payments
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                  <p className="text-base text-slate-500 dark:text-zinc-400 mt-1 font-medium">
                     Encrypted Checkout
                   </p>
                 </div>
@@ -722,7 +722,7 @@ function DashboardContent() {
                   <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
                     Maintenance &amp; AI
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                  <p className="text-base text-slate-500 dark:text-zinc-400 mt-1 font-medium">
                     Automated Dispatch
                   </p>
                 </div>
@@ -747,7 +747,7 @@ function DashboardContent() {
                   <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
                     Interactive Tours
                   </p>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1 font-medium">
+                  <p className="text-base text-slate-500 dark:text-zinc-400 mt-1 font-medium">
                     Video &amp; In-Person
                   </p>
                 </div>

@@ -42,7 +42,7 @@ export const FeatureBento = ({
             <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               {title}
             </h2>
-            <p className="text-xs sm:text-base text-slate-500 dark:text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-base text-slate-500 dark:text-zinc-400 max-w-2xl mx-auto">
               {subtitle}
             </p>
           </div>

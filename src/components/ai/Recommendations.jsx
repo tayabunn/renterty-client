@@ -55,7 +55,7 @@ export default function Recommendations() {
                 {userProfile?.hasHistory ? "Personalized" : "Curated Picks"}
               </span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+            <p className="text-base text-slate-500 dark:text-zinc-400">
               {userProfile?.hasHistory
                 ? `Scored against your saved favorites & search preferences in ${userProfile.topLocation}`
                 : "Multi-factor matched against verified platform performance & popularity"}

@@ -7,7 +7,7 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   preload: true,
 });
@@ -16,8 +16,18 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0d9488" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata = {
   title: "Renterty",
@@ -31,7 +41,7 @@ export const metadata = {
   },
 };
 
-import AIAssistant from "../components/ai/AIAssistant";
+import AIAssistant from "../components/ai/AIAssistantWrapper";
 
 export default function RootLayout({ children }) {
   return (
@@ -69,3 +79,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

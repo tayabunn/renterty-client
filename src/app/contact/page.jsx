@@ -149,8 +149,8 @@ export default function ContactPage() {
               Get in touch with the <span className="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">Renterty Team</span>
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-400 dark:text-zinc-400 leading-relaxed">
-              Have questions about verified listings, digital leases, landlord onboarding, or AI valuations? Our dedicated PropTech support specialists are ready to assist you anytime.
+            <p className="text-base text-slate-400 dark:text-zinc-400 leading-relaxed">
+              Have questions about verified listings, digital leases, landlord onboarding, or AI valuations? Our dedicated PropTech support specialists are ready to assist you anytime
             </p>
           </div>
 

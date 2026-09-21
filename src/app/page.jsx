@@ -14,6 +14,7 @@ import { Marquee } from "@/components/ui/marquee";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { cn } from "@/lib/utils";
 import { TypingAnimation } from "@/registry/magicui/typing-animation";
+import VoiceSearchButton from "@/components/ui/VoiceSearchButton";
 
 import { API_URL } from "@/lib/config";
 
@@ -223,9 +224,8 @@ function PropertyCardImage({ property }) {
       alt={property.title || "Rental Property"}
       className="object-cover group-hover:scale-105 transition-transform duration-500"
       fill
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
       onError={() => setImgSrc(defaultImg)}
-      unoptimized
     />
   );
 }
@@ -329,6 +329,8 @@ export default function Home() {
                 className="object-cover opacity-45 dark:opacity-25"
                 fill
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 1200px) 100vw, 1200px"
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-900/50 to-slate-950" />
             </div>
@@ -373,17 +375,29 @@ export default function Home() {
               <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 items-end">
                 {/* Location */}
                 <div className="text-left space-y-1.5 sm:space-y-2 col-span-1 sm:col-span-2 md:col-span-1">
-                  <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
-                    <MapPin className="h-3.5 w-3.5 text-teal-500" />
-                    <span>LOCATION</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. New York"
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none px-3.5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
-                  />
+                  <div className="flex items-center justify-between">
+                    <label className="text-[11px] sm:text-xs font-bold text-slate-700 dark:text-zinc-300 flex items-center space-x-1.5 uppercase tracking-wider">
+                      <MapPin className="h-3.5 w-3.5 text-teal-500" />
+                      <span>LOCATION</span>
+                    </label>
+                  </div>
+                  <div className="relative flex items-center">
+                    <input
+                      type="text"
+                      placeholder="e.g. New York, Miami"
+                      value={searchLocation}
+                      onChange={(e) => setSearchLocation(e.target.value)}
+                      className="w-full border border-gray-200 dark:border-zinc-700 dark:bg-zinc-800 focus:border-teal-500 focus:bg-white dark:focus:bg-zinc-750 focus:outline-none pl-3.5 pr-10 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 dark:placeholder-zinc-500 transition-all duration-200"
+                    />
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                      <VoiceSearchButton
+                        size="sm"
+                        onResult={(transcript) => {
+                          setSearchLocation(transcript);
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Property Type */}
@@ -468,7 +482,7 @@ export default function Home() {
                   trigger="inView"
                 />
               </h2>
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-xs sm:text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-full mx-auto text-base font-medium">
                 Explore our curated selection of verified, highly-rated rental properties available for instant reservation
               </p>
             </div>
@@ -515,7 +529,7 @@ export default function Home() {
                         <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors line-clamp-1">
                           {property.title}
                         </h3>
-                        <p className="text-slate-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                        <p className="text-slate-500 dark:text-zinc-400 text-base leading-relaxed line-clamp-2">
                           {property.description}
                         </p>
                       </div>
@@ -590,7 +604,7 @@ export default function Home() {
                   trigger="inView"
                 />
               </h2>
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-xs sm:text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-full mx-auto text-base font-medium">
                 We make renting homes secure, transparent, and pleasant for both renters and property managers
               </p>
             </div>
@@ -632,7 +646,7 @@ export default function Home() {
                     <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Verified Properties
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-base text-slate-500 dark:text-zinc-400 leading-relaxed">
                       All property listings undergo administrative review and moderation. No spam, no scams, just legitimate and gorgeous spaces.
                     </p>
                   </div>
@@ -677,7 +691,7 @@ export default function Home() {
                     <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Secure Payments
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-base text-slate-500 dark:text-zinc-400 leading-relaxed">
                       Pay reservation booking fees safely using Stripe. Transactions are encrypted, keeping your money secure until approvals.
                     </p>
                   </div>
@@ -722,7 +736,7 @@ export default function Home() {
                     <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       Transparent Reviews
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-base text-slate-500 dark:text-zinc-400 leading-relaxed">
                       Honest ratings and reviews from real tenants. Gain insights into properties, hosts, and neighborhoods before signing.
                     </p>
                   </div>
@@ -754,7 +768,7 @@ export default function Home() {
                   trigger="inView"
                 />
               </h2>
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-full mx-auto text-base font-medium">
                 Hear from tenants who found their perfect homes and apartments on Renterty
               </p>
             </div>
@@ -783,7 +797,6 @@ export default function Home() {
                         height={36}
                         alt={review.name}
                         src={review.img}
-                        unoptimized
                       />
                       <div className="flex flex-col">
                         <figcaption className="text-sm font-bold text-slate-900 dark:text-white">
@@ -815,7 +828,6 @@ export default function Home() {
                         height={36}
                         alt={review.name}
                         src={review.img}
-                        unoptimized
                       />
                       <div className="flex flex-col">
                         <figcaption className="text-sm font-bold text-slate-900 dark:text-white">
@@ -849,7 +861,7 @@ export default function Home() {
                     trigger="inView"
                   />
                 </h2>
-                <p className="text-slate-500 dark:text-zinc-400 text-sm max-w-md">
+                <p className="text-slate-500 dark:text-zinc-400 text-base max-w-full">
                   Browse our highest concentration of premium rentals in major metropolises and vacation escapes
                 </p>
               </div>
@@ -933,7 +945,7 @@ export default function Home() {
                 />
               </h2>
 
-              <p className="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto text-sm font-medium">
+              <p className="text-slate-500 dark:text-zinc-400 max-w-full mx-auto text-base font-medium">
                 We're building the future of property rental. Here's a glance at our milestones and community trust
               </p>
             </div>
@@ -944,7 +956,7 @@ export default function Home() {
                 {
                   value: "99%",
                   label: "Verification Rate",
-                  desc: "Vetted property profiles & documents for absolute safety.",
+                  desc: "Vetted property profiles & documents for absolute safety",
                   icon: ShieldCheck,
                   badge: "Zero-Fraud Audited",
                   badgeIcon: CheckCircle2,
@@ -956,7 +968,7 @@ export default function Home() {
                 {
                   value: "1.2M+",
                   label: "Paid Reservations",
-                  desc: "Secure transactions completed via Stripe integration.",
+                  desc: "Secure transactions completed via Stripe integration",
                   icon: CreditCard,
                   badge: "Stripe Protected",
                   badgeIcon: Lock,
@@ -968,7 +980,7 @@ export default function Home() {
                 {
                   value: "4,500+",
                   label: "Approved Properties",
-                  desc: "Premium houses, apartments, and villas around the globe.",
+                  desc: "Premium houses, apartments, and villas around the globe",
                   icon: Building,
                   badge: "50+ Global Cities",
                   badgeIcon: Globe2,
@@ -980,7 +992,7 @@ export default function Home() {
                 {
                   value: "10K+",
                   label: "Satisfied Renters",
-                  desc: "Happy tenants who found their dream living space.",
+                  desc: "Happy tenants who found their dream living space",
                   icon: Users,
                   badge: "4.9★ Community Score",
                   badgeIcon: Star,
@@ -1055,7 +1067,7 @@ export default function Home() {
                           {stat.label}
                         </h4>
 
-                        <p className="text-xs text-slate-500 dark:text-zinc-400 leading-relaxed font-normal">
+                        <p className="text-base text-slate-500 dark:text-zinc-400 leading-relaxed font-normal">
                           {stat.desc}
                         </p>
                       </div>
@@ -1092,8 +1104,8 @@ export default function Home() {
                   <h5 className="text-sm font-bold text-slate-900 dark:text-white">
                     Real-Time Verified Infrastructure
                   </h5>
-                  <p className="text-xs text-slate-500 dark:text-zinc-400">
-                    Every transaction and property on Renterty is backed by 256-bit encryption, instant leases, and identity screening.
+                  <p className="text-sm text-slate-500 dark:text-zinc-400">
+                    Every transaction and property on Renterty is backed by 256-bit encryption, instant leases, and identity screening
                   </p>
                 </div>
               </div>

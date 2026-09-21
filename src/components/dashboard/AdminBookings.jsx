@@ -71,31 +71,42 @@ export default function AdminBookings() {
   const [statusFilter, setStatusFilter] = useState("ALL");
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchBookings = async () => {
-      const token = localStorage.getItem("renterty_token");
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
       try {
         const res = await fetch(`${API_URL}/bookings/admin`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setBookings(data);
-          } else {
-            setBookings(DEMO_ADMIN_BOOKINGS);
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            if (Array.isArray(data) && data.length > 0) {
+              setBookings(data);
+            } else {
+              setBookings(DEMO_ADMIN_BOOKINGS);
+            }
           }
         } else {
-          setBookings(DEMO_ADMIN_BOOKINGS);
+          if (isMounted) setBookings(DEMO_ADMIN_BOOKINGS);
         }
       } catch (err) {
-        console.error(err);
-        setBookings(DEMO_ADMIN_BOOKINGS);
+        if (isMounted) setBookings(DEMO_ADMIN_BOOKINGS);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchBookings();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filtered = bookings.filter((b) => {
@@ -133,8 +144,8 @@ export default function AdminBookings() {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
             Platform Booking Records
           </h2>
-          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-            Audit tenant reservations, landlord payouts, and platform commission settlement.
+          <p className="text-base sm:text-sm text-slate-500 dark:text-zinc-400 mt-0.5">
+            Audit tenant reservations, landlord payouts, and platform commission settlement
           </p>
         </div>
 

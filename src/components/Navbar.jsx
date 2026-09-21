@@ -108,19 +108,8 @@ const Navbar = () => {
                       aria-expanded={userMenuOpen}
                       aria-haspopup="true"
                       aria-label="User profile menu"
-                      className="flex items-center space-x-2 pl-1.5 pr-3.5 py-1.5 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-full text-xs xl:text-sm font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none"
+                      className="flex items-center space-x-1.5 px-3.5 py-1.5 bg-linear-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-full text-xs xl:text-sm font-semibold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:outline-none shadow-xs"
                     >
-                      {user.photo ? (
-                        <img
-                          src={user.photo}
-                          alt={user.name}
-                          className="h-6 w-6 rounded-full object-cover ring-2 ring-white/40 shrink-0"
-                        />
-                      ) : (
-                        <div className="h-6 w-6 rounded-full bg-black/30 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                          <User className="h-3.5 w-3.5" />
-                        </div>
-                      )}
                       <span className="truncate">
                         {user.name ? user.name.trim().split(" ")[0] : "Account"}
                       </span>
@@ -239,7 +228,7 @@ const Navbar = () => {
             <div className="pt-3 pb-1 border-t border-slate-200 dark:border-zinc-800 mt-3 px-1">
               <div className="flex items-center space-x-3 mb-3 p-2 rounded-lg bg-slate-50 dark:bg-zinc-900/60">
                 {user.photo ? (
-                  <img src={user.photo} alt={user.name} className="h-10 w-10 rounded-full object-cover shrink-0 ring-2 ring-teal-500/20" />
+                  <Image src={user.photo} alt={user.name || "User profile"} width={40} height={40} className="h-10 w-10 rounded-full object-cover shrink-0 ring-2 ring-teal-500/20" />
                 ) : (
                   <div className="h-10 w-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-lg shrink-0">
                     {user.name ? user.name[0].toUpperCase() : <User className="h-5 w-5" />}

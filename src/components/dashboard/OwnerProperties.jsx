@@ -18,26 +18,37 @@ export default function OwnerProperties() {
   const [editProperty, setEditProperty] = useState(null);
   const [updating, setUpdating] = useState(false);
 
-  const fetchProperties = async () => {
-    const token = localStorage.getItem("renterty_token");
-    try {
-      const res = await fetch(`${API_URL}/properties/owner`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setProperties(data);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error loading properties");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchProperties = async () => {
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
+      try {
+        const res = await fetch(`${API_URL}/properties/owner`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            setProperties(Array.isArray(data) ? data : []);
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to load owner properties:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
     fetchProperties();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleDelete = async (id) => {
@@ -180,7 +191,7 @@ export default function OwnerProperties() {
                   <td className="px-6 py-4 text-right space-x-2">
                     <button
                       onClick={() => handleEditOpen(prop)}
-                      className="p-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition cursor-pointer"
+                      className="p-2 text-teal-600 hover:text-teal-700 hover:bg-teal-50 dark:text-teal-400 dark:hover:text-teal-300 dark:hover:bg-teal-950/40 rounded-lg transition cursor-pointer"
                       title="Edit Listing"
                     >
                       <Edit3 className="h-4 w-4" />

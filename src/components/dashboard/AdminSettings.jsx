@@ -9,9 +9,11 @@ import {
 import toast from "react-hot-toast";
 
 export default function AdminSettings() {
-  // Commission settings
+  // Commission & Escrow settings
   const [commissionRate, setCommissionRate] = useState(10);
   const [escrowDays, setEscrowDays] = useState(14);
+  const [escrowThreshold, setEscrowThreshold] = useState(5000);
+  const [maintenanceLimit, setMaintenanceLimit] = useState(500);
   const [instantBookingFee, setInstantBookingFee] = useState(25);
 
   // Broadcast settings
@@ -75,7 +77,7 @@ export default function AdminSettings() {
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
             Platform Settings
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+          <p className="text-base text-slate-500 dark:text-zinc-400">
             Control platform monetization rates, broadcast system announcements, and export audited ledger records.
           </p>
         </div>
@@ -103,8 +105,8 @@ export default function AdminSettings() {
               <DollarSign className="h-5 w-5 text-teal-500" />
               <span>Monetization & Commission Control</span>
             </h3>
-            <p className="text-xs text-slate-500 dark:text-zinc-400">
-              Configure platform service fees deducted on completed booking reservations.
+            <p className="text-sm text-slate-500 dark:text-zinc-400">
+              Configure platform service fees deducted on completed booking reservations
             </p>
           </div>
 
@@ -159,8 +161,8 @@ export default function AdminSettings() {
                 onChange={(e) => setMaintenanceLimit(e.target.value)}
                 className="w-full border border-slate-200 dark:border-zinc-700 dark:bg-zinc-800 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-zinc-100 focus:outline-none focus:border-teal-500"
               />
-              <span className="text-[11px] text-slate-400">
-                Repair costs below this threshold dispatch certified contractors immediately.
+              <span className="text-xs text-slate-400">
+                Repair costs below this threshold dispatch certified contractors immediately
               </span>
             </div>
           </div>
@@ -179,8 +181,8 @@ export default function AdminSettings() {
                 <Megaphone className="h-5 w-5 text-teal-500" />
                 <span>Broadcast Announcement</span>
               </h3>
-              <p className="text-xs text-slate-500 dark:text-zinc-400">
-                Display a persistent notification banner at the top of the application.
+              <p className="text-sm text-slate-500 dark:text-zinc-400">
+                Display a persistent notification banner at the top of the application
               </p>
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -256,8 +258,8 @@ export default function AdminSettings() {
             <FileSpreadsheet className="h-5 w-5 text-teal-500" />
             <span>Audited Data Exports</span>
           </h3>
-          <p className="text-xs text-slate-500 dark:text-zinc-400">
-            Export structured CSV data for financial accounting, quarterly tax filing, and investor reporting.
+          <p className="text-sm text-slate-500 dark:text-zinc-400">
+            Export structured CSV data for financial accounting, quarterly tax filing, and investor reporting
           </p>
         </div>
 
@@ -267,11 +269,11 @@ export default function AdminSettings() {
               Reservations & Bookings
             </div>
             <p className="text-xs text-slate-500 dark:text-zinc-400">
-              Includes tenant IDs, property titles, move-in dates, and payment status.
+              Includes tenant IDs, property titles, move-in dates, and payment status
             </p>
             <button
               onClick={() => exportCsv("bookings")}
-              className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl bg-slate-900 dark:bg-zinc-800 hover:bg-teal-500 dark:hover:bg-teal-500 text-white text-xs font-bold transition cursor-pointer"
+              className="w-full flex items-center justify-center space-x-2 py-2.5 px-3 rounded-lg bg-slate-900 dark:bg-zinc-800 hover:bg-gradient-to-r hover:from-teal-500 hover:to-emerald-500 text-white text-xs font-bold transition cursor-pointer shadow-xs"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Export Bookings (.csv)</span>
@@ -283,11 +285,11 @@ export default function AdminSettings() {
               Ledger & Stripe Financials
             </div>
             <p className="text-xs text-slate-500 dark:text-zinc-400">
-              Itemized transaction logs with platform take-rate breakdown.
+              Itemized transaction logs with platform take-rate breakdown
             </p>
             <button
               onClick={() => exportCsv("financials")}
-              className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl bg-slate-900 dark:bg-zinc-800 hover:bg-teal-500 dark:hover:bg-teal-500 text-white text-xs font-bold transition cursor-pointer"
+              className="w-full flex items-center justify-center space-x-2 py-2.5 px-3 rounded-lg bg-slate-900 dark:bg-zinc-800 hover:bg-gradient-to-r hover:from-teal-500 hover:to-emerald-500 text-white text-xs font-bold transition cursor-pointer shadow-xs"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Export Financials (.csv)</span>
@@ -299,11 +301,11 @@ export default function AdminSettings() {
               User & Landlord Roster
             </div>
             <p className="text-xs text-slate-500 dark:text-zinc-400">
-              Complete account roster with verification status and creation dates.
+              Complete account roster with verification status and creation dates
             </p>
             <button
               onClick={() => exportCsv("users")}
-              className="w-full flex items-center justify-center space-x-2 py-2 px-3 rounded-xl bg-slate-900 dark:bg-zinc-800 hover:bg-teal-500 dark:hover:bg-teal-500 text-white text-xs font-bold transition cursor-pointer"
+              className="w-full flex items-center justify-center space-x-2 py-2.5 px-3 rounded-lg bg-slate-900 dark:bg-zinc-800 hover:bg-gradient-to-r hover:from-teal-500 hover:to-emerald-500 text-white text-xs font-bold transition cursor-pointer shadow-xs"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Export Users (.csv)</span>

@@ -226,7 +226,7 @@ export default function ToursView({ isOwner = false }) {
             <Calendar className="w-7 h-7 text-teal-500" />
             <span>{isOwner ? 'Property Tour Inquiries' : 'My Scheduled Property Tours'}</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
+          <p className="text-base text-slate-500 dark:text-zinc-400">
             {isOwner 
               ? 'Review tenant tour bookings, assign video conference links, and confirm viewing slots.' 
               : 'Join live HD virtual walkthroughs, access parking notes, and sync appointments with your calendar'}

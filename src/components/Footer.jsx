@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Mail, 
   Phone, 
@@ -64,16 +65,6 @@ const Footer = () => {
               <div className="absolute -top-24 -left-20 w-80 h-80 bg-teal-500/15 rounded-full blur-3xl" />
               <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl" />
               <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 bg-teal-600/10 rounded-full blur-2xl" />
-
-              {/* Architectural Blueprint Dot-Grid Mesh */}
-              {/* <div 
-                className="absolute inset-0 opacity-[0.14] dark:opacity-[0.18]"
-                style={{
-                  backgroundImage: `radial-gradient(#14b8a6 1px, transparent 1px), radial-gradient(#059669 1px, transparent 1px)`,
-                  backgroundSize: "28px 28px",
-                  backgroundPosition: "0 0, 14px 14px"
-                }}
-              /> */}
 
               {/* Glowing Top Edge Reflection */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
@@ -174,10 +165,10 @@ const Footer = () => {
               {/* Social Proof Subscriber Avatar Stack */}
               <div className="flex items-center gap-3 pt-1">
                 <div className="flex -space-x-2 overflow-hidden">
-                  <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 1" />
-                  <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 2" />
-                  <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 3" />
-                  <img className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 4" />
+                  <Image className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" width={24} height={24} src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 1" />
+                  <Image className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" width={24} height={24} src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 2" />
+                  <Image className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" width={24} height={24} src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 3" />
+                  <Image className="inline-block h-6 w-6 rounded-full ring-2 ring-slate-900 object-cover" width={24} height={24} src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Renter avatar 4" />
                 </div>
                 <span className="text-[11px] font-medium text-slate-300 dark:text-zinc-300">
                   <strong className="text-teal-400 font-bold">25,000+</strong>

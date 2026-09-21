@@ -119,7 +119,7 @@ export default function LandlordsPage() {
             </span>
           </h1>
 
-          <p className="text-xs sm:text-base text-slate-600 dark:text-zinc-300 max-w-3xl mx-auto leading-relaxed px-1">
+          <p className="text-base text-slate-600 dark:text-zinc-300 max-w-3xl mx-auto leading-relaxed px-1">
             Automated rent collection, instant legal e-leases, AI maintenance triage, and verified tenant screening — built to save you 15+ hours every month.
           </p>
 
@@ -154,7 +154,7 @@ export default function LandlordsPage() {
           <h2 className="mt-2 text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             Powerful Tools to Scale Your Portfolio
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-slate-500 dark:text-zinc-400 max-w-4xl mx-auto">
+          <p className="text-base text-slate-500 dark:text-zinc-400 max-w-4xl mx-auto">
             Streamline your operations with intelligent tools built specifically for property owners and managers
           </p>
         </div>
@@ -508,7 +508,7 @@ export default function LandlordsPage() {
           <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white">
             Frequently Asked Questions
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">Common questions from property owners and hosts</p>
+          <p className="text-base text-slate-500 dark:text-zinc-400">Common questions from property owners and hosts</p>
         </div>
 
         <div className="space-y-2.5 sm:space-y-3 text-left">

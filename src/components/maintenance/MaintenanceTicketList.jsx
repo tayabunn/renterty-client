@@ -8,20 +8,20 @@ import {
   Clock, 
   ShieldAlert, 
   UserCheck, 
-  Sparkles,
-  ChevronRight,
-  Filter,
-  Truck,
-  Phone,
-  MapPin,
-  Flame,
-  Droplets,
-  Zap,
-  Check,
-  X,
-  Search,
-  ExternalLink,
-  ShieldCheck
+  Sparkles, 
+  ChevronRight, 
+  Filter, 
+  Truck, 
+  Phone, 
+  MapPin, 
+  Flame, 
+  Droplets, 
+  Zap, 
+  Check, 
+  X, 
+  Search, 
+  ExternalLink, 
+  ShieldCheck 
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { updateTicketStatus } from '../../lib/services';
@@ -203,7 +203,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       case 'High':
         return 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800';
       case 'Medium':
-        return 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 border-blue-200 dark:border-blue-800';
+        return 'bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400 border-teal-200/80 dark:border-teal-800/80';
       default:
         return 'bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-400 border-slate-200 dark:border-zinc-700';
     }
@@ -216,9 +216,9 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
         return 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800';
       case 'In Progress':
       case 'Assigned':
-        return 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800';
+        return 'bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400 border-teal-200/80 dark:border-teal-800/80';
       default:
-        return 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800';
+        return 'bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-zinc-300 border-slate-200 dark:border-zinc-700';
     }
   };
 
@@ -257,95 +257,99 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
         {/* Card 1: Total Tickets */}
-        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
           <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
           <div className="relative z-10 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
                 Total Tickets
               </span>
-              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <Wrench className="w-4.5 h-4.5 text-white" />
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Wrench className="w-6 h-6 text-white" />
               </div>
             </div>
             <div>
-              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                 {ticketList.length}
               </span>
-              <p className="text-xs font-semibold text-teal-600 dark:text-teal-400 mt-1">
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
                 Logged In System
               </p>
             </div>
           </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
         {/* Card 2: Emergency / Urgent */}
-        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-          <div className="absolute -right-6 -top-6 size-24 bg-rose-500/10 dark:bg-rose-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
           <div className="relative z-10 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
                 Emergency Priority
               </span>
-              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <Flame className="w-4.5 h-4.5 text-white" />
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Flame className="w-6 h-6 text-white" />
               </div>
             </div>
             <div>
-              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                 {emergencyCount}
               </span>
-              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mt-1">
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
                 {emergencyCount > 0 ? "Urgent Priority 1" : "No Emergencies"}
               </p>
             </div>
           </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
         {/* Card 3: Dispatched Active */}
-        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
           <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
           <div className="relative z-10 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
                 Dispatched Active
               </span>
-              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <Truck className="w-4.5 h-4.5 text-white" />
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <Truck className="w-6 h-6 text-white" />
               </div>
             </div>
             <div>
-              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                 {inProgressCount}
               </span>
-              <p className="text-xs font-semibold text-teal-600 dark:text-teal-400 mt-1">
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
                 On-Site / ETA Active
               </p>
             </div>
           </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
 
         {/* Card 4: Resolved */}
-        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 relative overflow-hidden text-left flex flex-col justify-between">
-          <div className="absolute -right-6 -top-6 size-24 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+        <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
+          <div className="absolute -right-6 -top-6 size-24 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
           <div className="relative z-10 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider">
                 Resolved Tickets
               </span>
-              <div className="size-9 sm:size-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-xs group-hover:scale-110 transition-transform duration-300">
-                <CheckCircle2 className="w-4.5 h-4.5 text-white" />
+              <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <CheckCircle2 className="w-6 h-6 text-white" />
               </div>
             </div>
             <div>
-              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <span className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                 {resolvedCount}
               </span>
-              <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
+              <p className="text-xs sm:text-sm font-semibold text-teal-600 dark:text-teal-400 mt-1">
                 Closed Successfully
               </p>
             </div>
           </div>
+          <div className="relative z-10 mt-4 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
         </div>
       </div>
 
@@ -397,8 +401,8 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               className="group p-5 sm:p-6 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 bg-white/95 dark:bg-zinc-900/95 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden flex flex-col justify-between space-y-4"
             >
               {/* Corner Ambient Glows */}
-              <div className="absolute -right-8 -top-8 size-36 bg-amber-500/10 dark:bg-amber-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
-              <div className="absolute -bottom-8 -left-8 size-28 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
+              <div className="absolute -bottom-8 -left-8 size-28 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl pointer-events-none" />
 
               <div className="space-y-4 relative z-10">
                 {/* Header Badge Row */}
@@ -422,10 +426,10 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                   <img
                     src={ticket.image || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=160'}
                     alt={ticket.title}
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border border-slate-200 dark:border-zinc-700 shrink-0 group-hover:scale-105 transition-transform duration-300"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg object-cover border border-slate-200 dark:border-zinc-700 shrink-0 group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="min-w-0 flex-1">
-                    <span className="text-[11px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                    <span className="text-[11px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-wider">
                       {ticket.category || 'General Repair'}
                     </span>
                     <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white line-clamp-1 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
@@ -449,7 +453,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                     <div className="flex items-center justify-between text-xs">
                       <span className="flex items-center gap-1.5 text-teal-700 dark:text-teal-300 font-extrabold">
                         <Sparkles className="w-3.5 h-3.5 text-teal-500" />
-                        <span>AI Diagnosis & Root Cause:</span>
+                        <span>AI Diagnosis &amp; Root Cause:</span>
                       </span>
                       <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                         {ticket.aiTriaging.estimatedCostRange}
@@ -463,9 +467,9 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
 
                 {/* Dispatched Technician Strip */}
                 {ticket.technician && ticket.status !== 'Resolved' && (
-                  <div className="flex items-center justify-between text-xs p-2.5 bg-slate-50 dark:bg-zinc-800/60 rounded-xl border border-slate-100 dark:border-zinc-800">
+                  <div className="flex items-center justify-between text-xs p-2.5 bg-slate-50 dark:bg-zinc-800/60 rounded-lg border border-slate-100 dark:border-zinc-800">
                     <div className="flex items-center gap-2">
-                      <div className="size-7 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 flex items-center justify-center font-bold text-xs">
+                      <div className="size-7 rounded-full bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-300 flex items-center justify-center font-bold text-xs">
                         <Truck className="w-3.5 h-3.5" />
                       </div>
                       <div>
@@ -475,8 +479,8 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                     </div>
 
                     {ticket.etaMinutes ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 rounded-full text-[11px] font-extrabold border border-indigo-200 dark:border-indigo-800">
-                        <Clock className="w-3 h-3 text-indigo-500 animate-spin" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-300 rounded-full text-[11px] font-extrabold border border-teal-200 dark:border-teal-800">
+                        <Clock className="w-3 h-3 text-teal-500 animate-spin" />
                         <span>ETA: ~{ticket.etaMinutes} mins</span>
                       </span>
                     ) : (
@@ -492,9 +496,9 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                   {ticket.aiTriaging?.safetyGuideline && (
                     <button
                       onClick={() => setSafetyModal(ticket)}
-                      className="px-3 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 text-xs font-bold hover:bg-amber-100 transition cursor-pointer flex items-center gap-1"
+                      className="px-3 py-1.5 rounded-lg bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200/80 dark:border-teal-800/80 text-xs font-bold hover:bg-teal-100/60 transition cursor-pointer flex items-center gap-1.5"
                     >
-                      <ShieldAlert className="w-3.5 h-3.5" />
+                      <ShieldAlert className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                       <span>Safety Guide</span>
                     </button>
                   )}
@@ -502,9 +506,9 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                   {ticket.etaMinutes && (
                     <button
                       onClick={() => setGpsTrackerModal(ticket)}
-                      className="px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-bold hover:bg-indigo-100 transition cursor-pointer flex items-center gap-1"
+                      className="px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80 text-xs font-bold hover:bg-emerald-100/60 transition cursor-pointer flex items-center gap-1.5"
                     >
-                      <Truck className="w-3.5 h-3.5" />
+                      <Truck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                       <span>Live GPS Track</span>
                     </button>
                   )}
@@ -517,7 +521,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                       setContractorInput(ticket.contractorName || '');
                       setNotesInput(ticket.resolutionNotes || '');
                     }}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold shadow-xs transition cursor-pointer"
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold shadow-xs transition cursor-pointer"
                   >
                     Manage Work Order
                   </button>
@@ -534,7 +538,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-lg w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600">
+                <div className="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <Truck className="w-5 h-5" />
                 </div>
                 <div>
@@ -546,20 +550,20 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               </div>
               <button
                 onClick={() => setGpsTrackerModal(null)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Simulated Live GPS Radar Graphic */}
-            <div className="relative h-48 rounded-lg bg-gradient-to-br from-slate-900 to-indigo-950 p-4 overflow-hidden border border-indigo-900/50 flex flex-col justify-between text-white">
+            <div className="relative h-48 rounded-lg bg-gradient-to-br from-slate-900 via-slate-950 to-teal-950 p-4 overflow-hidden border border-teal-900/50 flex flex-col justify-between text-white">
               {/* Radar Grid Lines */}
-              <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-40 rounded-full border border-indigo-500/30 animate-ping pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(#14b8a6_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-40 rounded-full border border-teal-500/30 animate-ping pointer-events-none" />
               
               <div className="relative z-10 flex items-center justify-between text-xs">
-                <span className="px-2.5 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 font-bold flex items-center">
+                <span className="px-2.5 py-1 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 font-bold flex items-center">
                   GPS Signal: 5G Active
                 </span>
                 <span className="font-mono text-emerald-400 font-bold">ETA: ~{gpsTrackerModal.etaMinutes} mins</span>
@@ -567,12 +571,12 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
 
               <div className="relative z-10 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-xl bg-indigo-600 text-white shadow-lg">
+                  <div className="p-2 rounded-lg bg-teal-600 text-white shadow-lg">
                     <Truck className="w-5 h-5 animate-bounce" />
                   </div>
                   <div>
                     <span className="font-bold block text-xs">{gpsTrackerModal.technician?.vehicle}</span>
-                    <span className="text-[10px] text-indigo-300">Approaching destination</span>
+                    <span className="text-[10px] text-teal-300">Approaching destination</span>
                   </div>
                 </div>
 
@@ -587,13 +591,13 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
             <div className="space-y-2 text-xs pt-1">
               <div className="flex items-center gap-2.5 text-emerald-600 dark:text-emerald-400 font-bold">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>Ticket Triaged & Work Order Authorized</span>
+                <span>Ticket Triaged &amp; Work Order Authorized</span>
               </div>
               <div className="flex items-center gap-2.5 text-emerald-600 dark:text-emerald-400 font-bold">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                 <span>Replacement Parts Pulled from Central Depot</span>
               </div>
-              <div className="flex items-center gap-2.5 text-indigo-600 dark:text-indigo-400 font-bold animate-pulse">
+              <div className="flex items-center gap-2.5 text-teal-600 dark:text-teal-400 font-bold animate-pulse">
                 <Truck className="w-4 h-4 shrink-0" />
                 <span>In Transit (En Route with ETA {gpsTrackerModal.etaMinutes} mins)</span>
               </div>
@@ -602,7 +606,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
             <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between">
               <a
                 href={`tel:${gpsTrackerModal.technician?.phone}`}
-                className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-200 transition"
+                className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-zinc-800 text-slate-800 dark:text-zinc-200 text-xs font-bold flex items-center gap-1.5 hover:bg-slate-200 transition"
               >
                 <Phone className="w-3.5 h-3.5 text-teal-500" />
                 <span>Call Technician</span>
@@ -610,7 +614,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
 
               <button
                 onClick={() => setGpsTrackerModal(null)}
-                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-xl text-xs font-bold hover:opacity-90 transition cursor-pointer"
+                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-lg text-xs font-bold hover:opacity-90 transition cursor-pointer"
               >
                 Close Radar
               </button>
@@ -625,7 +629,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
           <div className="bg-white dark:bg-zinc-900 p-6 sm:p-7 rounded-lg border border-slate-200 dark:border-zinc-800 max-w-md w-full shadow-2xl space-y-4 relative overflow-hidden text-left">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600">
+                <div className="p-2 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-teal-600">
                   <ShieldAlert className="w-5 h-5" />
                 </div>
                 <div>
@@ -637,17 +641,17 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               </div>
               <button
                 onClick={() => setSafetyModal(null)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="p-4 rounded-lg bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/80 space-y-2 text-xs">
-              <span className="font-bold text-amber-900 dark:text-amber-200 block uppercase tracking-wider text-[11px]">
+            <div className="p-4 rounded-lg bg-teal-50/60 dark:bg-teal-950/30 border border-teal-200/80 dark:border-teal-800/80 space-y-2 text-xs">
+              <span className="font-bold text-teal-900 dark:text-teal-200 block uppercase tracking-wider text-[11px]">
                 Immediate Recommended Action:
               </span>
-              <p className="text-amber-800 dark:text-amber-300 leading-relaxed font-medium">
+              <p className="text-teal-800 dark:text-teal-300 leading-relaxed font-medium">
                 {safetyModal.aiTriaging?.safetyGuideline}
               </p>
             </div>
@@ -670,7 +674,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
             <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex justify-end">
               <button
                 onClick={() => setSafetyModal(null)}
-                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-xl text-xs font-bold hover:opacity-90 transition cursor-pointer"
+                className="px-4 py-2 bg-slate-900 dark:bg-zinc-100 text-white dark:text-slate-900 rounded-lg text-xs font-bold hover:opacity-90 transition cursor-pointer"
               >
                 Acknowledge Safety Advice
               </button>
@@ -716,7 +720,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                   placeholder="e.g. Apex Precision HVAC & Climate Co."
                   value={contractorInput}
                   onChange={(e) => setContractorInput(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs outline-none focus:border-teal-500"
                 />
               </div>
               <div>
@@ -728,7 +732,7 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
                   placeholder="e.g. Capacitor replaced and cold airflow verified at 54°F"
                   value={notesInput}
                   onChange={(e) => setNotesInput(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs outline-none focus:border-teal-500"
                 />
               </div>
             </div>
@@ -737,16 +741,16 @@ export default function MaintenanceTicketList({ tickets = [], isOwner = false, o
               <button
                 onClick={() => handleUpdateStatus('In Progress')}
                 disabled={updating}
-                className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold cursor-pointer transition"
+                className="px-4 py-2 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold cursor-pointer transition"
               >
                 Set In Progress
               </button>
               <button
                 onClick={() => handleUpdateStatus('Resolved')}
                 disabled={updating}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer transition"
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold cursor-pointer transition"
               >
-                Mark Resolved & Close
+                Mark Resolved &amp; Close
               </button>
             </div>
           </div>

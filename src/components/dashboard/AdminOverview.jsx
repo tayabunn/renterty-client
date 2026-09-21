@@ -21,20 +21,27 @@ export default function AdminOverview({ onNavigateTab }) {
     if (isManual) setRefreshing(true);
     else setLoading(true);
 
-    const token = localStorage.getItem("renterty_token");
+    const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
     try {
       const res = await fetch(`${API_URL}/admin/overview-stats`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success) {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        },
+        credentials: "include"
+      }).catch(() => null);
+
+      if (res && res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && data.success) {
           setStats(data.data);
         }
       }
     } catch (err) {
       console.warn("Could not load admin stats:", err);
-      toast.error("Failed to load overview analytics");
+      if (isManual) {
+        toast.error("Failed to load overview analytics");
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -107,7 +114,7 @@ export default function AdminOverview({ onNavigateTab }) {
       subtext: `${financials.platformCommissionRate}% commission take-rate`,
       change: "+14.2% MoM",
       icon: TrendingUp,
-      color: "from-emerald-500 to-cyan-500"
+      color: "from-teal-500 to-emerald-500"
     },
     {
       title: "Active Properties",
@@ -115,7 +122,7 @@ export default function AdminOverview({ onNavigateTab }) {
       subtext: `${properties.pending || 0} pending review`,
       change: `${properties.total} total inventory`,
       icon: Building,
-      color: "from-teal-600 to-emerald-500"
+      color: "from-teal-500 to-emerald-500"
     },
     {
       title: "Registered Users",
@@ -123,29 +130,29 @@ export default function AdminOverview({ onNavigateTab }) {
       subtext: `${users.roleCounts?.Owner || 0} Owners · ${users.roleCounts?.Tenant || 0} Renters`,
       change: "+22 new this mo",
       icon: Users,
-      color: "from-emerald-500 to-teal-500"
+      color: "from-teal-500 to-emerald-500"
     }
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-left">
       {/* Header & Quick Action Row */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20">
-              <Sparkles className="h-3 w-3" />
+            <span className="inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200/80 dark:border-teal-800/60">
+              <Sparkles className="h-3.5 w-3.5 text-teal-500" />
               <span>EXECUTIVE COMMAND CENTER</span>
             </span>
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/60">
               <span>LIVE</span>
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1.5">
             Platform Overview
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400">
-            Real-time financial performance, inventory growth, and administrative triage queue.
+          <p className="text-base text-slate-500 dark:text-zinc-400">
+            Real-time financial performance, inventory growth, and administrative triage queue
           </p>
         </div>
 
@@ -153,16 +160,16 @@ export default function AdminOverview({ onNavigateTab }) {
           <button
             onClick={() => fetchOverviewStats(true)}
             disabled={refreshing}
-            className="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800 text-xs font-bold text-slate-700 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-all cursor-pointer disabled:opacity-50"
+            className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-slate-200/80 dark:border-zinc-800/80 text-xs font-bold text-slate-700 dark:text-zinc-300 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:text-teal-600 dark:hover:text-teal-400 transition-all cursor-pointer disabled:opacity-50 shadow-xs"
           >
-            <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin text-teal-500" : ""}`} />
+            <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin text-teal-500" : "text-teal-500"}`} />
             <span>{refreshing ? "Syncing..." : "Refresh"}</span>
           </button>
         </div>
       </div>
 
       {/* Top Row: Executive KPI Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {kpis.map((kpi, index) => {
           const Icon = kpi.icon;
           return (
@@ -171,7 +178,7 @@ export default function AdminOverview({ onNavigateTab }) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.08 }}
-              className="relative p-6 sm:p-7 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+              className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between transition-all duration-300"
             >
               {/* Corner Ambient Glow Orb */}
               <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -180,13 +187,13 @@ export default function AdminOverview({ onNavigateTab }) {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
                   {kpi.title}
                 </span>
-                <div className={`size-11 sm:size-12 rounded-lg bg-linear-to-tr ${kpi.color} text-white flex items-center justify-center text-xl shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-                  <Icon className="h-5 w-5" />
+                <div className="size-12 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center text-xl shrink-0 shadow-md shadow-teal-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                  <Icon className="h-5 w-5 text-white" />
                 </div>
               </div>
 
               <div className="my-2 relative z-10">
-                <div className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                   {kpi.value}
                 </div>
               </div>
@@ -195,11 +202,14 @@ export default function AdminOverview({ onNavigateTab }) {
                 <span className="text-slate-500 dark:text-zinc-400 font-medium truncate">
                   {kpi.subtext}
                 </span>
-                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 border border-teal-200/60 dark:border-teal-800/60 px-2.5 py-0.5 rounded-full shrink-0">
+                <span className="inline-flex items-center gap-1 text-[11px] font-extrabold text-teal-700 dark:text-teal-300 bg-teal-50 dark:bg-teal-950/60 border border-teal-200/60 dark:border-teal-800/60 px-2.5 py-0.5 rounded-full shrink-0">
                   <ArrowUpRight className="h-3 w-3" />
                   <span>{kpi.change}</span>
                 </span>
               </div>
+
+              {/* Bottom Brand Line */}
+              <div className="relative z-10 mt-3.5 h-1.5 w-12 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full shadow-xs shadow-teal-500/30" />
             </motion.div>
           );
         })}
@@ -210,7 +220,7 @@ export default function AdminOverview({ onNavigateTab }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 overflow-hidden space-y-6 group"
+        className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-8 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left space-y-6 transition-all duration-300"
       >
         {/* Corner Ambient Glow Orb */}
         <div className="absolute -right-12 -top-12 size-48 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500" />
@@ -219,32 +229,32 @@ export default function AdminOverview({ onNavigateTab }) {
           <div className="space-y-1">
             <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span>Financial & Booking Volume Velocity</span>
-              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 border border-teal-500/20">
+              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200/80 dark:border-teal-800/60">
                 Last 6 Months
               </span>
             </h2>
-            <p className="text-xs text-slate-500 dark:text-zinc-400">
-              Interactive monthly gross revenue and reservation activity.
+            <p className="text-base text-slate-500 dark:text-zinc-400">
+              Interactive monthly gross revenue and reservation activity
             </p>
           </div>
 
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800 rounded-xl self-start sm:self-auto">
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-zinc-800 rounded-lg self-start sm:self-auto">
             <button
               onClick={() => setChartMode("revenue")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-md text-xs font-bold transition cursor-pointer ${
                 chartMode === "revenue"
-                  ? "bg-white dark:bg-zinc-900 text-teal-600 dark:text-teal-400 shadow-xs"
-                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900"
+                  ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-xs shadow-teal-500/25"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               Revenue ($)
             </button>
             <button
               onClick={() => setChartMode("bookings")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+              className={`px-3.5 py-1.5 rounded-md text-xs font-bold transition cursor-pointer ${
                 chartMode === "bookings"
-                  ? "bg-white dark:bg-zinc-900 text-teal-600 dark:text-teal-400 shadow-xs"
-                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900"
+                  ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-xs shadow-teal-500/25"
+                  : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               Bookings (#)
@@ -270,9 +280,9 @@ export default function AdminOverview({ onNavigateTab }) {
                 >
                   {/* Tooltip on Hover */}
                   {isHovered && (
-                    <div className="absolute -top-10 z-20 px-3 py-1.5 rounded-xl bg-slate-950/90 dark:bg-zinc-900/90 text-white text-[11px] font-bold shadow-xl border border-teal-500/30 whitespace-nowrap animate-in fade-in zoom-in-95 duration-150">
+                    <div className="absolute -top-11 z-20 px-3 py-1.5 rounded-lg bg-slate-950/95 dark:bg-zinc-900/95 text-white text-[11px] font-bold shadow-xl shadow-teal-500/10 border border-teal-500/40 whitespace-nowrap animate-in fade-in zoom-in-95 duration-150">
                       <div>{trend.month}: {chartMode === "revenue" ? `$${trend.revenue.toLocaleString()}` : `${trend.bookings} Bookings`}</div>
-                      <div className="text-[10px] text-teal-300 font-medium">Comm: ${trend.commission.toLocaleString()}</div>
+                      <div className="text-[10px] text-teal-400 font-semibold">Commission: ${trend.commission.toLocaleString()}</div>
                     </div>
                   )}
 
@@ -281,10 +291,10 @@ export default function AdminOverview({ onNavigateTab }) {
                     initial={{ height: 0 }}
                     animate={{ height: `${heightPct}%` }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className={`w-full max-w-[56px] rounded-2xl transition-all duration-300 ${
+                    className={`w-full max-w-[56px] rounded-t-xl rounded-b-md transition-all duration-300 ${
                       isHovered
-                        ? "bg-gradient-to-t from-teal-600 to-emerald-400 shadow-lg shadow-teal-500/20"
-                        : "bg-gradient-to-t from-teal-500/80 to-emerald-500/90 hover:from-teal-500 hover:to-emerald-400"
+                        ? "bg-gradient-to-t from-teal-600 via-teal-500 to-emerald-400 shadow-lg shadow-teal-500/30"
+                        : "bg-gradient-to-t from-teal-500 to-emerald-500/90 hover:from-teal-600 hover:to-emerald-400"
                     }`}
                   />
                   <span className={`text-xs font-bold mt-3 transition-colors ${
@@ -297,7 +307,7 @@ export default function AdminOverview({ onNavigateTab }) {
             })}
           </div>
 
-          <div className="flex items-center justify-between text-xs text-slate-400 dark:text-zinc-500 pt-3">
+          <div className="flex items-center justify-between text-xs text-slate-400 dark:text-zinc-500 pt-3 border-t border-slate-100 dark:border-zinc-800/50">
             <span>Base Benchmark: $0</span>
             <span>Peak Month Target: ${maxRevenue.toLocaleString()}</span>
           </div>
@@ -311,7 +321,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 space-y-6 overflow-hidden group"
+          className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-7 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left space-y-6 transition-all duration-300"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -322,13 +332,13 @@ export default function AdminOverview({ onNavigateTab }) {
                 <Layers className="h-4 w-4 text-teal-500" />
                 <span>Inventory Distribution</span>
               </h3>
-              <p className="text-xs text-slate-500 dark:text-zinc-400">
+              <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
                 Breakdown of active listings across rental categories.
               </p>
             </div>
             <button
               onClick={() => onNavigateTab && onNavigateTab("admin-properties")}
-              className="text-xs font-bold text-teal-600 dark:text-teal-400 hover:underline flex items-center space-x-1 cursor-pointer"
+              className="text-xs font-bold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 flex items-center space-x-1 cursor-pointer"
             >
               <span>Manage</span>
               <ChevronRight className="h-3.5 w-3.5" />
@@ -338,17 +348,17 @@ export default function AdminOverview({ onNavigateTab }) {
           <div className="space-y-4 relative z-10">
             {[
               { type: "Apartment", pct: 42, count: 16, color: "bg-gradient-to-r from-teal-500 to-emerald-500" },
-              { type: "House", pct: 26, count: 10, color: "bg-gradient-to-r from-teal-600 to-emerald-400" },
-              { type: "Villa", pct: 18, count: 7, color: "bg-gradient-to-r from-emerald-500 to-teal-400" },
-              { type: "Studio", pct: 10, count: 4, color: "bg-gradient-to-r from-teal-700 to-emerald-600" },
-              { type: "Cabin", pct: 4, count: 1, color: "bg-gradient-to-r from-emerald-700 to-teal-600" },
+              { type: "House", pct: 26, count: 10, color: "bg-gradient-to-r from-teal-500 to-emerald-400" },
+              { type: "Villa", pct: 18, count: 7, color: "bg-gradient-to-r from-teal-600 to-emerald-500" },
+              { type: "Studio", pct: 10, count: 4, color: "bg-gradient-to-r from-teal-500 to-teal-400" },
+              { type: "Cabin", pct: 4, count: 1, color: "bg-gradient-to-r from-emerald-600 to-teal-500" },
             ].map((cat) => (
               <div key={cat.type} className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs font-bold">
                   <span className="text-slate-800 dark:text-zinc-200">{cat.type}</span>
                   <span className="text-slate-500 dark:text-zinc-400">{cat.count} listings ({cat.pct}%)</span>
                 </div>
-                <div className="h-2.5 w-full bg-slate-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-slate-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${cat.pct}%` }}
@@ -366,7 +376,7 @@ export default function AdminOverview({ onNavigateTab }) {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: 0.3 }}
-          className="relative p-6 sm:p-8 rounded-lg bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 space-y-6 flex flex-col justify-between overflow-hidden group"
+          className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-7 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left space-y-6 flex flex-col justify-between transition-all duration-300"
         >
           {/* Corner Ambient Glow Orb */}
           <div className="absolute -right-8 -top-8 size-32 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none" />
@@ -378,20 +388,20 @@ export default function AdminOverview({ onNavigateTab }) {
                   <AlertCircle className="h-4 w-4 text-teal-500" />
                   <span>Priority Moderation Queue</span>
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-400">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
                   Listings and tickets awaiting administrator review.
                 </p>
               </div>
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200/80 dark:border-teal-800/60">
                 {properties.pending || 0} Pending
               </span>
             </div>
 
             <div className="space-y-3">
               {properties.pending > 0 ? (
-                <div className="p-4 rounded-lg bg-teal-50/50 dark:bg-teal-950/20 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between">
+                <div className="p-4 rounded-lg bg-teal-50/50 dark:bg-teal-950/30 border border-teal-200/60 dark:border-teal-800/60 flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="size-10 rounded-lg bg-teal-500 text-white flex items-center justify-center font-bold">
+                    <div className="size-11 rounded-lg bg-gradient-to-br from-teal-500 to-emerald-500 text-white flex items-center justify-center font-bold shadow-md shadow-teal-500/20">
                       <Building className="h-5 w-5" />
                     </div>
                     <div>
@@ -405,7 +415,7 @@ export default function AdminOverview({ onNavigateTab }) {
                   </div>
                   <button
                     onClick={() => onNavigateTab && onNavigateTab("admin-properties")}
-                    className="px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition shadow-xs cursor-pointer"
+                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white text-xs font-bold transition-all shadow-xs shadow-teal-500/20 hover:shadow-teal-500/30 cursor-pointer"
                   >
                     Review Listings
                   </button>

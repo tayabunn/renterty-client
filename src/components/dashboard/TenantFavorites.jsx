@@ -185,41 +185,52 @@ export default function TenantFavorites() {
   const [selectedForCompare, setSelectedForCompare] = useState([]);
   const [tourModalProperty, setTourModalProperty] = useState(null);
 
-  const fetchFavorites = async () => {
-    const token = localStorage.getItem("renterty_token");
-    try {
-      const res = await fetch(`${API_URL}/favorites`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          // Enrich real favorites if any
-          const enriched = data.map((fav, idx) => ({
-            ...DEMO_FAVORITES[idx % DEMO_FAVORITES.length],
-            ...fav,
-            propertyId: {
-              ...DEMO_FAVORITES[idx % DEMO_FAVORITES.length].propertyId,
-              ...(fav.propertyId || {})
-            }
-          }));
-          setFavorites(enriched);
-        } else {
-          setFavorites(DEMO_FAVORITES);
-        }
-      } else {
-        setFavorites(DEMO_FAVORITES);
-      }
-    } catch (err) {
-      console.error(err);
-      setFavorites(DEMO_FAVORITES);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchFavorites = async () => {
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
+      try {
+        const res = await fetch(`${API_URL}/favorites`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            if (Array.isArray(data) && data.length > 0) {
+              // Enrich real favorites if any
+              const enriched = data.map((fav, idx) => ({
+                ...DEMO_FAVORITES[idx % DEMO_FAVORITES.length],
+                ...fav,
+                propertyId: {
+                  ...DEMO_FAVORITES[idx % DEMO_FAVORITES.length].propertyId,
+                  ...(fav.propertyId || {})
+                }
+              }));
+              setFavorites(enriched);
+            } else {
+              setFavorites(DEMO_FAVORITES);
+            }
+          }
+        } else {
+          if (isMounted) setFavorites(DEMO_FAVORITES);
+        }
+      } catch (err) {
+        if (isMounted) setFavorites(DEMO_FAVORITES);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
     fetchFavorites();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleRemoveFavorite = async (favoriteId) => {
@@ -292,7 +303,7 @@ export default function TenantFavorites() {
             <Heart className="w-7 h-7 text-rose-500 fill-rose-500/20" />
             <span>Saved Favorites & Wishlist ({favorites.length})</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1">
+          <p className="text-base text-slate-500 dark:text-zinc-400 mt-1">
             Compare rental amenities side-by-side, schedule walkthroughs, and receive instant price reduction notifications.
           </p>
         </div>

@@ -122,3 +122,13 @@ export const aiAnalyzeReviews = async ({ propertyId, ownerId, reviewTexts }) => 
 export const aiGetStats = async () => {
   return await aiFetch('/ai/stats');
 };
+
+/**
+ * 10. Groq Whisper Audio Transcription
+ */
+export const aiTranscribeAudio = async (audioUrl, language = 'en') => {
+  return await aiFetch('/ai/transcribe', {
+    method: 'POST',
+    body: JSON.stringify({ audioUrl, language })
+  });
+};

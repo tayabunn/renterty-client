@@ -95,32 +95,43 @@ export default function AdminTransactions() {
   const [statusFilter, setStatusFilter] = useState("ALL");
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchTransactions = async () => {
-      const token = localStorage.getItem("renterty_token");
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
       try {
         const res = await fetch(`${API_URL}/bookings/admin`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          const paidBookings = data.filter((b) => b.paymentStatus === "Paid");
-          if (paidBookings.length > 0) {
-            setTransactions(paidBookings);
-          } else {
-            setTransactions(DEMO_TRANSACTIONS);
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            const paidBookings = Array.isArray(data) ? data.filter((b) => b.paymentStatus === "Paid") : [];
+            if (paidBookings.length > 0) {
+              setTransactions(paidBookings);
+            } else {
+              setTransactions(DEMO_TRANSACTIONS);
+            }
           }
         } else {
-          setTransactions(DEMO_TRANSACTIONS);
+          if (isMounted) setTransactions(DEMO_TRANSACTIONS);
         }
       } catch (err) {
-        console.error(err);
-        setTransactions(DEMO_TRANSACTIONS);
+        if (isMounted) setTransactions(DEMO_TRANSACTIONS);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchTransactions();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filtered = transactions.filter((tx) => {
@@ -163,8 +174,8 @@ export default function AdminTransactions() {
             <Landmark className="w-6 h-6 text-teal-500" />
             <span>Financial Transactions & Escrow Logs</span>
           </h2>
-          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-            Real-time ledger of reservation deposits, platform commissions, and automated landlord payouts.
+          <p className="text-base text-slate-500 dark:text-zinc-400 mt-0.5">
+            Real-time ledger of reservation deposits, platform commissions, and automated landlord payouts
           </p>
         </div>
 
@@ -276,7 +287,7 @@ export default function AdminTransactions() {
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${
                         tx.escrowStatus === "Payout Released"
-                          ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 border-blue-200 dark:border-blue-800"
+                          ? "bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400 border-teal-200 dark:border-teal-800"
                           : "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                       }`}
                     >

@@ -16,6 +16,7 @@ import MaintenanceRequestModal from "../../../components/maintenance/Maintenance
 import ChatWindow from "../../../components/chat/ChatWindow";
 import NeighborhoodScore from "../../../components/map/NeighborhoodScore";
 import ShareModal from "../../../components/properties/ShareModal";
+import AudioOverviewPlayer from "@/components/ui/AudioOverviewPlayer";
 import { API_URL } from "@/lib/config";
 
 const sanitizePropertyData = (prop) => {
@@ -420,6 +421,18 @@ export default function PropertyDetails() {
                 <PropertyDetailImage property={property} />
               </div>
 
+              {/* AI Audio Overview Player */}
+              <AudioOverviewPlayer
+                title={property.title}
+                location={property.location}
+                propertyType={property.propertyType}
+                rent={property.rent}
+                rentType={property.rentType}
+                bedrooms={property.bedrooms}
+                bathrooms={property.bathrooms}
+                description={property.description}
+              />
+
               {/* Description Card */}
               <div className="bg-white dark:bg-zinc-900/40 p-5 sm:p-7 md:p-8 rounded-lg border border-slate-200/60 dark:border-zinc-800/60 shadow-sm space-y-6">
                 <div className="space-y-3">
@@ -618,9 +631,9 @@ export default function PropertyDetails() {
                       if (!user) router.push('/login');
                       else setShowTourModal(true);
                     }}
-                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/50 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Calendar className="w-4 h-4 text-emerald-500" />
+                    <Calendar className="w-4 h-4 text-teal-500" />
                     <span>Schedule Property Tour</span>
                   </button>
 
@@ -630,7 +643,7 @@ export default function PropertyDetails() {
                       if (!user) router.push('/login');
                       else setShowChatModal(true);
                     }}
-                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-teal-500 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/50 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4 text-teal-500" />
                     <span>Direct Message Host</span>
@@ -642,10 +655,10 @@ export default function PropertyDetails() {
                       if (!user) router.push('/login');
                       else setShowLeaseModal(true);
                     }}
-                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/50 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <PenTool className="w-4 h-4 text-blue-500" />
-                    <span>Digital Lease & E-Sign</span>
+                    <PenTool className="w-4 h-4 text-teal-500" />
+                    <span>Digital Lease &amp; E-Sign</span>
                   </button>
 
                   <button
@@ -654,9 +667,9 @@ export default function PropertyDetails() {
                       if (!user) router.push('/login');
                       else setShowMaintenanceModal(true);
                     }}
-                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-zinc-800 hover:border-amber-500 hover:bg-amber-50/50 dark:hover:bg-amber-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-lg border border-slate-200/80 dark:border-zinc-800/80 hover:border-emerald-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-slate-700 dark:text-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Wrench className="w-4 h-4 text-amber-500" />
+                    <Wrench className="w-4 h-4 text-emerald-500" />
                     <span>Report Maintenance (AI Triage)</span>
                   </button>
                 </div>

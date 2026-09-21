@@ -43,32 +43,43 @@ export default function OwnerRequests() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("ALL");
 
-  const fetchRequests = async () => {
-    const token = localStorage.getItem("renterty_token");
-    try {
-      const res = await fetch(`${API_URL}/bookings/owner`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          setRequests(data);
-        } else {
-          setRequests(DEMO_OWNER_REQUESTS);
-        }
-      } else {
-        setRequests(DEMO_OWNER_REQUESTS);
-      }
-    } catch (err) {
-      console.error(err);
-      setRequests(DEMO_OWNER_REQUESTS);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchRequests = async () => {
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
+      try {
+        const res = await fetch(`${API_URL}/bookings/owner`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            if (Array.isArray(data) && data.length > 0) {
+              setRequests(data);
+            } else {
+              setRequests(DEMO_OWNER_REQUESTS);
+            }
+          }
+        } else {
+          if (isMounted) setRequests(DEMO_OWNER_REQUESTS);
+        }
+      } catch (err) {
+        if (isMounted) setRequests(DEMO_OWNER_REQUESTS);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
     fetchRequests();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleStatusChange = async (id, status) => {

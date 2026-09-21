@@ -645,7 +645,7 @@ function EstimatorContent() {
                       &le; ${activeRecommendedRent.toLocaleString()}/mo
                     </span>
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1">
+                  <p className="text-base text-slate-500 dark:text-zinc-400 mt-1">
                     Live verified listings currently available for instant reservation
                   </p>
                 </div>

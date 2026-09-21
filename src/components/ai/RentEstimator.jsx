@@ -62,7 +62,7 @@ export default function RentEstimator({
                 Data-Driven
               </span>
             </h4>
-            <p className="text-[11px] text-slate-500 dark:text-zinc-400">
+            <p className="text-xs text-slate-500 dark:text-zinc-400">
               Calculate fair market pricing based on comparable local listings
             </p>
           </div>

@@ -156,38 +156,49 @@ export default function TenantBookings() {
   const [copiedCode, setCopiedCode] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchBookings = async () => {
-      const token = localStorage.getItem("renterty_token");
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
       try {
         const res = await fetch(`${API_URL}/bookings/tenant`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            // Merge or set real bookings with demo enrichment for complete fields
-            const enriched = data.map((b, idx) => ({
-              ...DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length],
-              ...b,
-              propertyName: b.propertyName || DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length].propertyName,
-              amount: b.amount || DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length].amount
-            }));
-            setBookings(enriched);
-          } else {
-            setBookings(DEMO_BOOKINGS);
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            if (Array.isArray(data) && data.length > 0) {
+              // Merge or set real bookings with demo enrichment for complete fields
+              const enriched = data.map((b, idx) => ({
+                ...DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length],
+                ...b,
+                propertyName: b.propertyName || DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length].propertyName,
+                amount: b.amount || DEMO_BOOKINGS[idx % DEMO_BOOKINGS.length].amount
+              }));
+              setBookings(enriched);
+            } else {
+              setBookings(DEMO_BOOKINGS);
+            }
           }
         } else {
-          setBookings(DEMO_BOOKINGS);
+          if (isMounted) setBookings(DEMO_BOOKINGS);
         }
       } catch (err) {
-        console.error(err);
-        setBookings(DEMO_BOOKINGS);
+        if (isMounted) setBookings(DEMO_BOOKINGS);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchBookings();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleCopy = (text) => {
@@ -246,7 +257,7 @@ export default function TenantBookings() {
             <ClipboardCheck className="w-7 h-7 text-teal-500" />
             <span>My Bookings & Leases</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1">
+          <p className="text-base text-slate-500 dark:text-zinc-400 mt-1">
             Access verified rental agreements, digital door codes, escrow receipts, and check-in guides.
           </p>
         </div>
@@ -419,7 +430,7 @@ export default function TenantBookings() {
                       b.bookingStatus === "Approved"
                         ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                         : b.bookingStatus === "Completed"
-                        ? "bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 border-blue-200 dark:border-blue-800"
+                        ? "bg-teal-50 text-teal-700 dark:bg-teal-950/60 dark:text-teal-400 border-teal-200 dark:border-teal-800"
                         : "bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800"
                     }`}
                   >

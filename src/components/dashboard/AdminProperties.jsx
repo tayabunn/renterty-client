@@ -16,26 +16,37 @@ export default function AdminProperties() {
   const [rejectionFeedback, setRejectionFeedback] = useState("");
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
 
-  const fetchProperties = async () => {
-    const token = localStorage.getItem("renterty_token");
-    try {
-      const res = await fetch(`${API_URL}/properties/admin`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setProperties(data);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Error loading properties list");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchProperties = async () => {
+      const token = typeof window !== "undefined" ? localStorage.getItem("renterty_token") : null;
+      try {
+        const res = await fetch(`${API_URL}/properties/admin`, {
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {})
+          },
+          credentials: "include"
+        }).catch(() => null);
+
+        if (res && res.ok) {
+          const data = await res.json().catch(() => []);
+          if (isMounted) {
+            setProperties(Array.isArray(data) ? data : []);
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to load admin properties:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
     fetchProperties();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleApprove = async (id) => {
@@ -137,30 +148,31 @@ export default function AdminProperties() {
 
   return (
     <div className="space-y-6 text-left">
-      <div className="bg-white dark:bg-zinc-900 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 transition-all duration-300 rounded-lg overflow-hidden">
-        <div className="overflow-x-auto">
+      <div className="bg-white/95 dark:bg-zinc-900/95 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 transition-all duration-300 rounded-lg overflow-hidden relative">
+        <div className="absolute -right-8 -top-8 size-36 bg-teal-500/10 dark:bg-teal-500/15 rounded-full blur-2xl pointer-events-none" />
+        <div className="overflow-x-auto relative z-10">
           <table className="min-w-full divide-y divide-slate-100 dark:divide-zinc-800 text-left text-sm">
-            <thead className="bg-slate-50 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
+            <thead className="bg-slate-50/80 dark:bg-zinc-950 font-bold text-slate-700 dark:text-zinc-300">
               <tr>
-                <th className="px-6 py-4">Property Info</th>
-                <th className="px-6 py-4">Owner Info</th>
-                <th className="px-6 py-4">Rent Price</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Moderation Actions</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Property Info</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Owner Info</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Rent Price</th>
+                <th className="px-6 py-4 text-xs uppercase tracking-wider">Status</th>
+                <th className="px-6 py-4 text-right text-xs uppercase tracking-wider">Moderation Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-zinc-800/50 font-medium text-slate-800 dark:text-zinc-200">
               {properties.map((prop) => (
-                <tr key={prop._id} className="hover:bg-slate-50/55 dark:hover:bg-zinc-900/30 transition">
+                <tr key={prop._id} className="hover:bg-slate-50/60 dark:hover:bg-zinc-800/40 transition-colors">
                   <td className="px-6 py-4 flex items-center space-x-3">
                     <img
                       src={prop.images[0] || "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=100"}
                       alt={prop.title}
-                      className="h-10 w-16 object-cover rounded-lg border"
+                      className="h-10 w-16 object-cover rounded-lg border border-slate-200/80 dark:border-zinc-700"
                     />
                     <div>
                       <span className="font-bold block text-slate-900 dark:text-white">{prop.title}</span>
-                      <span className="text-xs text-slate-500 dark:text-zinc-500">{prop.location}</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">{prop.location}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -168,7 +180,7 @@ export default function AdminProperties() {
                       <span className="block font-bold text-slate-900 dark:text-white">
                         {prop.ownerId ? prop.ownerId.name : "N/A"}
                       </span>
-                      <span className="text-xs text-slate-500">{prop.ownerEmail}</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">{prop.ownerEmail}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-teal-600 dark:text-teal-400 font-extrabold">
@@ -176,15 +188,15 @@ export default function AdminProperties() {
                   </td>
                   <td className="px-6 py-4">
                     <span
-                      className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                      className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ${
                         prop.status === "Approved"
-                          ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:text-emerald-400"
+                          ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800"
                           : prop.status === "Rejected"
-                          ? "bg-red-50 text-red-600 dark:bg-red-950/20 dark:text-red-400"
-                          : "bg-amber-50 text-amber-600 dark:bg-amber-950/20 dark:text-amber-400"
+                          ? "bg-rose-50 text-rose-700 dark:bg-rose-950/60 dark:text-rose-400 border-rose-200 dark:border-rose-800"
+                          : "bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border-amber-200 dark:border-amber-800"
                       }`}
                     >
-                      {prop.status}
+                      <span>{prop.status}</span>
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
@@ -194,7 +206,7 @@ export default function AdminProperties() {
                       {prop.status !== "Approved" && (
                         <button
                           onClick={() => handleApprove(prop._id)}
-                          className="p-1.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg transition cursor-pointer"
+                          className="p-1.5 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 hover:bg-emerald-100 rounded-lg transition cursor-pointer"
                           title="Approve Listing"
                         >
                           <Check className="h-4 w-4" />
@@ -203,7 +215,7 @@ export default function AdminProperties() {
                       {prop.status !== "Rejected" && (
                         <button
                           onClick={() => handleRejectOpen(prop._id)}
-                          className="p-1.5 bg-red-50 text-red-600 dark:bg-red-950/20 dark:text-red-400 hover:bg-red-100 rounded-lg transition cursor-pointer"
+                          className="p-1.5 bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400 hover:bg-rose-100 rounded-lg transition cursor-pointer"
                           title="Reject Listing"
                         >
                           <X className="h-4 w-4" />
@@ -211,7 +223,7 @@ export default function AdminProperties() {
                       )}
                       <button
                         onClick={() => handleDelete(prop._id)}
-                        className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                        className="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition cursor-pointer"
                         title="Permanently Delete Listing"
                       >
                         <Trash2 className="h-4 w-4" />

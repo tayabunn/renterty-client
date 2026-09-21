@@ -35,17 +35,18 @@ export default function MaintenanceView({ isOwner = false, user }) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold">
-            <span>AI Automated Triaging & Vendor Dispatch Active</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-2 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/80 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 text-xs font-bold">
+            <Sparkles className="w-3.5 h-3.5 text-teal-500" />
+            <span>AI Automated Triaging &amp; Vendor Dispatch Active</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-            <Wrench className="w-7 h-7 text-amber-500" />
+            <Wrench className="w-7 h-7 text-teal-500" />
             <span>{isOwner ? 'Property Maintenance & Repair Dispatch' : 'Maintenance & Emergency Requests'}</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 mt-1">
+          <p className="text-base text-slate-500 dark:text-zinc-400 mt-1">
             {isOwner
-              ? 'Real-time AI diagnostic triaging, contractor dispatch assignments, and invoice approvals.'
-              : 'Submit repair tickets, receive instant AI safety guidance, and track technician arrival in real-time.'}
+              ? 'Real-time AI diagnostic triaging, contractor dispatch assignments, and invoice approvals'
+              : 'Submit repair tickets, receive instant AI safety guidance, and track technician arrival in real-time'}
           </p>
         </div>
 
@@ -62,7 +63,7 @@ export default function MaintenanceView({ isOwner = false, user }) {
 
       {loading ? (
         <div className="py-16 flex flex-col items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mb-2"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500 mb-2"></div>
           <p className="text-xs text-slate-500">Connecting to maintenance dispatch engine...</p>
         </div>
       ) : (
