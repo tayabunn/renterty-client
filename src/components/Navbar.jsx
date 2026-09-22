@@ -7,7 +7,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import { Menu, X, Building2, LayoutDashboard, LogOut, User, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSession } from "@/lib/auth-client";
 import { AnimatedThemeToggler } from "@/registry/magicui/animated-theme-toggler";
 import { InteractiveHoverButton } from "@/registry/magicui/interactive-hover-button";
 
@@ -15,7 +14,6 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
-  const {data: session} = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   // Desktop user menu dropdown state & click-outside

@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
-  serverExternalPackages: ['@better-auth/kysely-adapter', 'kysely'],
-  reactCompiler: true,
+  turbopack: {
+    root: '.',
+  },
+  serverExternalPackages: [
+    'better-auth',
+    '@better-auth/mongo-adapter',
+    'mongodb'
+  ],
   images: {
     formats: ['image/avif', 'image/webp'],
     qualities: [75],

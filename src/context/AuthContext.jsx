@@ -7,30 +7,38 @@ import toast from "react-hot-toast";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const { data: sessionData, isPending } = authClient.useSession();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Sync user state from Better Auth session
-  useEffect(() => {
-    if (!isPending) {
-      if (sessionData && sessionData.user) {
-        if (sessionData.session?.token) {
-          localStorage.setItem("renterty_token", sessionData.session.token);
+  const fetchSession = async () => {
+    try {
+      if (typeof window === "undefined") return;
+      const res = await authClient.getSession();
+      if (res && res.data && res.data.user) {
+        if (res.data.session?.token) {
+          localStorage.setItem("renterty_token", res.data.session.token);
         }
         setUser({
-          id: sessionData.user.id,
-          name: sessionData.user.name,
-          email: sessionData.user.email,
-          role: sessionData.user.role || "Tenant",
-          photo: sessionData.user.photo || sessionData.user.image || "",
+          id: res.data.user.id,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          role: res.data.user.role || "Tenant",
+          photo: res.data.user.photo || res.data.user.image || "",
         });
       } else {
         setUser(null);
       }
+    } catch (e) {
+      setUser(null);
+    } finally {
       setLoading(false);
     }
-  }, [sessionData, isPending]);
+  };
+
+  useEffect(() => {
+    fetchSession();
+  }, []);
 
   // Login handler
   const login = async (email, password) => {

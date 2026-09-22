@@ -12,10 +12,15 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { bearer } from "better-auth/plugins";
 import dns from "dns";
 
-dns.setServers(['8.8.8.8', '1.1.1.1']);
+if (typeof dns !== 'undefined' && typeof dns.setServers === 'function') {
+  try {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+  } catch (e) {}
+}
 
-const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db(process.env.DB_NAME);
+const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://localhost:27017/renterty';
+const client = new MongoClient(mongoUri);
+const db = client.db(process.env.DB_NAME || 'renterty');
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
