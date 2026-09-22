@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@better-auth/mongo-adapter": "^1.6.20",
-    "@proofly-framer/ui": "file:c:/Users/Power PC/Desktop/3f6d2a77-bf61-4006-ae06-57a5cf7d36bf/package",
     "@stripe/react-stripe-js": "^6.6.0",
     "@stripe/stripe-js": "^9.8.0",
     "better-auth": "^1.6.19",
