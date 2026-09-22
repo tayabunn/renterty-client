@@ -332,8 +332,8 @@ export default function AdminOverview({ onNavigateTab }) {
                 <Layers className="h-4 w-4 text-teal-500" />
                 <span>Inventory Distribution</span>
               </h3>
-              <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                Breakdown of active listings across rental categories.
+              <p className="text-sm text-slate-500 dark:text-zinc-400 mt-0.5">
+                Breakdown of active listings across rental categories
               </p>
             </div>
             <button
@@ -388,8 +388,8 @@ export default function AdminOverview({ onNavigateTab }) {
                   <AlertCircle className="h-4 w-4 text-teal-500" />
                   <span>Priority Moderation Queue</span>
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
-                  Listings and tickets awaiting administrator review.
+                <p className="text-sm text-slate-500 dark:text-zinc-400 mt-0.5">
+                  Listings and tickets awaiting administrator review
                 </p>
               </div>
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200/80 dark:border-teal-800/60">
@@ -424,7 +424,7 @@ export default function AdminOverview({ onNavigateTab }) {
                 <div className="p-6 rounded-lg bg-slate-50/60 dark:bg-zinc-800/40 border border-dashed border-slate-200 dark:border-zinc-800 text-center space-y-1">
                   <CheckCircle2 className="h-6 w-6 text-emerald-500 mx-auto" />
                   <div className="text-xs font-bold text-slate-800 dark:text-zinc-200">Moderation Queue Clear</div>
-                  <div className="text-[11px] text-slate-400">All submitted property listings are reviewed and up to date.</div>
+                  <div className="text-xs text-slate-400">All submitted property listings are reviewed and up to date</div>
                 </div>
               )}
             </div>

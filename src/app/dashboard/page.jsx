@@ -25,6 +25,7 @@ import AdminSettings from "../../components/dashboard/AdminSettings";
 import ToursView from "../../components/dashboard/ToursView";
 import MaintenanceView from "../../components/dashboard/MaintenanceView";
 import ChatList from "../../components/chat/ChatList";
+import DashboardAiChat from "../../components/dashboard/DashboardAiChat";
 
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -89,8 +90,8 @@ function DashboardContent() {
         },
         {
           id: 2,
-          title: "Booking Payment Received",
-          desc: "New booking reservation fee of $2,400 received via Stripe.",
+          title: "Booking Deposit Received",
+          desc: "Tenant completed security deposit for Austin Modern Loft.",
           time: "1h ago",
           unread: true,
           tab: "requests",
@@ -244,9 +245,10 @@ function DashboardContent() {
         {
           category: "OPERATIONS & AI",
           links: [
+            { id: "ai-chat", name: "AI Chatbot Studio", icon: Sparkles },
+            { id: "ai-hub", name: "AI Operations Hub", icon: Bot },
             { id: "admin-bookings", name: "All Bookings", icon: BookOpen },
             { id: "transactions", name: "Transactions", icon: Landmark },
-            { id: "ai-hub", name: "AI Operations Hub", icon: Bot },
           ]
         },
         {
@@ -271,8 +273,9 @@ function DashboardContent() {
           ]
         },
         {
-          category: "MANAGEMENT",
+          category: "MANAGEMENT & AI",
           links: [
+            { id: "ai-chat", name: "AI Assistant", icon: Sparkles },
             { id: "requests", name: "Booking Requests", icon: Calendar },
             { id: "tours", name: "Property Tours", icon: Calendar },
             { id: "maintenance", name: "Maintenance Dispatch", icon: Wrench },
@@ -298,8 +301,9 @@ function DashboardContent() {
         ]
       },
       {
-        category: "SERVICES",
+        category: "SERVICES & AI",
         links: [
+          { id: "ai-chat", name: "AI Assistant", icon: Sparkles },
           { id: "maintenance", name: "Maintenance", icon: Wrench },
           { id: "messages", name: "Messages", icon: MessageSquare },
         ]
@@ -322,6 +326,8 @@ function DashboardContent() {
         return <ProfileView user={user} />;
       case "messages":
         return <ChatList currentUser={user} />;
+      case "ai-chat":
+        return <DashboardAiChat user={user} />;
       case "tours":
         return <ToursView isOwner={user.role === "Owner"} />;
       case "maintenance":
@@ -652,8 +658,8 @@ function DashboardContent() {
 
       {/* Main Dynamic Workspace Panel */}
       <main className="flex-1 p-4 sm:p-6 lg:p-8 min-w-0 max-w-full overflow-x-hidden space-y-6">
-        {/* Top Metric Cards Row (Only shown when not on comprehensive Admin Overview) */}
-        {!(user.role === "Admin" && activeTab === "overview") && (
+        {/* Top Metric Cards Row (Only shown when not on Admin Overview or full-canvas AI Chat) */}
+        {!(user.role === "Admin" && activeTab === "overview") && activeTab !== "ai-chat" && (
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
             {/* KPI Card 1: Verified Tenant / Listing Status */}
             <div className="group bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md rounded-lg p-5 sm:p-6 border border-slate-200/80 dark:border-zinc-800/80 hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-teal-500/5 relative overflow-hidden text-left flex flex-col justify-between">
